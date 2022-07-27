@@ -9,7 +9,10 @@ TEST_SUITE = ../qa
 DATE_STAMP := $(shell date +%Y%m%d%H%M%S)
 PPID_STAMP := $(shell echo $$PPID)
 
+# Find Doxyfile
 VPATH = Doc
+
+# Find README.md
 vpath %.md ..
 
 markdown := $(wildcard Doc/markdown/*/*.md)
