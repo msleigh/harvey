@@ -26,11 +26,14 @@ help:
 	@echo "test:   Runs full QA test suite"
 
 
-doc: doxygen.log
-
 doxygen.log: Doxyfile README.md
 	cd Doc && doxygen > doxygen.log
 	#cd ../doc/latex && make
+
+doc: doxygen.log
+
+github:
+	ghp-import --no-jekyll --no-history --push ../doc/html
 
 test: harfort.so
 	mkdir -p ./QA
