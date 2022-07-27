@@ -6,9 +6,15 @@ SRC=hvy_global_kindtypes.f90 harvey.f90 hvy_setup_mesh.f90 hvy_print_mesh.f90 hv
 .PHONY = doc, harvey, help, test
 
 TEST_SUITE = ../qa
-HTML_DIR = ~/public_html/qa/harvey/images
 DATE_STAMP := $(shell date +%Y%m%d%H%M%S)
 PPID_STAMP := $(shell echo $$PPID)
+
+VPATH = Doc
+vpath %.md ..
+
+markdown := $(wildcard Doc/markdown/*/*.md)
+python := $(wildcard *.py ../qa/hvy_qa_test/*.py)
+fortran := $(wildcard *.f90)
 
 help:
 	@echo "help:   Prints this help screen"
@@ -17,27 +23,19 @@ help:
 	@echo "test:   Runs full QA test suite"
 
 
-doc: Doc/Doxyfile
-	cd Doc && \
-	doxygen
-	#mkdir -p ~/public_html/doc/harvey
-	#if [ -d ~/public_html/doc/harvey/html ] ; then \
-	#    rm -rf ~/public_html/doc/harvey/html ; \
-	#fi
-	#cp -r ../doc/html ~/public_html/doc/harvey/
-	cd ../doc/latex && \
-	make
+doc: doxygen.log
+
+doxygen.log: Doxyfile README.md
+	cd Doc && doxygen > doxygen.log
+	#cd ../doc/latex && make
 
 test: harfort.so
 	mkdir -p ./QA
 	#cp ./*.py harfort.so ./QA/
 	#cp $(TEST_SUITE)/hvy_qa_test/*.py ./QA/
 	cp -r $(TEST_SUITE)/hvy_qa_test/1DHeatEquation ./QA/
-	#cd $(HTML_DIR) && tar cavf $(DATE_STAMP)_$(PPID_STAMP).tar.gz test*.png
-	#rm $(HTML_DIR)/test*.png
 	cd QA && robot --exitonfailure --pythonpath ../$(TEST_SUITE)/hvy_qa_test --pythonpath .. --extension rst --loglevel DEBUG ../$(TEST_SUITE)
 	#cp QA/test*.png Doc/images/
-	#mv QA/test*.png $(HTML_DIR)/
 
 harvey: harfort.so
 
@@ -47,7 +45,7 @@ harfort.so: $(SRC)
 	ln -fs harfort.*.so harfort.so
 
 clean:
-	rm -rf harfort.cpython-38-darwin.so.dSYM
+	rm -f harfort.cpython-38-darwin.so.dSYM
 
 cleaner: clean
-	rm -rf harfort.so harfort.*.so
+	rm -rf harfort.so harfort.*.so ../doc/html ../doc/latex Doc/doxygen.log
