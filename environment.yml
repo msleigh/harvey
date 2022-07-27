@@ -1,0 +1,18 @@
+name: harvey
+channels:
+  - nodefaults
+  - conda-forge
+dependencies:
+  - python=3
+  - matplotlib
+  - numpy
+  - scipy
+  - docutils
+  - pip
+  - gfortran
+  - doxygen
+  - graphviz
+  - ghp-import
+  - pip:
+      - robotframework
+      - git+https://github.com/Feneric/doxypypy

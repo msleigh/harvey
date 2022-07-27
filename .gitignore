@@ -1,0 +1,11 @@
+*.pyc
+*.so
+*.o
+*.mod
+*.png
+OBSOLETE
+doc
+.vagrant
+harvey.out
+*.dSYM
+.ipynb_checkpoints

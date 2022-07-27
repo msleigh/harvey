@@ -1,0 +1,17 @@
+ignore-paths: QA
+strictness: veryhigh
+doc-warnings: true
+member-warnings: true
+pylint:
+  disable:
+    - invalid-name
+    - trailing-whitespace
+    - too-few-public-methods
+frosted:
+  run: true
+vulture:
+  run: true
+pep257:
+  run: true
+pyroma:
+  run: true
