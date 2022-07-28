@@ -3,7 +3,7 @@ Harvey
 
 Harvey is a simple 1D diffusion solver with a range of built-in test cases based on
 analytic solutions. It's a mixed Python/Fortran code, with a top-level control layer
-written in Python calling a numerical kernel written in Fortran.
+written in Python calling a Fortran numerical kernel.
 
 <img src="https://img.shields.io/github/v/release/msleigh/harvey?include_prereleases"> <img src="https://img.shields.io/github/license/msleigh/harvey"> <img src="https://img.shields.io/tokei/lines/github/msleigh/harvey"> <img src="https://img.shields.io/github/last-commit/msleigh/harvey">
 
@@ -93,7 +93,7 @@ To run the code 'as-is', after building (above), execute:
 
 A built-in problem defined in `src/harvin.py` is executed as the most basic check that
 the build has completed successfully. Output data is written to the file `harvey.out`.
-A copy of the expected output is stored in `src/harvey.kgo`:
+A reference copy of the expected output is stored in the repository in `src/harvey.kgo`:
 
     diff src/harvey.kgo harvey.out
 
