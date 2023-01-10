@@ -21,15 +21,13 @@ jobs:
           environment-file: environment.yml
           python-version: 3
       - run: |
-          conda info
-          conda list
-          pwd
-          ls -la
-          git status
-          git remote -vv show
+          set -eu
           make -C src cleaner
-          make -C src doc
           make -C src harvey
           ./src/harvey.py
           diff src/harvey.kgo harvey.out
           make -C src test
+      - uses: mattnotmitt/doxygen-action@v1.9.5
+        with:
+            working-directory: 'src/Doc/'
+            enable-latex: true
