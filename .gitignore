@@ -4,8 +4,11 @@
 *.mod
 *.png
 OBSOLETE
-doc
 .vagrant
 harvey.out
 *.dSYM
 .ipynb_checkpoints
+doxygen.log
+html
+latex
+/doc

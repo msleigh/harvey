@@ -28,7 +28,6 @@ help:
 
 doxygen.log: Doxyfile README.md
 	cd Doc && doxygen > doxygen.log
-	#cd ../doc/latex && make
 
 doc: doxygen.log
 

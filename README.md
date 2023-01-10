@@ -1,4 +1,4 @@
-Harvey
+Harvey {#readme}
 ======
 
 Harvey is a simple 1D diffusion solver with a range of built-in test cases based on
@@ -22,6 +22,7 @@ controlled by [Robot Framework](http://robotframework.org).
 
 - Python 3
 - Numpy (to provide f2py)
+- Fortran compiler (tested with gfortran)
 
 ### Built-in tests
 
@@ -36,7 +37,7 @@ controlled by [Robot Framework](http://robotframework.org).
 - Doxypypy
 - LaTeX
 
-### Installation
+## Installation
 
 To create a Conda env with the necessary Python dependencies:
 
@@ -83,6 +84,12 @@ Open locally with:
 
 (or use `xdg-open` for Linux).
 
+LaTeX documentation is also build (in `doc/latex`). Run:
+
+    make -C doc/latex pdf
+
+to compile the PDF output.
+
 ### Running
 
 #### Running as-is
@@ -123,9 +130,6 @@ for the run of `harvey`.
 
 Output is created in `src/QA`. For each problem a `test<i>.out` file contains the
 results and a PNG file shows a plot of the numerical vs. analytic solution(s). The
-overall test report create by Robot Framework is in `report.html`; to view this do:
-
-    open src/QA/report.html
-
-(or equivalent on non-macOS operating systems). In the event of test failures,
-the `log.html` create by Robot Framework contains more detailed information.
+overall test report create by Robot Framework is in `src/QA/report.html`. In
+the event of test failures, `src/QA/log.html` created by Robot Framework contains
+more detailed information.
