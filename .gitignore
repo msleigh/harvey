@@ -3,12 +3,8 @@
 *.o
 *.mod
 *.png
-OBSOLETE
-.vagrant
-harvey.out
-*.dSYM
 .ipynb_checkpoints
+harvey.out
 doxygen.log
 html
 latex
-/doc

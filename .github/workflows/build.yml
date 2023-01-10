@@ -27,7 +27,9 @@ jobs:
           ./src/harvey.py
           diff src/harvey.kgo harvey.out
           make -C src test
+          mkdir -p src/Doc
       - uses: mattnotmitt/doxygen-action@v1.9.5
         with:
             working-directory: 'src/Doc/'
+            doxyfile-path: '../../doc/Doxyfile'
             enable-latex: true

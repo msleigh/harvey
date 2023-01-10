@@ -3,16 +3,18 @@ SRC=hvy_global_kindtypes.f90 harvey.f90 hvy_setup_mesh.f90 hvy_print_mesh.f90 hv
                         hvy_assemble_coeffs.f90 tridag_ser.f90 Gsselm.f90
 
 
-.PHONY = doc, harvey, help, test
+.PHONY = doc, harvey, help, test, clean
+.SUFFIXES:
 
-TEST_SUITE = ../qa
+TEST_SUITE := $(abspath ../qa)
+DOC_SOURCE := $(abspath ../doc)
 DATE_STAMP := $(shell date +%Y%m%d%H%M%S)
 PPID_STAMP := $(shell echo $$PPID)
 
 # Find Doxyfile
-VPATH = Doc
+VPATH = $(DOC_SOURCE):Doc
 
-# Find README.md
+# Find only top-level README.md
 vpath %.md ..
 
 markdown := $(wildcard Doc/markdown/*/*.md)
@@ -26,8 +28,9 @@ help:
 	@echo "test:   Runs full QA test suite"
 
 
-doxygen.log: Doxyfile README.md
-	cd Doc && doxygen > doxygen.log
+doxygen.log: Doxyfile README.md $(markdown)
+	mkdir -p ./Doc
+	cd Doc && doxygen $(DOC_SOURCE)/Doxyfile > doxygen.log
 
 doc: doxygen.log
 
@@ -36,10 +39,8 @@ github:
 
 test: harfort.so
 	mkdir -p ./QA
-	#cp ./*.py harfort.so ./QA/
-	#cp $(TEST_SUITE)/hvy_qa_test/*.py ./QA/
 	cp -r $(TEST_SUITE)/hvy_qa_test/1DHeatEquation ./QA/
-	cd QA && robot --exitonfailure --pythonpath ../$(TEST_SUITE)/hvy_qa_test --pythonpath .. --extension rst --loglevel DEBUG ../$(TEST_SUITE)
+	cd QA && robot --exitonfailure --pythonpath $(TEST_SUITE)/hvy_qa_test --pythonpath .. --extension rst --loglevel DEBUG $(TEST_SUITE)
 	#cp QA/test*.png Doc/images/
 
 harvey: harfort.so
@@ -50,7 +51,7 @@ harfort.so: $(SRC)
 	ln -fs harfort.*.so harfort.so
 
 clean:
-	rm -f harfort.cpython-38-darwin.so.dSYM
+	rm -f Doc/doxygen.log
 
 cleaner: clean
-	rm -rf harfort.so harfort.*.so ../doc/html ../doc/latex Doc/doxygen.log
+	rm -rf harfort*.so Doc

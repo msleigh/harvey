@@ -1,9 +1,9 @@
-Harvey {#readme}
+Harvey
 ======
 
 Harvey is a simple 1D diffusion solver with a range of built-in test cases based on
 analytic solutions. It's a mixed Python/Fortran code, with a top-level control layer
-written in Python calling a Fortran numerical kernel.
+written in Python calling a Fortran kernel.
 
 <img src="https://img.shields.io/github/v/release/msleigh/harvey?include_prereleases"> <img src="https://img.shields.io/github/license/msleigh/harvey"> <img src="https://img.shields.io/tokei/lines/github/msleigh/harvey"> <img src="https://img.shields.io/github/last-commit/msleigh/harvey">
 
@@ -39,10 +39,12 @@ controlled by [Robot Framework](http://robotframework.org).
 
 ## Installation
 
-To create a Conda env with the necessary Python dependencies:
+To create a Conda env with the necessary dependencies:
 
     conda env create -f environment.yml
     conda activate harvey
+
+(This excludes LaTeX.)
 
 ## Usage
 
@@ -56,7 +58,7 @@ To build:
 
     f2py -c --f90flags="-ffree-form" -m harfort <src>
 
-where `<src>` is a list of the Fortran source-code files. This creates a `.so` shared
+where `<src>` is a list of the Fortran source-code files. The result is a `.so` shared
 object which can be called from the top-level Python code.
 
 It assumes the `f2py` command-line utility is available; this is installed as part of
@@ -72,6 +74,8 @@ and to clean executables to force a fresh full new build:
 
     make -C src cleaner
 
+(This also removes the documentation.)
+
 ### Building the documentation
 
 Run:
@@ -84,7 +88,7 @@ Open locally with:
 
 (or use `xdg-open` for Linux).
 
-LaTeX documentation is also build (in `doc/latex`). Run:
+LaTeX documentation is also built (in `doc/latex`). Run:
 
     make -C doc/latex pdf
 
@@ -92,7 +96,7 @@ to compile the PDF output.
 
 ### Running
 
-#### Running as-is
+#### Sanity-check run
 
 To run the code 'as-is', after building (above), execute:
 
@@ -100,25 +104,13 @@ To run the code 'as-is', after building (above), execute:
 
 A built-in problem defined in `src/harvin.py` is executed as the most basic check that
 the build has completed successfully. Output data is written to the file `harvey.out`.
-A reference copy of the expected output is stored in the repository in `src/harvey.kgo`:
+A reference copy of the expected output is stored in `src/harvey.kgo`:
 
     diff src/harvey.kgo harvey.out
 
-#### Specifying a problem
-
-To create a test problem, create an input definition file (a Python script, with a
-`.py` extension), containing a `define()` function that sets up the problem
-specification. The example input file `src/harvey.in` provides a template, and the
-built-in test problem suite (described below) provides other examples. Run with a
-user-defined input file:
-
-    src/harvey.py -i <test_file>
-
-where the string `<test_file>` should _omit_ the `.py` extension.
-
 #### Running the test suite
 
-To run the test suite:
+To run the full test suite:
 
     make -C src test
 
@@ -130,6 +122,18 @@ for the run of `harvey`.
 
 Output is created in `src/QA`. For each problem a `test<i>.out` file contains the
 results and a PNG file shows a plot of the numerical vs. analytic solution(s). The
-overall test report create by Robot Framework is in `src/QA/report.html`. In
+overall test report created by Robot Framework is in `src/QA/report.html`. In
 the event of test failures, `src/QA/log.html` created by Robot Framework contains
 more detailed information.
+
+#### Specifying a new problem
+
+To create a new run, create an input definition file (a Python script, with a
+`.py` extension), containing a `define()` function that sets up the problem
+specification. The example input file `src/harvey.in` provides a template, and the
+built-in test problem suite (described below) provides other examples. Run with a
+user-defined input file:
+
+    src/harvey.py -i <test_file>
+
+where the string `<test_file>` should _omit_ the `.py` extension.
