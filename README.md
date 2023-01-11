@@ -50,11 +50,11 @@ To create a Conda env with the necessary dependencies:
 
 ### Building
 
-To build:
+To compile the Fortran into a shared object library:
 
-    make -C src harvey
+    make harvey
 
-(This runs:
+This runs:
 
     f2py -c --f90flags="-ffree-form" -m harfort <src>
 
@@ -62,17 +62,17 @@ where `<src>` is a list of the Fortran source-code files. The result is a `.so` 
 object which can be called from the top-level Python code.
 
 It assumes the `f2py` command-line utility is available; this is installed as part of
-the `numpy` package.)
+the `numpy` package.
 
 ### Cleaning
 
 To clean up intermediate build files etc.:
 
-    make -C src clean
+    make clean
 
 and to clean executables to force a fresh full new build:
 
-    make -C src cleaner
+    make cleaner
 
 (This also removes the documentation.)
 
@@ -80,17 +80,17 @@ and to clean executables to force a fresh full new build:
 
 Run:
 
-    make -C src doc
+    make doc
 
-Open locally with:
+The output is created in `build/Doc`. Open locally with:
 
-    open doc/html/index.html
+    open build/Doc/html/index.html
 
 (or use `xdg-open` for Linux).
 
-LaTeX documentation is also built (in `doc/latex`). Run:
+LaTeX documentation is also built (in `build/Doc/latex`). Run:
 
-    make -C doc/latex pdf
+    make -C build/Doc/latex pdf
 
 to compile the PDF output.
 
@@ -100,6 +100,7 @@ to compile the PDF output.
 
 To run the code 'as-is', after building (above), execute:
 
+    export PYTHONPATH="${PWD}/build:${PYTHONPATH:-}"
     src/harvey.py
 
 A built-in problem defined in `src/harvin.py` is executed as the most basic check that
@@ -112,7 +113,7 @@ A reference copy of the expected output is stored in `src/harvey.kgo`:
 
 To run the full test suite:
 
-    make -C src test
+    make test
 
 After setting up, this executes Robot Framework against the test suite defined in
 `qa/hvy_qa_test.rst`. For each test `<i>`, the file `test<i>.py` controls the overall
@@ -120,10 +121,10 @@ QA test, including the generation of the analytic solution results, and the fina
 checks and comparisons. The file `test<i>_in.py` is the problem-dependent input file
 for the run of `harvey`.
 
-Output is created in `src/QA`. For each problem a `test<i>.out` file contains the
+Output is created in `build/QA`. For each problem a `test<i>.out` file contains the
 results and a PNG file shows a plot of the numerical vs. analytic solution(s). The
-overall test report created by Robot Framework is in `src/QA/report.html`. In
-the event of test failures, `src/QA/log.html` created by Robot Framework contains
+overall test report created by Robot Framework is in `build/QA/report.html`. In
+the event of test failures, `build/QA/log.html` created by Robot Framework contains
 more detailed information.
 
 #### Specifying a new problem
