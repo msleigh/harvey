@@ -13,6 +13,7 @@ dependencies:
   - doxygen
   - graphviz
   - ghp-import
+  - jupyter
   - pip:
       - robotframework
       - git+https://github.com/Feneric/doxypypy
