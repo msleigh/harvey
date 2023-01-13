@@ -1,0 +1,21 @@
+Current test,Geometry,Domain (finite/semi-infinite/infinite),Initial condition,Boundary condition (inner/left),Boundary condition (outer/right),Boundary type,Boundary conditions,Theta,Numerical scheme,Desired order
+1,Planar,Finite,Sinusoidal,Dirichlet,Dirichlet,Transmissive,Zero,0,Explicit,1
+2,Planar,Finite,Sinusoidal,Dirichlet,Dirichlet,Transmissive,Zero,0.5,Crank-Nicholson,2
+15,Planar,Finite,Sinusoidal,Dirichlet,Neumann,Reflective (right),Zero,0.5,Crank-Nicholson,3
+17,Planar,Finite,Sinusoidal,Neumann,Dirichlet,Reflective (left),Zero,0.5,Crank-Nicholson,4
+3,Planar,Finite,Constant,Dirichlet,Dirichlet,Transmissive,Zero,0.5,Crank-Nicholson,5
+18,Planar,Finite,Chevron,Dirichlet,Dirichlet,Transmissive,Zero,0,Explicit,6
+4,Planar,Finite,Chevron,Dirichlet,Dirichlet,Transmissive,Zero,0.5,Crank-Nicholson,7
+9,Planar,Finite,Zero,Dirichlet,Dirichlet,Transmissive,"(1,0)",0,Explicit,8
+8,Planar,Finite,Zero,Dirichlet,Dirichlet,Transmissive,"(1,0)",0.5,Crank-Nicholson,9
+11,Planar,Finite,Zero,Dirichlet,Dirichlet,Transmissive,"(0,1)",0,Explicit,10
+12,Planar,Finite,Zero,Dirichlet,Dirichlet,Transmissive,"(0,1)",1,Laasonen,11
+13,Planar,Finite,Zero,Dirichlet,Neumann,Flux (right),"(0,1)",0,Explicit,12
+14,Planar,Finite,Zero,Dirichlet,Neumann,Flux (right),"(0,1)",0.5,Crank-Nicholson,13
+N/A,Planar,Finite,Zero,Dirichlet,Dirichlet,Transmissive,"(100,100)",0,Explicit,14
+5,Planar,Finite,Zero,Dirichlet,Neumann,Reflective (right),"(100,0)",0,Explicit,15
+16,Planar,Finite,Zero,Neumann,Dirichlet,Reflective (left),"(0,100)",0,Explicit,16
+6,Planar,Semi-infinite,Zero,Dirichlet,Dirichlet,Transmissive,"(100,0)",0,Explicit,17
+10,Planar,Semi-infinite,Zero,Dirichlet,Dirichlet,Transmissive,"(100,0)",0.5,Crank-Nicholson,18
+7,Planar,Infinite,Gaussian,Dirichlet,Dirichlet,Transmissive,Zero,0,Explicit,19
+N/A,Planar,Infinite,Gaussian,Dirichlet,Neumann,Reflective (right),Zero,0,Explicit,20
