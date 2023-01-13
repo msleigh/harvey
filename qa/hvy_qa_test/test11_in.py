@@ -55,8 +55,6 @@ def define():
 
     time.dt = 0.5 * (mesh.dx * mesh.dx) / (11.0 * dcon)
     time.end = 640.0 * mesh.dx * mesh.dx / dcon
-    print("time.end = ", time.end)
-    print("in num sol", mesh.dx, dcon)
 
     # Specify the boundary conditions
     # -------------------------------
