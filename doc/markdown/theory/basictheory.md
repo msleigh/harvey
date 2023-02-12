@@ -64,9 +64,9 @@ As we saw above, this is the diffusion equation (sometimes known as Fick's secon
 
 In the special case that @f$ D @f$ is constant in space, then this equation simplifies to:
 
-\f{equation}
+\f[
   \dfrac{\partial u}{\partial t} = D \nabla^2 u + Q
-\f}
+\f]
 
 and in steady-state, @f$ \dfrac{\partial u}{\partial t} = 0 @f$, and with constant source, it reduces to Poisson's equation:
 
@@ -86,58 +86,54 @@ and further to Laplace's equation if the source term is zero:
 
 Returning now to the full equation, we recall that:
 
-\f[
-  \begin{array}{lcl}
-  \nabla &=& \hat i \dfrac{\partial}{\partial x} + \hat j \dfrac{\partial}{\partial y} + \hat k \dfrac{\partial}{\partial z} \\[10pt]
-         &=& \hat e_{\rho} \dfrac{\partial}{\partial \rho} + \hat e_{\phi} \dfrac{\partial}{\partial \phi} + \hat e_z \dfrac{\partial}{\partial z} \\[10pt]
-         &=& \hat e_{r} \dfrac{\partial}{\partial r} + \hat e_{\theta} \dfrac{\partial}{\partial \theta} + \hat e_{\phi} \dfrac{\partial}{\partial \phi}
-  \end{array}
-\f]
+\f{align*}
+    \nabla &= \hat i \dfrac{\partial}{\partial x} + \hat j \dfrac{\partial}{\partial y} + \hat k \dfrac{\partial}{\partial z} \\[8pt]
+           &= \hat e_{\rho} \dfrac{\partial}{\partial \rho} + \hat e_{\phi} \dfrac{\partial}{\partial \phi} + \hat e_z \dfrac{\partial}{\partial z} \\[8pt]
+           &= \hat e_{r} \dfrac{\partial}{\partial r} + \hat e_{\theta} \dfrac{\partial}{\partial \theta} + \hat e_{\phi} \dfrac{\partial}{\partial \phi}
+\f}
 
 in Cartesian, cylindrical and spherical geometries, respectively.
 
 Consider first spherical geometry:
 
-\f{equation}
-  \nabla \cdot D \nabla u = \\
+\f[
+  \nabla \cdot D \nabla u =
   \frac{1}{r^2}           \frac{\partial}{\partial r}      \left( r^2 D                    \frac{\partial u}{\partial r}      \right) +
   \frac{1}{r \sin \theta} \frac{\partial}{\partial \theta} \left( \frac{D \sin \theta }{r} \frac{\partial u}{\partial \theta} \right) +
   \frac{1}{r \sin \theta} \frac{\partial}{\partial \phi}   \left( \frac{D}{r \sin \theta}  \frac{\partial u}{\partial \phi}   \right)
-\f}
+\f]
 
 In cylindrical geometry:
 
-\f{equation}
+\f[
   \nabla \cdot D \nabla u =
   \frac{1}{\rho} \frac{\partial}{\partial \rho} \left( \rho D         \frac{\partial u}{\partial \rho} \right) +
   \frac{1}{\rho} \frac{\partial}{\partial \phi} \left( \frac{D}{\rho} \frac{\partial u}{\partial \phi} \right) +
                  \frac{\partial}{\partial z}    \left( D              \frac{\partial u}{\partial z}    \right)
-\f}
+\f]
 
 and in Cartesian geometry:
 
-\f{equation}
+\f[
   \nabla \cdot D \nabla u =
   \frac{\partial}{\partial x}\left( D \frac{\partial u}{\partial x} \right) +
   \frac{\partial}{\partial y}\left( D \frac{\partial u}{\partial y} \right) +
   \frac{\partial}{\partial z}\left( D \frac{\partial u}{\partial z} \right)
-\f}
+\f]
 
 In one dimension:
 
-\f[
-  \begin{array}{lcl}
-  \dfrac{\partial u}{\partial t} &=& \dfrac{1}{r^2}  \dfrac{\partial}{\partial r}    \left( r^2  D \dfrac{\partial u}{\partial r}    \right) + Q \\[10pt]
-  \dfrac{\partial u}{\partial t} &=& \dfrac{1}{\rho} \dfrac{\partial}{\partial \rho} \left( \rho D \dfrac{\partial u}{\partial \rho} \right) + Q \\[10pt]
-  \dfrac{\partial u}{\partial t} &=&                 \dfrac{\partial}{\partial x}    \left(      D \dfrac{\partial u}{\partial x}    \right) + Q
-  \end{array}
-\f]
+\f{align*}
+  \dfrac{\partial u}{\partial t} &= \dfrac{1}{r^2}  \dfrac{\partial}{\partial r}    \left( r^2  D \dfrac{\partial u}{\partial r}    \right) + Q \\[8pt]
+  \dfrac{\partial u}{\partial t} &= \dfrac{1}{\rho} \dfrac{\partial}{\partial \rho} \left( \rho D \dfrac{\partial u}{\partial \rho} \right) + Q \\[8pt]
+  \dfrac{\partial u}{\partial t} &=                 \dfrac{\partial}{\partial x}    \left(      D \dfrac{\partial u}{\partial x}    \right) + Q
+\f}
 
 These equations can be generalised:
 
-\f{equation}
+\f[
   \frac{\partial u}{\partial t} = \frac{1}{x^p} \frac{\partial}{\partial x} \left(x^p D \frac{\partial u}{\partial x} \right) + Q
-\f}
+\f]
 
 where:
 
@@ -159,15 +155,15 @@ The heat flow equation of Fourier is:
 
 where @f$ a @f$ is the heat capacity of the material per unit volume and @f$ K @f$ is the thermal conductivity. For constant conductivity this becomes:
 
-\f{equation}
+\f[
   \frac{\partial \theta}{\partial t} = \frac{K}{a} \frac{\partial^2 \theta}{\partial x^2}
-\f}
+\f]
 
 where the corresponding equation for diffusion is:
 
-\f{equation}
+\f[
   \frac{\partial u}{\partial t} = D \frac{\partial^2 u}{\partial x^2}
-\f}
+\f]
 
 For the two equations to correspond, we equate temperature @f$ \theta @f$ with concentration @f$ u @f$, which clearly implies that @f$ D = K/a @f$. However, it is also the case that:
 

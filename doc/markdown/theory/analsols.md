@@ -46,12 +46,10 @@ Each of the terms is a function of only one independent variable. In this exampl
 
 Using this conclusion, we can arrive at two _ordinary_ differential equations:
 
-\f[
-    \begin{array}{c}
-        T' = -\lambda T \\[10pt]
-        -DX'' = \lambda X
-    \end{array}
-\f]
+\f{gather*}
+    T' = -\lambda T \\[10pt]
+    -DX'' = \lambda X
+\f}
 
 each of which is linear, inhomogeneous, and easy to solve.
 
@@ -63,7 +61,10 @@ The first ODE, which is equivalent to the equation describing radioactive decay:
 with a decay constant @f$ \lambda @f$, has a simple solution:
 
 \f[
-    \boxed{T(t) = T(0) \exp(-\lambda t)}
+    \setlength{\fboxsep}{2.5\fboxsep}
+    \boxed{
+        T(t) = T(0) \exp(-\lambda t)
+    }
 \f]
 
 Note that, substituting this back into the definition of the separable-variable solution:
@@ -122,13 +123,14 @@ For an @f$N^{\mathrm{th}}@f$-order ODE, this _auxiliary equation_ is an @f$N^{\m
 
 * If all roots are real and distinct, then the solutions are simply @f$ e^{l_n x}, \; n =1, 2, ..., N  @f$. Since:
   \f[
-      l^2 = \dfrac{-\lambda}{D}
+      l^2 = -\dfrac{\lambda}{D}
   \f]
-  this situation arises when @f$ \lambda < 0 @f$ (for physical lsituations where @f$ D @f$ is non-negative). The roots are:
+  this situation arises when @f$ \lambda < 0 @f$ (for physical situations where @f$ D @f$ is non-negative). The roots are:
   \f[
-      \begin{array}{lcl}
-          l_1 &=&  \sqrt{\dfrac{-\lambda}{D}} =  \omega \\[10pt]
-          l_2 &=& -\sqrt{\dfrac{-\lambda}{D}} = -\omega
+      \arraycolsep=1.4pt
+      \begin{array}{lcrcr}
+          l_1 &=&  \sqrt{\dfrac{-\lambda}{D}} &=&  \omega \\[10pt]
+          l_2 &=& -\sqrt{\dfrac{-\lambda}{D}} &=& -\omega
       \end{array}
   \f]
   I.e. @f$ X_1 = e^{\omega x} @f$ and @f$ X_2 = e^{-\omega x} @f$ are solutions. The superposition @f$ X = c_1 e^{\omega x} + c_2 e^{-\omega x} @f$ gives the general solution.
@@ -137,13 +139,13 @@ For an @f$N^{\mathrm{th}}@f$-order ODE, this _auxiliary equation_ is an @f$N^{\m
       l_1 = \sqrt{\dfrac{-\lambda}{D}} = \omega
   \f]
   The solutions are @f$ X_1 = e^{\omega x} @f$ and @f$ X_2 = xe^{\omega x} @f$, and since @f$ \omega = 0 @f$, @f$ X_1 = 1 @f$ and @f$ X_2 = x @f$, and the general solution is @f$ X = c_1 x + c_2 @f$.
-* If some of the roots are complex, which is the case if @f$ \lambda > 0 @f$, then each complex root @f$ \alpha + i\beta @f$ has a corresponding root @f$ \alpha - i\beta @f$. For @f$ \lambda > 0 @f$ we find the single root:
+* If some of the roots are complex, which is the case if @f$ \lambda > 0 @f$, then each complex root @f$ \alpha + i\beta @f$ has a corresponding root @f$ \alpha - i\beta @f$. For @f$ \lambda > 0 @f$ we find therefore the two roots:
   \f[
-          \l_1 = i\sqrt{\dfrac{\lambda}{D}} = i\omega
-  \f]
-  and so add:
-  \f[
-          \l_2 = -i\sqrt{\dfrac{\lambda}{D}} = -i\omega
+      \arraycolsep=1.4pt
+      \begin{array}{lcrcr}
+          \l_1 &=& i\sqrt{\dfrac{\lambda}{D}} &=& i\omega \\[10pt]
+          \l_2 &=& -i\sqrt{\dfrac{\lambda}{D}} &=& -i\omega
+      \end{array}
   \f]
   Solutions are @f$ X_1 = e^{i\omega x} @f$ and @f$ X_2 = e^{-i\omega x} @f$, and the general solution is @f$ X = d_1 e^{i\omega x} + d_2 e^{-i\omega x} = c_1 \cos \omega x + c_2 \sin \omega x @f$.
 
@@ -155,13 +157,14 @@ To re-cap, the ODE:
 has general solution:
 
 \f[
+    \setlength{\fboxsep}{2.5\fboxsep}
     \boxed{
-    X(x) = \left\{
-    \begin{array}{l l}
-    c_1 e^{\omega x} + c_2 e^{-\omega x} & \quad \textrm{for} \; \lambda < 0 \\[5pt]
-    c_1 x + c_2                          & \quad \textrm{for} \; \lambda = 0 \\[5pt]
-    c_1 \cos\omega x + c_2 \sin\omega x  & \quad \textrm{for} \; \lambda > 0
-    \end{array} \right.
+        X(x) =
+        \begin{cases}
+            c_1 e^{\omega x} + c_2 e^{-\omega x} & \quad \textrm{for} \; \lambda < 0 \\[5pt]
+            c_1 x + c_2                          & \quad \textrm{for} \; \lambda = 0 \\[5pt]
+            c_1 \cos\omega x + c_2 \sin\omega x  & \quad \textrm{for} \; \lambda > 0
+        \end{cases}
     }
 \f]
 
@@ -177,34 +180,36 @@ We shall first consider analytic solutions on a finite interval, because they le
 
 Consider a situation in which the following boundary conditions are applied:
 
-\f[
-    \begin{array}{lcl}
-        u(0,t) = 0 \\[10pt]
-        u(L,t) = 0
-    \end{array}
-\f]
+\f{align}
+    u(0,t) &= 0 \nonumber \\[8pt]
+    u(L,t) &= 0 \nonumber
+\f}
 
 for @f$ t \ge 0 @f$.
 
 First, we apply these boundary conditions to the ODE that describes the spatial dependence:
+
 \f[
+    \arraycolsep=1.4pt
     \begin{array}{lcl}
-        u(0,t) = X(0)T(t) = 0 \\[10pt]
-        u(L,t) = X(L)T(t) = 0
-    \end{array}
-\f]
-which, since we want non-trivial solutions (@f$T(t) \ne 0 @f$), imply:
-\f[
-    \begin{array}{lcl}
-        X(0) = 0 \\[10pt]
-        X(L) = 0
+        u(0,t) &= X(0)T(t) &= 0 \\[8pt]
+        u(L,t) &= X(L)T(t) &= 0
     \end{array}
 \f]
 
+which, since we want non-trivial solutions (@f$T(t) \ne 0 @f$), imply:
+
+\f{align*}
+    X(0) &= 0 \\[8pt]
+    X(L) &= 0
+\f}
+
 Now, for:
+
 \f[
     -DX'' = \lambda X
 \f]
+
 we can determine the following.
 
 * For @f$ \lambda < 0 @f$, the solution was:
@@ -212,54 +217,55 @@ we can determine the following.
       X(x) = c_1 e^{\lambda x} + c_2 e^{\lambda x}
   \f]
   Applying the boundary conditions we see that:
-  \f[
-      c_1 + c_2 = 0
-  \f]
-  \f[
+  \f{gather*}
+      c_1 + c_2 = 0 \\[8pt]
       c_1 e^{\omega L} + c_2 e^{-\omega L} = 0
-  \f]
+  \f}
   from which we infer that @f$ c_1 = c_2 = 0 @f$, so only trivial solutions exist.
 * For @f$ \lambda = 0 @f$:
-  \f{equation}
+  \f[
       X(x) = c_1 x + c_2
-  \f}
+  \f]
   Applying the boundary conditions:
-  \f[
-      c_2 = 0
-  \f]
-  \f[
+  \f{gather*}
+      c_2 = 0 \\[8pt]
       c_1 L = 0
-  \f]
+  \f}
   from which, again, we can see that @f$ c_1 = c_2 = 0 @f$.
 * Finally, for @f$ \lambda > 0 @f$:
-  \f{equation}
+  \f[
       X(x) = c_1 \cos\omega x + c_2 \sin\omega x
-  \f}
+  \f]
   Applying the boundary conditions:
-  \f[
-      c_1 = 0
-  \f]
-  \f[
+  \f{gather*}
+      c_1 = 0 \\[8pt]
       c_2 \sin\omega L = 0
-  \f]
-  from which we infer that non-zero values of @f$ c_2 @f$ can occur when @f$ \omega L = n\pi @f$, @f$ n @f$ being an integer. Hence @f$ \lambda > 0 @f$ is the only situation of interest; @f$ \lambda \le 0 @f$ yields only the trivial solution @f$ X(x) = 0 @f$.
+  \f}
+  from which we infer that non-zero values of @f$ c_2 @f$ can occur when @f$ \omega L = n\pi @f$, @f$ n @f$ being an integer.
 
-Therefore we have the following eigenfunctions:
+Hence @f$ \lambda > 0 @f$ is the only situation of interest; @f$ \lambda \le 0 @f$ yields only the trivial solution @f$ X(x) = 0 @f$. Therefore we have the following eigenfunctions:
+
 \f[
     X_n(x) = c_2 \sin\left(\dfrac{n\pi}{L}x\right)
 \f]
+
 and eigenvalues:
+
 \f[
     \lambda_n = D\left(\dfrac{n\pi}{L}\right)^2
 \f]
+
 for @f$ n = 1, 2, ... @f$. For each @f$ \lambda_n @f$, we also have a solution for the time-dependent part:
+
 \f[
     T_n(t) = T(0) \exp{\left(-D\dfrac{n^2\pi^2}{L^2}t\right)}
 \f]
-as the correct general solutions to the separated ODEs. We can substitute them into the assumed form for the solution to the diffusion equation, which is @f$ u = XT @f$:
-\f{equation}
+
+These are the general solutions to the two separated ODEs. We can substitute them into the assumed form for the solution to the diffusion equation, which is @f$ u = XT @f$:
+
+\f[
     u_n(x,t) = b_n \sin \left(\frac{n\pi}{L}x \right) \exp\left(-D\frac{n^2\pi^2}{L^2}t\right)
-\f}
+\f]
 
 Every value of @f$ n @f$ is a solution, hence there is a set of solutions, and we can use superposition to find a more general solution:
 
@@ -294,13 +300,10 @@ Reversing the order of summation and integration:
 
 Using the rules of orthogonality, all the terms in the series on the left-hand side disappear, except when @f$ m = n @f$:
 
-\f[
-    A_n \int_0^L \sin\left(\frac{n\pi}{L}x\right)\sin\left(\frac{n\pi}{L}x\right) dx = \int_0^L \varphi(x)\sin\left(\frac{n\pi}{L}x\right) dx
-\f]
-
-\f[
+\f{gather*}
+    A_n \int_0^L \sin\left(\frac{n\pi}{L}x\right)\sin\left(\frac{n\pi}{L}x\right) dx = \int_0^L \varphi(x)\sin\left(\frac{n\pi}{L}x\right) dx \\[8pt]
     A_n \frac{L}{2} = \int_0^L \varphi(x)\sin\left(\frac{n\pi}{L}x\right) dx
-\f]
+\f}
 
 Therefore:
 \f[
@@ -308,15 +311,13 @@ Therefore:
 \f]
 
 Finally therefore, we have for fixed, zero boundary temperatures and initial distribution @f$ \varphi(x) @f$ the solution:
-\f[
-    u(x,t) = \sum_{n=1}^{\infty} A_n \sin \left( \frac{n\pi}{L}x\right) \exp\left(-D\frac{n^2\pi^2}{L^2}t\right)
-\f]
-\f[
+\f{gather*}
+    u(x,t) = \sum_{n=1}^{\infty} A_n \sin \left( \frac{n\pi}{L}x\right) \exp\left(-D\frac{n^2\pi^2}{L^2}t\right) \\[8pt]
     A_n = \frac{2}{L} \int_0^L \varphi(x) \sin \left( \frac{n\pi}{L}x\right) dx
-\f]
+\f}
 
 
-\subsubsection sininitcon Sinusoidal initial condition (test problem 1, test problem 2)
+\subsubsection sininitcon Sinusoidal initial condition (test problems 1, 2, 15, 17)
 
 
 Perhaps the simplest initial condition is a single sinusoidal function:
@@ -328,12 +329,11 @@ Perhaps the simplest initial condition is a single sinusoidal function:
 from which:
 
 \f[
-    A_n = \left\{
-    \begin{array}{l l}
-        A & \quad \textrm{for}\;n = 1\\[10pt]
+    A_n =
+    \begin{cases}
+        A & \quad \textrm{for}\;n = 1\\[8pt]
         0 & \quad \textrm{for}\;n \ne 1
-    \end{array}
-    \right.
+    \end{cases}
 \f]
 
 Hence:
@@ -364,14 +364,15 @@ then:
 Hence:
 
 \f[
-    A_n = \left\{
-    \begin{array}{l l}
+    A_n =
+    \begin{cases}
         0                  & \quad \textrm{for}\;n = 0, 2, 4, ...\\[10pt]
         \dfrac{4U_0}{n\pi} & \quad \textrm{for}\;n = 1, 3, 5, ...
-    \end{array} \right.
+    \end{cases}
 \f]
 
 The solution is therefore:
+
 \f[
     u(x,t) = \frac{4U_0}{\pi} \sum_n \frac{1}{2n-1}\sin\left(\frac{(2n-1)\pi}{L}x\right)\exp\left(-D\dfrac{(2n-1)^2\pi^2}{L^2}t\right)
 \f]
@@ -381,24 +382,26 @@ The solution is therefore:
 
 
 An alternative initial condition is:
+
 \f[
-    \varphi(x) = \left\{
-    \begin{array}{l l}
-        T_0x     & \quad \textrm{for} \; 0   \le x \le L/2\\
+    \varphi(x) =
+    \begin{cases}
+        T_0x     & \quad \textrm{for} \; 0   \le x \le L/2\\[8pt]
         T_0(L-x) & \quad \textrm{for} \; L/2 \le x \le L
-    \end{array} \right.
+    \end{cases}
 \f]
+
 where @f$ T_0 @f$ is a constant.
 
 This can be thought of as representing an electric blanket of thickness @f$ L @f$ sandwiched between two insulating blankets, and whose surfaces at @f$ x = 0 @f$ and @f$ x = L @f$ are fixed at the ambient temperature, which we take to be @f$ u = 0 @f$ by choice of temperature scale. The initial value function then represents the steady-state temperature distribution through the thickness of the blanket. Then at @f$ t = 0 @f$ the blanket is turned off so that this temperature distribution forms the initial condition for the subsequent cooling phase.
 
 The exact solution of this initial-value problem can be obtained using the same Fourier series method as above. First, we determine the Fourier series representation of the initial condition. We can look up the standard answer for a similar function:
 \f[
-    f(x) = \left\{
-    \begin{array}{l l}
-        T_0x       & \quad \textrm{for} \; -\pi \le x \le 0 \\
+    f(x) =
+    \begin{cases}
+        T_0x       & \quad \textrm{for} \; -\pi \le x \le 0 \\[8pt]
         T_0(\pi-x) & \quad \textrm{for} \; 0    \le x \le \pi
-    \end{array} \right.
+    \end{cases}
 \f]
 
 which is:
@@ -418,7 +421,7 @@ where @f$ A @f$ is the amplitude and the period is @f$ 2\pi @f$. Shifting this b
                   + \dfrac{1}{25}\cos 5\left[x+\dfrac{\pi}{2}\right]
                   + ...
               \right)
-    \\
+    \\[8pt]
           &=& \dfrac{8A}{\pi^2}
               \left(
                   \sin x
@@ -438,12 +441,11 @@ which is equivalent to our starting condition with @f$ L = \pi @f$. Comparing th
 suggests that:
 
 \f[
-    A_n = \left\{
-    \begin{array}{l l}
-        0                                                   & \quad \textrm{for} \; n = 2, 4, 6, ...\\[10pt]
+    A_n =
+    \begin{cases}
+        0                                                   & \quad \textrm{for} \; n = 2, 4, 6, ...\\[8pt]
         \left(-1\right)^{\frac{n-1}{2}}\dfrac{8A}{\pi^2n^2} & \quad \textrm{for} \; n = 1, 3, 5, ...
-    \end{array}
-    \right.
+    \end{cases}
 \f]
 
 Hence the solution is:
@@ -488,9 +490,9 @@ We can now, by requiring that:
 
 with boundary conditions:
 
-\f{align}
-    w(0) &= u(0,t) \nonumber\\
-    w(L) &= u(L,t) \nonumber
+\f{align*}
+    w(0) &= u(0,t) \\[8pt]
+    w(L) &= u(L,t)
 \f}
 
 obtain a diffusion equation for @f$ v @f$:
@@ -501,10 +503,13 @@ obtain a diffusion equation for @f$ v @f$:
 
 which, crucially, has homogeneous boundary conditions:
 
-\f{align}
-    v(0,t) &= u(0,t) - w(0) = 0\nonumber \\
-    v(L,t) &= u(L,t) - w(L) = 0\nonumber
-\f}
+\f[
+    \arraycolsep=1.4pt
+    \begin{array}{llcl}
+         v(0,t) &=& u(0,t) - w(0) &= 0 \\[8pt]
+         v(L,t) &=& u(L,t) - w(L) &= 0
+    \end{array}
+\f]
 
 Note that this imposes the restriction that the boundary conditions on @f$ u @f$ must be constant (say @f$ u_0 @f$ and @f$ u_L @f$, respectively).
 
@@ -516,9 +521,9 @@ Now @f$ v @f$ can be obtained as in [the previous section](\ref zeroboundaries).
 
 hence:
 
-\f{align}
+\f{align*}
     v(x,t) = \sum_{n=1}^{\infty} A_n \sin \left( \frac{n\pi}{L}x\right) \exp\left(-D\frac{n^2\pi^2}{L^2}t\right)
-    \\
+    \\[8pt]
     A_n = \frac{2}{L} \int_0^L \left(u(x,0) - w(x)\right) \sin \left( \frac{n\pi}{L}x\right) dx
 \f}
 
@@ -530,30 +535,28 @@ Solving for @f$ w @f$, we obtain:
 
 and from the boundary conditions:
 
-\f{align}
-    w(0) &= u(0,t) = u_0\nonumber\\
-    w(L) &= u(L,t) = u_L\nonumber
-\f}
-\f{align}
-    b &= u_0                 \nonumber\\
-    a &= \dfrac{u_L - u_0}{L}\nonumber
-\f}
+\f[
+    \arraycolsep=1.4pt
+    \begin{array}{lll}
+        w(0) &= u(0,t) &= u_0\\[8pt]
+        w(L) &= u(L,t) &= u_L
+    \end{array}
+\f]
 
-\f{equation}
+we obtain:
+
+\f{gather*}
+    b = u_0 \\[8pt]
+    a = \dfrac{u_L - u_0}{L} \\[8pt]
     w(x) = \dfrac{u_L - u_0}{L}x + u_0
 \f}
 
 Therefore the general solution is:
 
-\f{align}
+\f{align*}
     u(x,t) = \dfrac{u_L - u_0}{L}x + u_0 + \sum_{n=1}^{\infty} A_n \sin \left( \frac{n\pi}{L}x\right) \exp\left(-D\frac{n^2\pi^2}{L^2}t\right)
-    \\
+    \\[8pt]
     A_n = \frac{2}{L} \int_0^L \left(u(x,0) - \dfrac{u_L - u_0}{L}x + u_0\right) \sin \left( \frac{n\pi}{L}x\right) dx
-\f}
-
-
-\f{equation}
-    w(x) = U_0\left(1 - \dfrac{x}{L}\right)
 \f}
 
 
@@ -562,114 +565,135 @@ Therefore the general solution is:
 
 If @f$ u(x,0) = 0 @f$ then:
 
-
+\f[
+    w(x) = U_0\left(1 - \dfrac{x}{L}\right)
+\f]
 
 The solution is:
 
-\f{equation}
+\f[
     u(x,t) = U_0 \left( 1 - \frac{x}{L} \right) - \frac{2U_0}{\pi} \sum_{n=1}^{\infty} \frac{1}{n} \sin\left(\frac{n\pi x}{L}\right) \exp\left( -\lambda_n^2 t \right)
-\f}
+\f]
 
 
 \section laplacetransform Method: Laplace transforms
 
 
-An alternative to using the separation of variables is the use of intgeral transforms, i.e. the Laplace and Fourier transforms. The idea is to eliminate one of the independent variables, transforming the original PDE into one containing derivatives with respect to smaller number of variables. For example, if the original PDE has just two independent variables, as does our one-dimensional diffusion equation, it is often possible to reduce the PDE to an ODE, which can then be solved. The solution can then be transformed back, to give the solution to the original PDE. There is no simple way to determine the choice of transform to use, or the choice of variable with respect to which the transform is to be taken.
+An alternative to using the separation of variables is the use of integral transforms, i.e. the Laplace and Fourier transforms. The idea is to eliminate one of the independent variables, transforming the original PDE into one containing derivatives with respect to smaller number of variables. For example, if the original PDE has just two independent variables, as does our one-dimensional diffusion equation, it is often possible to reduce the PDE to an ODE, which can then be solved. The solution can then be transformed back, to give the solution to the original PDE. There is no simple way to determine the choice of transform to use, or the choice of variable with respect to which the transform is to be taken.
 
 It is well-known that a periodic function with period @f$ T @f$ can be represented over a fixed interval by a superposition of sinusoidal functions - i.e. as a Fourier series, which is written:
-\f[
-    \begin{array}{lcl}
-    f(t) &=& \frac{a_0}{2} + \sum_{n=1}^{\infty} \left[ a_n \cos \left( \frac{2\pi nt}{T} \right) + b_n \left( \frac{2\pi nt}{T} \right) \right] \\
-    a_n  &=& \frac{2}{T} \int_{t_0}^{t_0+T} f(t) \cos\left( \frac{2\pi nt}{T} \right) dt \\
-    b_n  &=& \frac{2}{T} \int_{t_0}^{t_0+T} f(t) \sin\left( \frac{2\pi nt}{T} \right) dt
-    \end{array}
-\f]
-or, since from Euler's equation:
-\f{equation}
-    \exp\left(inx\right) = \cos nx + i\sin nx
+
+\f{align*}
+    f(t) &= \dfrac{a_0}{2} + \sum_{n=1}^{\infty} { \left[ a_n \cos \left( \dfrac{2\pi nt}{T} \right) + b_n \left( \dfrac{2\pi nt}{T} \right) \right] } \\[8pt]
+    a_n  &= \dfrac{2}{T} \int_{t_0}^{t_0+T} f(t) \cos\left( \dfrac{2\pi nt}{T} \right) dt \\[8pt]
+    b_n  &= \dfrac{2}{T} \int_{t_0}^{t_0+T} f(t) \sin\left( \dfrac{2\pi nt}{T} \right) dt
 \f}
-in a more compact form:
+
+or, since from Euler's equation:
+
 \f[
-    \begin{array}{lcl}
-    f(t) &=& \sum_{n=-\infty}^{\infty} c_n e^{i\omega_n t} \\
-    c_n  &=& \frac{1}{T} \int_{t_0}^{t_0+T} f(t) e^{-i\omega_n t} dt
-    \end{array}
+    \exp\left(inx\right) = \cos nx + i\sin nx
 \f]
+
+in a more compact form:
+
+\f{align*}
+    f(t) &= \sum_{n=-\infty}^{\infty} c_n e^{i\omega_n t} \\[8pt]
+    c_n  &= \frac{1}{T} \int_{t_0}^{t_0+T} f(t) e^{-i\omega_n t} dt
+\f}
+
 where @f$ \omega_n = 2\pi n/T@f$.
 
 It is also possible, however, to represent functions that are defined over an infinite interval, and having no periodicity, in a similar way; this is called a Fourier transform, which is one of a class of representations called integral transforms. The Fourier transform may be considered a generalisation of the Fourier series representation of periodic functions to non-periodic functions. As the period @f$ T @f$ tends to infinity, the distance, in frequency space, between allowed frequencies, which is equal to @f$ \Delta\omega = 2\pi/T @f$, becomes vanishingly small, and the spectrum of allowed frequencies becomes continuous rather than quantised. The discrete coefficients of the Fourier series, @f$ c_n @f$, are replaced by a continuous function @f$ c(\omega) @f$.
 
 The Fourier series coefficients are given by:
-\f[
-    \begin{array}{lcl}
-    c_n  &=& \frac{1}{T} \int_{-T/2}^{T/2} f(t) e^{-i\omega_n t} dt \\
-         &=& \frac{\Delta\omega}{2\pi} \int_{-T/2}^{T/2} f(t) e^{-i\omega_n t} dt
-    \end{array}
-\f]
+
+\f{align*}
+    c_n  &= \frac{1}{T} \int_{-T/2}^{T/2} f(t) e^{-i\omega_n t} dt \\[8pt]
+         &= \frac{\Delta\omega}{2\pi} \int_{-T/2}^{T/2} f(t) e^{-i\omega_n t} dt
+\f}
+
 which, when substituted into the Fourier series, gives:
+
+\f{align*}
+    f(t) &= \frac{1}{2\pi} \sum_{n=-\infty}^{\infty} \Delta\omega \int_{-T/2}^{T/2} f(t') e^{-i\omega_n t'} dt' e^{i\omega_n t} \\[8pt]
+         &= \frac{1}{2\pi} \sum_{n=-\infty}^{\infty} \Delta\omega \: g(\omega_n) e^{i\omega_n t}
+\f}
+
+and:
+
 \f[
-    \begin{array}{lcl}
-    f(t) &=& \frac{1}{2\pi} \sum_{n=-\infty}^{\infty} \Delta\omega \int_{-T/2}^{T/2} f(t') e^{-i\omega_n t'} dt' e^{i\omega_n t} \\
-         &=& \frac{1}{2\pi} \sum_{n=-\infty}^{\infty} \Delta\omega \: g(\omega_n) e^{i\omega_n t} \\
-    g(\omega_n) &=& \int_{-T/2}^{T/2} f(t') e^{-i\omega_n t'} dt'
-    \end{array}
+    g(\omega_n) = \int_{-T/2}^{T/2} f(t') e^{-i\omega_n t'} dt'
 \f]
-As @f$ L \rightarrow \infty @f$, and @f$ \Delta\omega @f$ becomes infinitesimal, the sum over discrete values becomes an intgeral:
-\f{equation}
+
+As @f$ L \rightarrow \infty @f$, and @f$ \Delta\omega @f$ becomes infinitesimal, the sum over discrete values becomes an integral:
+
+\f[
     \sum_{n=-\infty}^{\infty} \Delta\omega \: g(\omega_n) e^{i\omega_n t} \rightarrow \int_{-\infty}^{\infty} g(\omega) e^{i\omega t} d\omega
-\f}
-Hence
-\f[
-    \begin{array}{lcl}
-    f(t) &=& \frac{1}{2\pi} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(t') e^{-i\omega t'} dt' e^{i\omega t} d\omega
-    \end{array}
 \f]
+
+Hence:
+
+\f[
+    f(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(t') e^{-i\omega t'} dt' e^{i\omega t} d\omega
+\f]
+
 We call:
-\f{equation}
+
+\f[
     \tilde f(\omega) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} f(t) e^{-i\omega t} dt
-\f}
+\f]
+
 the Fourier transform of @f$ f(t) @f$, and:
+
 \f[
     f(t) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} \tilde f(\omega) e^{i\omega t} d\omega
 \f]
-Clearly the @f$ 1/\sqrt{2\pi} @f$ constant is arbitrary, the only requirement being that the product of the constants in the Fourier and inverse Fourier transforms should equal @f$ 1\/2\pi @f$. This definition is chosen to be symmetric.
 
-Nex we consider the Laplace transform. The Fourier transform only exists for functions that tend to zero as @f$ t\rightarrow\infty @f$, so that the integral defining @f$ \tilde f @f$ converges. an example if @f$ f(t) = t @f$, which has no Fourier transform. Also, sometime we are only interested in a given function for @f$ t > 0 @f$, perhaps because the initial value @f$ f(0) @f$ is given in an initial-value problem. In these cases we turn to the Laplace transform, @f$ \tilde f(s) = \mathcal{L}\left[f(t)\right] @f$:
-\f{equation}
+Clearly the @f$ 1/\sqrt{2\pi} @f$ constant is arbitrary, the only requirement being that the product of the constants in the Fourier and inverse Fourier transforms should equal @f$ 1/2\pi @f$. This definition is chosen to be symmetric.
+
+Next we consider the Laplace transform. The Fourier transform only exists for functions that tend to zero as @f$ t\rightarrow\infty @f$, so that the integral defining @f$ \tilde f @f$ converges. an example if @f$ f(t) = t @f$, which has no Fourier transform. Also, sometime we are only interested in a given function for @f$ t > 0 @f$, perhaps because the initial value @f$ f(0) @f$ is given in an initial-value problem. In these cases we turn to the Laplace transform, @f$ \tilde f(s) = \mathcal{L}\left[f(t)\right] @f$:
+
+\f[
     \tilde f(s) = \int_0^\infty f(t) e^{-st} dt
-\f}
+\f]
+
 This converts functions of @f$ t @f$ to functions of a new variable @f$ s @f$. The transformation is linear, i.e.:
-\f{equation}
+
+\f[
     \mathcal{L} \left[ c_1 f_1(t) + c_2 f_2(t) \right] = c_1 \mathcal{L}\left[ f_1(t) \right] + c_2 \mathcal{L}\left[f_2(t) \right]
-\f}
+\f]
+
 Unlike with Fourier transforms, the inverse Laplace transform is not straightforward, and often performed using a look-up table of common functions together with their Laplace transforms.
 
 The Laplace transform of a derivative is:
-\f[
-    \begin{array}{lcl}
-    \mathcal{L}\left[\frac{df}{dt}\right] &=& \int_0^\infty \frac{df}{dt} e^{-st} dt \\
-                                          &=& \left[ f(t) e^{-st} \right]_0^\infty + s \int_0^\infty f(t) e^{-st} dt \\
-                                          &=& -f(0) + s\tilde f(s)
-    \end{array}
-\f]
-Hence:
-\f{equation}
-    \tilde{f'} = s\tilde f - f(0)
+
+\f{align*}
+    \mathcal{L}\left[\frac{df}{dt}\right] &= \int_0^\infty \frac{df}{dt} e^{-st} dt \\[8pt]
+                                          &= \left[ f(t) e^{-st} \right]_0^\infty + s \int_0^\infty f(t) e^{-st} dt \\[8pt]
+                                          &= -f(0) + s\tilde f(s)
 \f}
+
+Hence:
+
+\f[
+    \tilde{f'} = s\tilde f - f(0)
+\f]
+
 Higher-order derivatives are easily found, e.g.:
-\f[
-    \begin{array}{lcl}
-    \tilde{f''} &=& s\tilde{f'} - f'(0) \\
-                &=& s^2\tilde f - sf(0) - f'(0)
-    \end{array}
-\f]
+
+\f{align*}
+    \tilde{f''} &= s\tilde{f'} - f'(0) \\[8pt]
+                &= s^2\tilde f - sf(0) - f'(0)
+\f}
+
 and:
-\f[
-    \begin{array}{lcl}
-    \tilde{f'''} &=& s\tilde{f''} - f''(0) \\
-                 &=& s^3\tilde f - s^2f(0) - sf'(0) - f''(0)
-    \end{array}
-\f]
+
+\f{align*}
+    \tilde{f'''} &= s\tilde{f''} - f''(0) \\[8pt]
+                 &= s^3\tilde f - s^2f(0) - sf'(0) - f''(0)
+\f}
+
 Generalising from these examples gives:
 \f[
     \begin{array}{lcl}
@@ -696,41 +720,54 @@ We now consider solutions of the diffusion equation for infinite or semi-infinit
 
 
 Consider a semi-infinite slab with constant diffusion coefficient, governed by:
-\f{equation}
-    \frac{\partial u}{\partial t} = D\frac{\partial^2 u}{\partial x^2}
-\f}
-having initial condition:
-\f{equation}
-    u(x,0) = 0
-\f}
-and boundary condition:
-\f{equation}
-    u(0,t) = U_0
-\f}
-We choose the Laplace transform since we are interested in @f$ t > 0 @f$, and take the Laplace transform with respect to @f$ t @f$:
+
 \f[
-    \begin{array}{lcl}
-    \int_0^\infty \frac{\partial u}{\partial t} e^{-st} dt &=& \int_0^\infty D\frac{\partial^2 u}{\partial x^2}  e^{-st} dt \\
-    s \tilde u(x,s) - u(x,0)                               &=& D\frac{\partial^2}{\partial x^2} \int_0^\infty u e^{-st} dt \\
-    s \tilde u(x,s)                                        &=& D\frac{\partial^2 \tilde u}{\partial x^2}
-    \end{array}
+    \frac{\partial u}{\partial t} = D\frac{\partial^2 u}{\partial x^2}
 \f]
+
+having initial condition:
+
+\f[
+    u(x,0) = 0
+\f]
+
+and boundary condition:
+
+\f[
+    u(0,t) = U_0
+\f]
+
+We choose the Laplace transform since we are interested in @f$ t > 0 @f$, and take the Laplace transform with respect to @f$ t @f$:
+
+\f{gather*}
+    \int_0^\infty \frac{\partial u}{\partial t} e^{-st} dt = \int_0^\infty D\frac{\partial^2 u}{\partial x^2}  e^{-st} dt \\
+    s \tilde u(x,s) - u(x,0)                               = D\frac{\partial^2}{\partial x^2} \int_0^\infty u e^{-st} dt \\
+    s \tilde u(x,s)                                        = D\frac{\partial^2 \tilde u}{\partial x^2}
+\f}
+
 the solution to which is:
-\f{equation}
+
+\f[
     \tilde u(x,s) = A(s) \exp\left(\sqrt{\frac{s}{D}}x\right) + B(s) \exp\left(-\sqrt{\frac{s}{D}}x\right)
-\f}
+\f]
+
 We require that @f$ u(x,t) \rightarrow 0 @f$ as @f$ t \rightarrow \infty @f$, so @f$ \tilde u(x,s) \rightarrow 0 @f$ as @f$ t \rightarrow \infty @f$; therefore we require @f$ A = 0 @f$. As a result, @f$ B = \tilde u(0,s) @f$. Since @f$ u(0,t) = U_0 @f$:
-\f{equation}
+
+\f[
     B(s) = \tilde u(0,s) = \mathcal{L}\left[ u(0,t) \right] = \int_0^\infty U_0 e^{-st} dt = \frac{U_0}{s}
-\f}
+\f]
+
 Hence:
-\f{equation}
+
+\f[
     \tilde u(x,s) = \frac{U_0}{s} \exp\left(-\sqrt{\frac{s}{D}}x\right)
-\f}
+\f]
+
 The inversion of this is difficult, so we only give the result:
-\f{equation}
+
+\f[
     u(x,t) = U_0\left[ 1 - \mathrm{erf}\left( \frac{x}{\sqrt{4Dt}} \right) \right]
-\f}
+\f]
 
 
 \subsection infinite Infinite
@@ -739,86 +776,104 @@ The inversion of this is difficult, so we only give the result:
 An infinite geometry has no boundary conditions, so only the initial condition can be specified. For an arbitrary initial distribution, @f$ \varphi(x) @f$, the distribution at a later time can be determined at a later time @f$ t @f$.
 
 Since we are interested in values of @f$x@f$ from @f$ -\infty @f$ to @f$ \infty @f$, this suggests Fourier transformation with respect to the @f$ x @f$-variable.
-\f{equation}
+
+\f[
       \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} \frac{\partial u}{\partial t}      e^{-i\omega x} dx
     = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} D\frac{\partial^2 u}{\partial x^2} e^{-i\omega x} dx
-\f}
-Hence:
-\f[
-    \begin{array}{lcl}
-        \frac{1}{\sqrt{2\pi}} \frac{\partial}{\partial t} \int_{-\infty}^{\infty} u                                 e^{-i\omega x} dx
-    &=& \frac{D}{\sqrt{2\pi}}                             \int_{-\infty}^{\infty} \frac{\partial^2 u}{\partial x^2} e^{-i\omega x} dx \\
-        \frac{\partial \tilde u}{\partial t}
-    &=& \frac{D}{\sqrt{2\pi}} \int_{-\infty}^{\infty} \frac{\partial^2 u}{\partial x^2} e^{-i\omega x} dx
-    \end{array}
 \f]
-The derivative of a Fourier transform is related to the derivative of the function being transformed via:
-\f{equation}
-    \mathcal{F}\left[f'(x)\right] = i\omega \mathcal{F}\left[f(t)\right]
+
+Hence:
+
+\f{gather*}
+      \frac{1}{\sqrt{2\pi}} \frac{\partial}{\partial t} \int_{-\infty}^{\infty} u e^{-i\omega x} dx
+    = \frac{D}{\sqrt{2\pi}} \int_{-\infty}^{\infty} \frac{\partial^2 u}{\partial x^2} e^{-i\omega x} dx \\[8pt]
+      \frac{\partial \tilde u}{\partial t}
+    = \frac{D}{\sqrt{2\pi}} \int_{-\infty}^{\infty} \frac{\partial^2 u}{\partial x^2} e^{-i\omega x} dx
 \f}
+
+The derivative of a Fourier transform is related to the derivative of the function being transformed via:
+
+\f[
+    \mathcal{F}\left[f'(x)\right] = i\omega \mathcal{F}\left[f(t)\right]
+\f]
+
 Therefore:
+
 \f[
     \begin{array}{lcl}
     \frac{\partial \tilde u(\omega,t)}{\partial t} &=& -D\omega^2 \tilde u(\omega,t)
     \end{array}
 \f]
-The solution of this equations is:
-\f{equation}
+
+The solution of this equation is:
+
+\f[
     \tilde u(\omega,t) = \tilde u(\omega,0) e^{-D\omega^2 t}
-\f}
+\f]
+
 The initial condition is:
-\f[
-    \begin{array}{lcl}
-    \tilde u(\omega,0) &=& \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} u(x,0) e^{-i\omega x} dx \\
-                       &=& \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} \varphi(x) e^{-i\omega x} dx \\
-                       &=& \tilde \varphi(\omega)
-    \end{array}
-\f]
+
+\f{align*}
+    \tilde u(\omega,0) &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} u(x,0) e^{-i\omega x} dx \\[8pt]
+                       &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} \varphi(x) e^{-i\omega x} dx \\[8pt]
+                       &= \tilde \varphi(\omega)
+\f}
+
 Hence the solution becomes:
-\f[
-    \begin{array}{lcl}
-    \tilde u(\omega,t) &=& \tilde \varphi(\omega) e^{-D\omega^2 t} \\
-                       &=& \sqrt{2\pi} \tilde \varphi(\omega) \tilde G(\omega t)
-    \end{array}
-\f]
+
+\f{align*}
+    \tilde u(\omega,t) &= \tilde \varphi(\omega) e^{-D\omega^2 t} \\[8pt]
+                       &= \sqrt{2\pi} \tilde \varphi(\omega) \tilde G(\omega t)
+\f}
+
 where we have defined:
-\f{equation}
-    \tilde G(\omega t) = \frac{1}{\sqrt{2\pi}}e^{-D\omega^2 t}
-\f}
-We can now use the convolution theorem, since @f$ \tilde u @f$ can be expressed as the product of two Fourier transforms. The convolution theorem states that, if we have a convolution:
-\f{equation}
-    h(z) = \int_{-\infty}^{\infty} f(x) g(z-x) dx
-\f}
-then:
-\f{equation}
-    \tilde h(\omega) = \sqrt{2\pi} \tilde f(\omega)\tilde g(\omega)
-\f}
-Hence:
-\f{equation}
-    u(x,t) = \int_{-\infty}^{\infty} \varphi(x') G(x-x',t) dx
-\f}
-where @f$ G(x,t) @f$ is the Green's function for this problem. This is the inverse Fourier transform of @f$ \tilde G(\omega,t) @f$:
+
 \f[
-    \begin{array}{lcl}
-    G(x,t) &=& \frac{1}{\sqrt{2\pi}}               \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}}e^{-D\omega^2 t} e^{i\omega x} d\omega \\
-           &=& \frac{1}{2\pi}                      \int_{-\infty}^{\infty}                      e^{-D\omega^2 t} e^{i\omega x} d\omega \\
-           &=& \frac{1}{2\pi} e^{\frac{-x^2}{4Dt}} \int_{-\infty}^{\infty}                      e^{-Dt\left(\omega + \frac{ix}{2Dt}\right)^2}  d\omega \\
-           &=& \frac{1}{2\pi} e^{\frac{-x^2}{4Dt}} \int_{-\infty}^{\infty}                      e^{-Dt\omega'}  d\omega' \\
-           &=& \frac{1}{\sqrt{4\pi Dt}} e^{\frac{-x^2}{4Dt}}
-    \end{array}
+    \tilde G(\omega t) = \frac{1}{\sqrt{2\pi}}e^{-D\omega^2 t}
 \f]
-where @f$ k' = k - ix/2Dt @f$ and in the final step we have used the standard result for the integral of a Gaussian. Thus, and finally, we have:
-\f{equation}
-    u(x,t) = \frac{1}{\sqrt{4\pi Dt}} \int_{-\infty}^{\infty} \exp\left[-\frac{(x-x')^2}{4Dt}\right] \varphi(x') dx
+
+We can now use the convolution theorem, since @f$ \tilde u @f$ can be expressed as the product of two Fourier transforms. The convolution theorem states that, if we have a convolution:
+
+\f[
+    h(z) = \int_{-\infty}^{\infty} f(x) g(z-x) dx
+\f]
+
+then:
+
+\f[
+    \tilde h(\omega) = \sqrt{2\pi} \tilde f(\omega)\tilde g(\omega)
+\f]
+
+Hence:
+
+\f[
+    u(x,t) = \int_{-\infty}^{\infty} \varphi(x') G(x-x',t) dx
+\f]
+
+where @f$ G(x,t) @f$ is the Green's function for this problem. This is the inverse Fourier transform of @f$ \tilde G(\omega,t) @f$:
+
+\f{align*}
+    G(x,t) &= \frac{1}{\sqrt{2\pi}}               \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}}e^{-D\omega^2 t} e^{i\omega x} d\omega \\[8pt]
+           &= \frac{1}{2\pi}                      \int_{-\infty}^{\infty}                      e^{-D\omega^2 t} e^{i\omega x} d\omega \\[8pt]
+           &= \frac{1}{2\pi} e^{\frac{-x^2}{4Dt}} \int_{-\infty}^{\infty}                      e^{-Dt\left(\omega + \frac{ix}{2Dt}\right)^2}  d\omega \\[8pt]
+           &= \frac{1}{2\pi} e^{\frac{-x^2}{4Dt}} \int_{-\infty}^{\infty}                      e^{-Dt\omega'}  d\omega' \\[8pt]
+           &= \frac{1}{\sqrt{4\pi Dt}} e^{\frac{-x^2}{4Dt}}
 \f}
+
+where @f$ k' = k - ix/2Dt @f$ and in the final step we have used the standard result for the integral of a Gaussian. Thus, and finally, we have:
+
+\f[
+    u(x,t) = \frac{1}{\sqrt{4\pi Dt}} \int_{-\infty}^{\infty} \exp\left[-\frac{(x-x')^2}{4Dt}\right] \varphi(x') dx
+\f]
 
 
 \subsubsection deltafunc Delta function initial condition
 
 
 If the initial condition is a delta function @f$ \varphi(x) = \delta(x-a) @f$ (i.e. a point source at @f$ x = a @f$) then the distribution at time @f$ t @f$ is simply:
-\f{equation}
+
+\f[
     u(x,t) = G(x-a,t) = \frac{1}{\sqrt{4\pi Dt}}  \exp\left[-\frac{(x-a)^2}{4Dt}\right]
-\f}
+\f]
 
 http://excelcalculations.blogspot.co.uk/2011/04/solving-1d-heat-equation-using-finite.html
