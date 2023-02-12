@@ -342,11 +342,21 @@ Hence:
     u(x,t) = A \sin{\left(\frac{\pi}{L}x\right)}\exp{\left(-D\frac{\pi^2}{L^2}t\right)}
 \f]
 
+\image html  "test1.png"   "Test problem 1 showing analytic and numerical solutions for a slab-geometry problem with a sinusoidal initial condition" width=512
+\image latex "test1.png"   "Test problem 1 showing analytic and numerical solutions for a slab-geometry problem with a sinusoidal initial condition" width=0.5\textwidth
+
+\image html  "test2.png"  "Test problem 2 showing analytic and numerical solutions for a slab-geometry problem with a sinusoidal initial condition" width=512
+\image latex "test2.png"  "Test problem 2 showing analytic and numerical solutions for a slab-geometry problem with a sinusoidal initial condition" width=0.5\textwidth
+
+\image html  "test15.png" "Test problem 15 showing analytic and numerical solutions for a slab-geometry problem with a sinusoidal initial condition (reflective boundary condition)" width=512
+\image latex "test15.png" "Test problem 15 showing analytic and numerical solutions for a slab-geometry problem with a sinusoidal initial condition (reflective boundary condition)" width=0.5\textwidth
+
+\image html  "test17.png" "Test problem 17 showing analytic and numerical solutions for a slab-geometry problem with a sinusoidal initial condition (reflective boundary condition)" width=512
+\image latex "test17.png" "Test problem 17 showing analytic and numerical solutions for a slab-geometry problem with a sinusoidal initial condition (reflective boundary condition)" width=0.5\textwidth
+
 
 \subsubsection constant Constant initial condition (test problem 3)
 
-
-<img src="../../QA/test5.png" width="512">
 
 If the initial condition is constant:
 
@@ -376,6 +386,9 @@ The solution is therefore:
 \f[
     u(x,t) = \frac{4U_0}{\pi} \sum_n \frac{1}{2n-1}\sin\left(\frac{(2n-1)\pi}{L}x\right)\exp\left(-D\dfrac{(2n-1)^2\pi^2}{L^2}t\right)
 \f]
+
+\image html  "test3.png"  "Test problem 3 showing analytic and numerical solutions for a slab-geometry problem with a constant initial condition" width=512
+\image latex "test3.png"  "Test problem 3 showing analytic and numerical solutions for a slab-geometry problem with a constant initial condition" width=0.5\textwidth
 
 
 \subsubsection electricblanket Chevron initial condition / electric blanket (test problem 4)
@@ -453,6 +466,12 @@ Hence the solution is:
 \f[
     u(x,t) = \dfrac{4U_0}{\pi} \sum_{n=1}^{\infty} \left(-1\right)^{n-1} \dfrac{1}{(2n-1)^2} \sin\left((2n-1)x\right) \exp\left(D-(2n-1)^2D\right)
 \f]
+
+\image html  "test4.png"  "Test problem 4 showing analytic and numerical solutions for a slab-geometry problem with a chevron initial condition" width=512
+\image latex "test4.png"  "Test problem 4 showing analytic and numerical solutions for a slab-geometry problem with a chevron condition" width=0.5\textwidth
+
+\image html  "test18.png"  "Test problem 18 showing analytic and numerical solutions for a slab-geometry problem with a chevron initial condition" width=512
+\image latex "test18.png"  "Test problem 18 showing analytic and numerical solutions for a slab-geometry problem with a chevron condition" width=0.5\textwidth
 
 
 \subsection nonzeroboundaries Inhomogeneous boundary conditions
