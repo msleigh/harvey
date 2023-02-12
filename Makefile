@@ -31,7 +31,7 @@ help:
 	@echo "test:   Runs full QA test suite"
 
 
-doxygen.log: Doxyfile README.md $(markdown)
+doxygen.log: Doxyfile customdoxygen.css README.md $(markdown)
 	mkdir -p ./build/Doc
 	cd ./build/Doc && doxygen $(DOC_SOURCE)/Doxyfile > doxygen.log
 
