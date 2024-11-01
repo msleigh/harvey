@@ -1,0 +1,12 @@
+matplotlib
+numpy
+scipy
+docutils
+pip
+#gfortran
+#doxygen
+graphviz
+ghp-import
+jupyter
+robotframework
+git+https://github.com/Feneric/doxypypy

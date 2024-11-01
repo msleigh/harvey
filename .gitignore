@@ -9,3 +9,4 @@ doxygen.log
 html
 latex
 build
+.venv
