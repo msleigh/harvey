@@ -40,7 +40,7 @@ jobs:
       - run: |
           set -eu
           mkdir -p src/Doc
-      - uses: mattnotmitt/doxygen-action@v1.9.5
+      - uses: mattnotmitt/doxygen-action@v1.12.0
         with:
             working-directory: 'src/Doc'
             doxyfile-path: '../../doc/Doxyfile'
