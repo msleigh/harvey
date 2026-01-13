@@ -12,22 +12,23 @@ jobs:
       run:
         shell: bash -l {0}
     steps:
-      - uses: actions/checkout@v2
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
         with:
-          activate-environment: harvey
-          auto-activate-base: false
-          auto-update-conda: true
-          environment-file: environment.yml
-          python-version: 3
+          version: "0.9.23"
+      - uses: actions/setup-python@v5
+        with:
+          python-version-file: .python-version
+      - run: sudo apt-get update && sudo apt-get install -y gfortran
+      - run: uv sync
       - run: |
           set -eu
           make cleaner
-          make harvey
+          uv run make harvey
           export PYTHONPATH="${PWD}/build"
-          ./src/harvey.py
+          uv run ./src/harvey.py
           diff src/harvey.kgo harvey.out
-          make test
+          uv run make test
   docs:
     name: Build documentation
     runs-on: ubuntu-latest
@@ -35,7 +36,7 @@ jobs:
       run:
         shell: bash -l {0}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
       - run: |
           set -eu
           mkdir -p src/Doc

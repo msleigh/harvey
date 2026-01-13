@@ -39,12 +39,24 @@ controlled by [Robot Framework](http://robotframework.org).
 
 ## Installation
 
-To create a Conda env with the necessary dependencies:
+Use `uv` to install the necessary dependencies:
 
-    conda env create -f environment.yml
-    conda activate harvey
+    uv venv
+    source .venv/bin/activate
+    uv sync
 
 (This excludes LaTeX.)
+
+Install `gfortran` for the Fortran build:
+
+    # macOS (Homebrew)
+    brew install gcc
+
+    # Linux (Debian/Ubuntu)
+    sudo apt-get install gfortran
+
+    # Linux (Fedora/RHEL)
+    sudo dnf install gcc-gfortran
 
 ## Usage
 
