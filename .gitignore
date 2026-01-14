@@ -2,7 +2,6 @@
 *.so
 *.o
 *.mod
-*.png
 .ipynb_checkpoints
 harvey.out
 doxygen.log
