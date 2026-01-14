@@ -11,6 +11,14 @@ Main QA test suite for Harvey.
    *** Variables ***
 
    *** Test Cases ***
+   Reset Smoke Test
+       Import Library        test_reset.py
+       [Documentation]       Re-entrant run smoke test
+       ${RESULT} =           test_reset
+       Should Be Equal       ${RESULT}     ${true}
+       File Should Exist     reset_a.out
+       File Should Exist     reset_b.out
+
    Test 1
        Import Library        test1.py
        [Documentation]       Test 1
@@ -154,4 +162,3 @@ Main QA test suite for Harvey.
        Should Be Equal       ${RESULT}     ${true}
        File Should Exist     test14.out
        File Should Exist     test14.png
-

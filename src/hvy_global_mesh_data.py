@@ -23,8 +23,9 @@ cellpos = -1.0
 nodepos = -1.0
 
 
+# Reset state for re-entrant runs.
 def reset():
-    """Reset mesh data to defaults."""
+    """Reset global mesh data to defaults."""
     global geom, ncells, xsize, dx, theta, xmin, cellpos, nodepos
     geom = -1
     ncells = -1

@@ -4,8 +4,9 @@ dt = -1.0
 end = -1.0
 
 
+# Reset state for re-entrant runs.
 def reset():
-    """Reset time data to defaults."""
+    """Reset global time data to defaults."""
     global dt, end
     dt = -1.0
     end = -1.0

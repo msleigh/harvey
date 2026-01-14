@@ -5,11 +5,12 @@ outer = {"type": None}
 icon = {"type": None}
 
 
+# Reset state for re-entrant runs.
 def reset():
-    """Reset boundary condition data to defaults."""
+    """Reset global boundary condition data to defaults."""
     inner.clear()
-    inner.update({"type": None})
     outer.clear()
-    outer.update({"type": None})
     icon.clear()
+    inner.update({"type": None})
+    outer.update({"type": None})
     icon.update({"type": None})

@@ -7,6 +7,14 @@ nmats = -1
 materials = {}
 
 
+# Reset state for re-entrant runs.
+def reset():
+    """Reset global material state."""
+    global nmats
+    materials.clear()
+    nmats = -1
+
+
 # Function to populate list of materials given user input.
 def material(name, d):
     """Initialise new material."""
