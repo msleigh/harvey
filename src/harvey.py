@@ -47,6 +47,8 @@ def setup(input_file):
     hvy_user_input.initialize_counts()
     hvy_user_input.echo()
 
+    _validate_time_parameters()
+
     # -------------------------------------------------------------------------
 
     print("\nSetting up materials...")
@@ -65,6 +67,21 @@ def setup(input_file):
 
     print("\nProcessing boundary conditions...")
     hvy_bcons.setup()
+
+
+def _validate_time_parameters():
+    """Validate time-stepping parameters before computation."""
+    errors = []
+    if time.dt <= 0.0:
+        errors.append("time.dt must be greater than zero")
+    if time.end <= 0.0:
+        errors.append("time.end must be greater than zero")
+
+    if errors:
+        print("    Error: invalid time parameters")
+        for message in errors:
+            print(f"        - {message}")
+        raise SystemExit(1)
 
 
 # ------------------------------------------------------------------------------

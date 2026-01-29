@@ -1,5 +1,7 @@
 """Mesh processing."""
 
+import sys
+
 import numpy as np
 
 import hvy_global_mesh_data as mesh
@@ -13,8 +15,44 @@ import hvy_global_mesh_data as mesh
 # ------------------------------------------------------------------------------
 
 
+def _validate_mesh_parameters():
+    """Validate mesh parameters before building coordinate arrays."""
+    errors = []
+
+    if mesh.dx <= 0.0:
+        errors.append("mesh.dx must be greater than zero")
+    if mesh.xsize <= 0.0:
+        errors.append("mesh.xsize must be greater than zero")
+
+    try:
+        ncells_value = int(mesh.ncells)
+    except (TypeError, ValueError):
+        errors.append("mesh.ncells must be a positive integer")
+    else:
+        if ncells_value <= 0:
+            errors.append("mesh.ncells must be a positive integer")
+        elif ncells_value != mesh.ncells:
+            errors.append("mesh.ncells must be an integer value")
+        else:
+            mesh.ncells = ncells_value
+
+    if not errors and mesh.dx > 0.0:
+        expected_cells = mesh.xsize / mesh.dx
+        if not np.isclose(expected_cells, mesh.ncells, rtol=1.0e-6, atol=1.0e-12):
+            errors.append(
+                "mesh.ncells must be consistent with mesh.xsize / mesh.dx"
+            )
+
+    if errors:
+        print("    Error: invalid mesh parameters")
+        for message in errors:
+            print(f"        - {message}")
+        sys.exit(1)
+
+
 def setup():
     """Set up initial mesh."""
+    _validate_mesh_parameters()
     # Create cell data as a 2D array (with first dimension = 1)
     # to facilitate use of matplotlib.pyplot.pcolor
     # mesh.cells = np.zeros((1, mesh.ncells + 1))
