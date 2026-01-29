@@ -21,3 +21,16 @@ cellpos = -1.0
 # Nodal arrays
 
 nodepos = -1.0
+
+
+def reset():
+    """Reset mesh data to defaults."""
+    global geom, ncells, xsize, dx, theta, xmin, cellpos, nodepos
+    geom = -1
+    ncells = -1
+    xsize = -1.0
+    dx = -1.0
+    theta = -1.0
+    xmin = 0.0
+    cellpos = -1.0
+    nodepos = -1.0
