@@ -4,13 +4,84 @@
 ##
 ## Process the command-line arguments
 
+import importlib.util
+import re
 import sys
+from pathlib import Path
 
 import hvy_global_bcon_data as bcon
 import hvy_global_mesh_data as mesh
 import hvy_global_mat_data as mat
 import hvy_global_reg_data as reg
 import hvy_global_time_data as time
+
+
+def _load_user_input(input_file):
+    if not isinstance(input_file, str):
+        print("    Error: input file name must be a string")
+        sys.exit(1)
+
+    raw_input = Path(input_file)
+    input_name = raw_input.stem if raw_input.suffix == ".py" else input_file
+
+    if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", input_name):
+        print(
+            "    Error: input file name must be a valid module identifier (letters, "
+            "numbers, underscores)"
+        )
+        sys.exit(1)
+
+    repo_root = Path(__file__).resolve().parents[1]
+    src_root = Path(__file__).resolve().parent
+    allowed_roots = {Path.cwd().resolve(), src_root.resolve(), repo_root.resolve()}
+
+    def _is_within_root(path, root):
+        try:
+            path.resolve().relative_to(root)
+            return True
+        except ValueError:
+            return False
+
+    search_paths = [Path.cwd(), src_root]
+    for path_entry in sys.path:
+        if not path_entry:
+            continue
+        candidate = Path(path_entry)
+        if candidate.exists() and _is_within_root(candidate.resolve(), repo_root):
+            search_paths.append(candidate)
+
+    module_path = None
+    if raw_input.suffix == ".py" or raw_input.parent != Path("."):
+        candidate_path = raw_input
+        if not candidate_path.is_absolute():
+            candidate_path = (Path.cwd() / candidate_path).resolve()
+        if not candidate_path.is_file():
+            print("    Error: input file path does not exist")
+            sys.exit(1)
+        if not any(_is_within_root(candidate_path, root) for root in allowed_roots):
+            print("    Error: input file must be within the project directory")
+            sys.exit(1)
+        module_path = candidate_path
+    else:
+        for candidate in search_paths:
+            candidate_path = candidate / f"{input_name}.py"
+            if candidate_path.is_file():
+                module_path = candidate_path
+                break
+        if module_path is None:
+            print(
+                "    Error: input file not found in project search paths"
+            )
+            sys.exit(1)
+    spec = importlib.util.spec_from_file_location(input_name, module_path)
+    if spec is None or spec.loader is None:
+        print("    Error: unable to load input module")
+        sys.exit(1)
+
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[input_name] = module
+    spec.loader.exec_module(module)
+    return module
 
 
 def read(input_file):
@@ -37,8 +108,11 @@ def read(input_file):
 
     print(("    Specified input file name = ", input_file))
     print("    Importing...")
-    harvin = __import__(input_file)
+    harvin = _load_user_input(input_file)
     print("    Running...")
+    if not hasattr(harvin, "define") or not callable(harvin.define):
+        print("    Error: input module must define a callable define() function")
+        sys.exit(1)
     harvin.define()
 
 
