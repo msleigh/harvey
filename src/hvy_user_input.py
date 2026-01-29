@@ -57,15 +57,19 @@ def echo():
     print(("    time.dt        ", time.dt))
     print(("    time.end       ", time.end))
 
-    mat.nmats = len(mat.materials)
     print(("    mat.nmats      ", mat.nmats))
     for matname in mat.materials.keys():
         print(("    mat.name    ", matname))
         print(("    mat.dcoeff  ", mat.materials[matname]["d"]))
 
-    reg.nregs = len(reg.regions)
     print(("    reg.nregs      ", reg.nregs))
     for regname in reg.regions.keys():
         print(("    reg.name   ", regname))
         print(("    reg.mat    ", reg.regions[regname]["mat"]))
         print(("    reg.xbound ", reg.regions[regname]["xbound"]))
+
+
+def initialize_counts():
+    """Initialize material and region counts after input definition."""
+    mat.nmats = len(mat.materials)
+    reg.nregs = len(reg.regions)

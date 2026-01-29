@@ -44,6 +44,7 @@ def setup(input_file):
     """Set up calculation."""
     print("\nReading user input...")
     hvy_user_input.read(input_file)
+    hvy_user_input.initialize_counts()
     hvy_user_input.echo()
 
     # -------------------------------------------------------------------------
