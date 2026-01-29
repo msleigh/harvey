@@ -6,6 +6,7 @@
 
 import sys
 
+import hvy_global_bcon_data as bcon
 import hvy_global_mesh_data as mesh
 import hvy_global_mat_data as mat
 import hvy_global_reg_data as reg
@@ -27,6 +28,12 @@ def read(input_file):
     if input_file is None:
         print("    Error: no input file specified")
         sys.exit()
+
+    bcon.reset()
+    mesh.reset()
+    mat.reset()
+    reg.reset()
+    time.reset()
 
     print(("    Specified input file name = ", input_file))
     print("    Importing...")

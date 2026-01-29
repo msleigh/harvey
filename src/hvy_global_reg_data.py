@@ -11,3 +11,10 @@ regions = {}
 def region(name, mat, xbound=None):
     """Initialise new material."""
     regions[name] = {"mat": mat, "xbound": xbound,}
+
+
+def reset():
+    """Reset region data to defaults."""
+    global nregs
+    nregs = -1
+    regions.clear()
