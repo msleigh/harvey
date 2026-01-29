@@ -11,9 +11,11 @@ def setup():
         if bcon.inner["type"] == "neumann":
             bcon.inner["itype"] = 1
         else:
-            print(("Incorrect inner boundary type: ", bcon.inner["type"]))
-            print('Specify "dirichlet" or "neumann"')
-            assert False
+            message = (
+                f'Incorrect inner boundary type: {bcon.inner["type"]}. '
+                'Specify "dirichlet" or "neumann".'
+            )
+            raise ValueError(message)
 
     if bcon.outer["type"] == "dirichlet":
         bcon.outer["itype"] = 0
@@ -21,9 +23,11 @@ def setup():
         if bcon.outer["type"] == "neumann":
             bcon.outer["itype"] = 1
         else:
-            print(("Incorrect outer boundary type: ", bcon.outer["type"]))
-            print('Specify "dirichlet" or "neumann"')
-            assert False
+            message = (
+                f'Incorrect outer boundary type: {bcon.outer["type"]}. '
+                'Specify "dirichlet" or "neumann".'
+            )
+            raise ValueError(message)
 
     icontype = 0
     iconval = 0.0
@@ -42,7 +46,7 @@ def setup():
         icontype = 4
         iconval = bcon.icon["value"]
     else:
-        print(("Boundary condition type not coded: ", bcon.icon["type"]))
-        assert False
+        message = f'Boundary condition type not coded: {bcon.icon["type"]}.'
+        raise ValueError(message)
     bcon.icon["itype"] = icontype
     bcon.icon["ival"] = iconval
