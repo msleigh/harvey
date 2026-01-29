@@ -21,9 +21,8 @@ def _load_user_input(input_file):
         print("    Error: input file name must be a string")
         sys.exit(1)
 
-    input_name = input_file
-    if input_name.endswith(".py"):
-        input_name = Path(input_name).stem
+    raw_input = Path(input_file)
+    input_name = raw_input.stem if raw_input.suffix == ".py" else input_file
 
     if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", input_name):
         print(
@@ -32,19 +31,48 @@ def _load_user_input(input_file):
         )
         sys.exit(1)
 
-    search_paths = [Path.cwd(), Path(__file__).resolve().parent]
-    input_path = None
-    for candidate in search_paths:
-        if (candidate / f"{input_name}.py").is_file():
-            input_path = candidate
-            break
-    if input_path is None:
-        print(
-            "    Error: input file not found in current directory or source directory"
-        )
-        sys.exit(1)
+    repo_root = Path(__file__).resolve().parents[1]
+    src_root = Path(__file__).resolve().parent
+    allowed_roots = {Path.cwd().resolve(), src_root.resolve(), repo_root.resolve()}
 
-    module_path = input_path / f"{input_name}.py"
+    def _is_within_root(path, root):
+        try:
+            path.resolve().relative_to(root)
+            return True
+        except ValueError:
+            return False
+
+    search_paths = [Path.cwd(), src_root]
+    for path_entry in sys.path:
+        if not path_entry:
+            continue
+        candidate = Path(path_entry)
+        if candidate.exists() and _is_within_root(candidate.resolve(), repo_root):
+            search_paths.append(candidate)
+
+    module_path = None
+    if raw_input.suffix == ".py" or raw_input.parent != Path("."):
+        candidate_path = raw_input
+        if not candidate_path.is_absolute():
+            candidate_path = (Path.cwd() / candidate_path).resolve()
+        if not candidate_path.is_file():
+            print("    Error: input file path does not exist")
+            sys.exit(1)
+        if not any(_is_within_root(candidate_path, root) for root in allowed_roots):
+            print("    Error: input file must be within the project directory")
+            sys.exit(1)
+        module_path = candidate_path
+    else:
+        for candidate in search_paths:
+            candidate_path = candidate / f"{input_name}.py"
+            if candidate_path.is_file():
+                module_path = candidate_path
+                break
+        if module_path is None:
+            print(
+                "    Error: input file not found in project search paths"
+            )
+            sys.exit(1)
     spec = importlib.util.spec_from_file_location(input_name, module_path)
     if spec is None or spec.loader is None:
         print("    Error: unable to load input module")
