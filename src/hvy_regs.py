@@ -9,6 +9,18 @@ import hvy_global_reg_data as reg
 
 def setup():
     """Set up regions."""
+    if not reg.regions:
+        print("    Error: no regions defined in user input")
+        raise SystemExit(1)
+
+    expected_nregs = len(reg.regions)
+    if reg.nregs != expected_nregs:
+        print(
+            "    Warning: region count mismatch; "
+            f"resetting reg.nregs from {reg.nregs} to {expected_nregs}"
+        )
+        reg.nregs = expected_nregs
+
     # Create numpy arrays for the region properties (material number, outer
     # boundary)
     reg.bound = np.zeros(reg.nregs)

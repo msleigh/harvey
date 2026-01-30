@@ -11,6 +11,18 @@ def setup():
 
     More detailed information
     """
+    if not mat.materials:
+        print("    Error: no materials defined in user input")
+        raise SystemExit(1)
+
+    expected_nmats = len(mat.materials)
+    if mat.nmats != expected_nmats:
+        print(
+            "    Warning: material count mismatch; "
+            f"resetting mat.nmats from {mat.nmats} to {expected_nmats}"
+        )
+        mat.nmats = expected_nmats
+
     # Assign unique integer index to each material and create numpy array of material
     # properties (so far only diffusion coefficient)
     mat.dcoeff = np.zeros(mat.nmats)
