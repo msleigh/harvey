@@ -13,7 +13,7 @@ def setup():
     # boundary)
     reg.nregs = len(reg.regions)
     reg.bound = np.zeros(reg.nregs)
-    reg.matnum = np.zeros(reg.nregs, dtype=np.uint)
+    reg.matnum = np.zeros(reg.nregs, dtype=np.uint64)
     reg.dcoeff = np.zeros(reg.nregs)
     for ireg, regname in enumerate(reg.regions.keys()):
         # If no outer boundary is specified then make it some large number (why
