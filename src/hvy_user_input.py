@@ -32,6 +32,10 @@ def _load_user_input(input_file):
         )
         sys.exit(1)
 
+    existing_module = sys.modules.get(input_name)
+    if existing_module is not None and getattr(existing_module, "__file__", None) is None:
+        return existing_module
+
     repo_root = Path(__file__).resolve().parents[1]
     src_root = Path(__file__).resolve().parent
     allowed_roots = {Path.cwd().resolve(), src_root.resolve(), repo_root.resolve()}
