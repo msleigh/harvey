@@ -19,6 +19,8 @@ def reset():
 def region(name, mat, xbound=None):
     """Initialise new material."""
     regions[name] = {"mat": mat, "xbound": xbound,}
+    global nregs
+    nregs = len(regions)
 
 
 def reset():

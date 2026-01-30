@@ -16,10 +16,10 @@ def setup():
     expected_nregs = len(reg.regions)
     if reg.nregs != expected_nregs:
         print(
-            "    Warning: region count mismatch; "
-            f"resetting reg.nregs from {reg.nregs} to {expected_nregs}"
+            "    Error: region count mismatch; "
+            f"reg.nregs={reg.nregs} expected {expected_nregs}"
         )
-        reg.nregs = expected_nregs
+        raise SystemExit(1)
 
     # Create numpy arrays for the region properties (material number, outer
     # boundary)

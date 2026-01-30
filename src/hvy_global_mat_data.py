@@ -20,6 +20,8 @@ def material(name, d):
     """Initialise new material."""
     materials[name] = {"d": d,}
     materials[name]["id"] = len(materials)  # Start material numbering at 1
+    global nmats
+    nmats = len(materials)
 
 
 def reset():

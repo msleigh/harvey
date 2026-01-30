@@ -18,10 +18,10 @@ def setup():
     expected_nmats = len(mat.materials)
     if mat.nmats != expected_nmats:
         print(
-            "    Warning: material count mismatch; "
-            f"resetting mat.nmats from {mat.nmats} to {expected_nmats}"
+            "    Error: material count mismatch; "
+            f"mat.nmats={mat.nmats} expected {expected_nmats}"
         )
-        mat.nmats = expected_nmats
+        raise SystemExit(1)
 
     # Assign unique integer index to each material and create numpy array of material
     # properties (so far only diffusion coefficient)
