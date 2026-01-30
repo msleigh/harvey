@@ -74,14 +74,15 @@ def _validate_time_parameters():
     errors = []
     if time.dt <= 0.0:
         errors.append("time.dt must be greater than zero")
-    if time.end <= 0.0:
-        errors.append("time.end must be greater than zero")
 
     if errors:
         print("    Error: invalid time parameters")
         for message in errors:
             print(f"        - {message}")
         raise SystemExit(1)
+
+    if time.end <= 0.0:
+        print("    Warning: time.end is non-positive; no time stepping will occur")
 
 
 # ------------------------------------------------------------------------------

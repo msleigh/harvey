@@ -49,7 +49,6 @@ def define():
     # ---------------------------
 
     time.dt = 0.00001
-    time.end = 0.25
 
     # Specify the boundary conditions
     # -------------------------------
