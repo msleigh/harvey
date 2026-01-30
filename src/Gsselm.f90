@@ -13,7 +13,7 @@ implicit none
 
 function Gsselm(a,row)
 	INTEGER, INTENT(IN) :: row
-	REAL(kind=8) , INTENT(IN OUT)  ::  a(:,:)   	!Assume shape (:)
+	REAL(kind=8) , INTENT(INOUT)   ::  a(:,:)   	!Assume shape (:)
 	REAL(kind=8) , DIMENSION(row) :: Gsselm
 
 	INTEGER i,j,k
