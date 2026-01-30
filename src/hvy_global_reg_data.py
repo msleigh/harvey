@@ -7,14 +7,6 @@ nregs = -1
 regions = {}
 
 
-# Reset state for re-entrant runs.
-def reset():
-    """Reset global region state."""
-    global nregs
-    regions.clear()
-    nregs = -1
-
-
 # Function to populate list of regions given user input.
 def region(name, mat, xbound=None):
     """Initialise new material."""
