@@ -15,9 +15,9 @@ module assemble_coeffs_mod
         integer,  intent(in)          :: ncells
         integer,  intent(in)          :: geom
         real(dp), intent(in)          :: theta
-        real(dp), dimension(ncells+1) :: nodepos
-        real(dp), dimension(ncells)   :: alpha
-        real(dp), dimension(ncells)   :: a, b, c
+        real(dp), dimension(ncells+1), intent(in)  :: nodepos
+        real(dp), dimension(ncells),   intent(in)  :: alpha
+        real(dp), dimension(ncells),   intent(out) :: a, b, c
 
         integer :: j
 
