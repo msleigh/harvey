@@ -2,10 +2,6 @@ SRC=hvy_global_kindtypes.f90 harvey.f90 hvy_setup_mesh.f90 hvy_print_mesh.f90 hv
                         hvy_calc_source_terms.f90 hvy_assemble_rhs.f90 \
                         hvy_assemble_coeffs.f90 tridag_ser.f90 Gsselm.f90
 
-VENV ?= .venv
-VENV_PYTHON := $(abspath $(VENV)/bin/python)
-PYTHON ?= $(if $(wildcard $(VENV_PYTHON)),$(VENV_PYTHON),python)
-F2PY ?= $(PYTHON) -m numpy.f2py
 
 .PHONY = doc, harvey, help, test, clean
 .SUFFIXES:
@@ -54,7 +50,7 @@ harvey: harfort.so
 
 harfort.so: $(SRC)
 	mkdir -p ./build
-	cd ./build && $(F2PY) -c --f90flags="-ffree-form" --opt="-O2" -m harfort $(SRC_)
+	cd ./build && f2py -c --f90flags="-ffree-form" --opt="-O2" -m harfort $(SRC_)
 	#f2py -c --f90flags="-ffree-form -fprofile-arcs -ftest-coverage" --opt="-O0" -m harfort $(SRC)
 	cd ./build && ln -fs harfort.*.so harfort.so
 
