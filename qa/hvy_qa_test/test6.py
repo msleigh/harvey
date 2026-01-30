@@ -21,6 +21,7 @@ def test6():
 
     # Get numerical solution
     (x, ntim, nval) = qu.get_harvey(testname)
+    nnodes = len(x)
 
     # Clear the figure
     plt.clf()
