@@ -9,7 +9,6 @@ import re
 import sys
 from pathlib import Path
 
-import hvy_global_bcon_data as bcon
 import hvy_global_mesh_data as mesh
 import hvy_global_mat_data as mat
 import hvy_global_reg_data as reg
@@ -101,11 +100,6 @@ def read(input_file):
     # There is no default input file name (initialised to None in import)
     print()
     print("Processing user input file...")
-    mat.reset()
-    reg.reset()
-    mesh.reset()
-    time.reset()
-    bcon.reset()
     if input_file is None:
         print("    Error: no input file specified")
         sys.exit()
