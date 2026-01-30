@@ -56,7 +56,7 @@ subroutine main(ncells, nmats, nregs, geom, theta, dx, dt, tmax, &
     real(dp)         :: mat_dcoeff(nmats)  !> Vector of diffusion coefficients for the materials in the problem
     real(dp)         :: reg_bound(nregs)   !> Vector of region boundaries (outer boundary for each region)
     integer          :: reg_matnum(nregs)  !> Vector of material numbers (one per region)
-    integer          :: reg_dcoeff(nregs)  !> Vector of material diffusion coeffs (one per region)
+    real(dp)         :: reg_dcoeff(nregs)  !> Vector of material diffusion coeffs (one per region)
     real(dp)         :: cellpos(ncells)    !> Cell coordinates (cell centre x positions)
     real(dp)         :: nodepos(ncells+1)  !> Node coordinates (cell right/outer edge coordinate)
     character(len=*) :: output_file        !> Filename of output text file
