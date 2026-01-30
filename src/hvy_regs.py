@@ -11,6 +11,7 @@ def setup():
     """Set up regions."""
     # Create numpy arrays for the region properties (material number, outer
     # boundary)
+    reg.nregs = len(reg.regions)
     reg.bound = np.zeros(reg.nregs)
     reg.matnum = np.zeros(reg.nregs, dtype=np.uint)
     reg.dcoeff = np.zeros(reg.nregs)

@@ -13,6 +13,7 @@ def setup():
     """
     # Assign unique integer index to each material and create numpy array of material
     # properties (so far only diffusion coefficient)
+    mat.nmats = len(mat.materials)
     mat.dcoeff = np.zeros(mat.nmats)
     for imat, matname in enumerate(mat.materials.keys()):
         mat.dcoeff[imat] = mat.materials[matname]["d"]
