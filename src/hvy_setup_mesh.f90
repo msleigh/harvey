@@ -19,7 +19,7 @@ module setup_mesh_mod
         real(kind=8), intent(in),  dimension(ncells+1) :: nodepos    ! The position of each cell boundary
         real(kind=8), intent(in),  dimension(nregs)    :: reg_bound  ! The right-hand/outer boundary of each region
         integer,      intent(in),  dimension(nregs)    :: reg_matnum ! The material number of the material comprising each region
-        integer,      intent(in),  dimension(nregs)    :: reg_dcoeff ! The diffusion coeff of the material comprising each region
+        real(kind=8), intent(in),  dimension(nregs)    :: reg_dcoeff ! The diffusion coeff of the material comprising each region
         real(kind=8), intent(out), dimension(ncells)   :: dcoeff     ! The diffusion coefficient of each cell
 
         real(kind=8) :: dleft, dright
