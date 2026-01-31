@@ -1,4 +1,6 @@
 import contextlib
+import ctypes
+import ctypes.util
 import os
 import sys
 
@@ -54,6 +56,10 @@ def redirect_output(log_path):
     """Redirect stdout/stderr (including Fortran) to a log file."""
     sys.stdout.flush()
     sys.stderr.flush()
+    libc_path = ctypes.util.find_library("c")
+    libc = ctypes.CDLL(libc_path) if libc_path else None
+    if libc is not None:
+        libc.fflush(None)
     with open(log_path, "w", encoding="utf-8") as log_file:
         stdout_fd = os.dup(1)
         stderr_fd = os.dup(2)
@@ -64,6 +70,8 @@ def redirect_output(log_path):
         finally:
             sys.stdout.flush()
             sys.stderr.flush()
+            if libc is not None:
+                libc.fflush(None)
             os.dup2(stdout_fd, 1)
             os.dup2(stderr_fd, 2)
             os.close(stdout_fd)
