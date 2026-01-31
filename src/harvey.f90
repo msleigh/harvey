@@ -118,6 +118,12 @@ subroutine main(ncells, nmats, nregs, geom, theta, dx, dt, tmax, &
     write(*,*) "FORTRAN OUTPUT"
     write(*,*)
 
+    if (geom /= 0) then
+        write(*,*) "Error: only planar geometry (geom=0) is supported in this build."
+        write(*,*) "Cylindrical and spherical geometries are not implemented yet."
+        stop 1
+    endif
+
     !write(*,*) "Mesh:"
     !do j = 1, size(nodepos)
     !    write(*,*) j, nodepos(j)
