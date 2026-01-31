@@ -9,7 +9,6 @@ SRC=hvy_global_kindtypes.f90 harvey.f90 hvy_setup_mesh.f90 hvy_print_mesh.f90 hv
 TEST_SUITE := $(abspath qa)
 DOC_SOURCE := $(abspath doc)
 SOURCEPATH := $(abspath src)
-DOXYGEN_PROJECT_ROOT := $(abspath .)
 DOXYGEN_OUTPUT_DIR := $(abspath build/Doc)
 DATE_STAMP := $(shell date +%Y%m%d%H%M%S)
 PPID_STAMP := $(shell echo $$PPID)
@@ -35,8 +34,7 @@ help:
 
 doxygen.log: Doxyfile customdoxygen.css README.md $(markdown)
 	mkdir -p $(DOXYGEN_OUTPUT_DIR)
-	DOXYGEN_PROJECT_ROOT=$(DOXYGEN_PROJECT_ROOT) DOXYGEN_OUTPUT_DIR=$(DOXYGEN_OUTPUT_DIR) \
-		doxygen $(DOC_SOURCE)/Doxyfile > $(DOXYGEN_OUTPUT_DIR)/doxygen.log
+	doxygen $(DOC_SOURCE)/Doxyfile > $(DOXYGEN_OUTPUT_DIR)/doxygen.log
 
 doc:
 	docker build -f Dockerfile.docs -t harvey-docs .
