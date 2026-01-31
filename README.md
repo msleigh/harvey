@@ -45,7 +45,7 @@ Use `uv` to install the necessary dependencies:
     source .venv/bin/activate
     uv sync
 
-(This excludes LaTeX.)
+(This excludes the documentation dependencies.)
 
 Install `gfortran` for the Fortran build:
 
