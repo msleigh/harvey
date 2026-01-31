@@ -1,7 +1,7 @@
 [project]
 name = "harvey"
 version = "0.1.0"
-description = "Add your description here"
+description = "A simple 1D diffusion solver with analytic test cases."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
