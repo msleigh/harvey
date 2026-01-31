@@ -115,6 +115,11 @@ Build the docs locally:
 
     make doxygen.log
 
+If you run Doxygen directly instead of `make`, set the project root and output
+directory so paths resolve consistently:
+
+    DOXYGEN_PROJECT_ROOT="$(pwd)" DOXYGEN_OUTPUT_DIR="$(pwd)/build/Doc" doxygen doc/Doxyfile
+
 #### Opening the output
 
 The output is created in `build/Doc`. Open locally with:
