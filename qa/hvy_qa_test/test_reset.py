@@ -10,6 +10,7 @@ import hvy_global_mesh_data as mesh
 import hvy_global_reg_data as reg
 import hvy_global_time_data as time
 import harvey
+import qa_utils
 
 
 def _register_input_module(name, material_name, region_name):
@@ -49,10 +50,12 @@ def test_reset():
     _register_input_module("reset_input_a", "MatA", "RegA")
     _register_input_module("reset_input_b", "MatB", "RegB")
 
-    harvey.main("reset_input_a", "reset_a.out", False)
+    with qa_utils.redirect_output("reset_a.log"):
+        harvey.main("reset_input_a", "reset_a.out", False)
     _assert_state("MatA", "RegA")
 
-    harvey.main("reset_input_b", "reset_b.out", False)
+    with qa_utils.redirect_output("reset_b.log"):
+        harvey.main("reset_input_b", "reset_b.out", False)
     _assert_state("MatB", "RegB")
 
     return True

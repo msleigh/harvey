@@ -137,7 +137,8 @@ Output is created in `build/QA`. For each problem a `test<i>.out` file contains 
 results and a PNG file shows a plot of the numerical vs. analytic solution(s). The
 overall test report created by Robot Framework is in `build/QA/report.html`. In
 the event of test failures, `build/QA/log.html` created by Robot Framework contains
-more detailed information.
+more detailed information. Fortran stdout/stderr from each run is captured in
+`test<i>.log` so the terminal output stays focused on PASS/FAIL results.
 
 #### Specifying a new problem
 
