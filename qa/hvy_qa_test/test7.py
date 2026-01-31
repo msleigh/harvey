@@ -34,6 +34,11 @@ def test7():
 
         un = nval[tp,:]
 
+        rel_l2_error = np.linalg.norm(un - uc) / np.linalg.norm(uc)
+        assert rel_l2_error < 0.15, (
+            f"{testname} relative L2 error {rel_l2_error:.3e} exceeds tolerance"
+        )
+
         plt.plot(x, uc, "b-", lw=2.0, label=lab+' (ref)')
         plt.plot(x, un, "r--", lw=2.0, label=lab)
 
