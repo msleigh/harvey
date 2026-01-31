@@ -68,7 +68,7 @@ def define():
 
     bcon.inner = {"type": "neumann", "value": 0.0}
     bcon.outer = {"type": "dirichlet", "value": 0.0}
-    bcon.icon = {"type": "sin", "value": np.pi / (2.0 * mesh.xsize)}
+    bcon.icon = {"type": "cos", "value": np.pi / (2.0 * mesh.xsize)}
 
     # Specify the materials
     # ---------------------

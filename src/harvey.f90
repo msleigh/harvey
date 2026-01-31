@@ -206,6 +206,13 @@ subroutine main(ncells, nmats, nregs, geom, theta, dx, dt, tmax, &
             u(:) = iconval
         endif
 
+        ! Cosinusoidal
+        if (icontype == 5) then
+            do j = 1,ncells+1
+                u(j) = cos(iconval*nodepos(j))
+            enddo
+        endif
+
     endif
 
 

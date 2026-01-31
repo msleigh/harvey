@@ -39,6 +39,9 @@ def setup():
     elif bcon.icon["type"] == "sin":
         icontype = 2
         iconval = bcon.icon["value"]
+    elif bcon.icon["type"] == "cos":
+        icontype = 5
+        iconval = bcon.icon["value"]
     elif bcon.icon["type"] == "chevron":
         icontype = 3
         iconval = bcon.icon["value"]
