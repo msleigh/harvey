@@ -19,6 +19,11 @@ def _validate_mesh_parameters():
     """Validate mesh parameters before building coordinate arrays."""
     errors = []
 
+    if mesh.geom != 0:
+        errors.append(
+            "mesh.geom must be 0 (planar). Cylindrical and spherical geometries are not supported yet."
+        )
+
     if mesh.dx <= 0.0:
         errors.append("mesh.dx must be greater than zero")
     if mesh.xsize <= 0.0:
