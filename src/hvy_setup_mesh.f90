@@ -45,8 +45,12 @@ module setup_mesh_mod
 
                 ! Use a weighted average of the two regional diffusion coefficients for this cell
 
-                dcoeff(icell) = (dleft*reg_dcoeff(ireg) + dright*reg_dcoeff(ireg+1))/dx
+                if (ireg >= nregs) then
+                    write(*,*) 'Error: cell spans beyond final region in setup_mesh'
+                    stop 'Terminated by setup_mesh'
+                endif
 
+                dcoeff(icell) = (dleft*reg_dcoeff(ireg) + dright*reg_dcoeff(ireg+1))/dx
                 ireg = ireg + 1
 
             endif
