@@ -43,11 +43,8 @@ jobs:
         shell: bash -l {0}
     steps:
       - uses: actions/checkout@v6
-      - run: |
-          set -eu
-          mkdir -p src/Doc
       - uses: mattnotmitt/doxygen-action@v1.12.0
         with:
-            working-directory: 'src/Doc'
-            doxyfile-path: '../../doc/Doxyfile'
+            working-directory: 'doc'
+            doxyfile-path: 'Doxyfile'
             enable-latex: true
