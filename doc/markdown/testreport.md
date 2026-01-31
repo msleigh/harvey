@@ -42,7 +42,7 @@ The following table summarizes all tests in the suite:
 | Test 14 | Yes | Yes | test14.out (31MB) | Yes | Crank-Nicolson (@f$\theta=0.5@f$) | Analytic | Same as Test 13 with CN scheme; excellent match |
 | Test 15 | Yes | Yes | test15.out (19MB) | Yes | Crank-Nicolson (@f$\theta=0.5@f$) | Analytic | Sinusoidal IC, Dirichlet BC; excellent match |
 | Test 16 | Yes | Yes | test16.out (530KB) | Yes | Explicit (@f$\theta=0@f$) | Reference impl (tol=1e-12) | Same as Test 5 (reversed BC); perfect match to machine precision |
-| Test 17 | Yes | Yes | test17.out (1.3MB) | Yes | Crank-Nicolson (@f$\theta=0.5@f$) | Analytic | Cosine IC, Neumann BC; **significant mismatch observed but assertion disabled** |
+| Test 17 | Yes | Yes | test17.out (1.3MB) | Yes | Crank-Nicolson (@f$\theta=0.5@f$) | Analytic (tol=2.5e-2) | Cosine IC, Neumann-Dirichlet BC; excellent match with eigenfunction decay |
 | Test 18 | Yes | Yes | test18.out (48KB) | Yes | Crank-Nicolson (@f$\theta=0.5@f$) | Analytic | Chevron IC (like Test 4) with CN scheme; excellent match |
 
 
@@ -63,13 +63,7 @@ The following tests show excellent agreement between numerical and analytic solu
 | 7 | Delta function | Gaussian spreading at correct rate @f$\sqrt{4Dt}@f$ |
 | 8 | Step to steady state | Correct approach to linear steady-state profile |
 | 13, 14 | Flux boundary | Correct evolution toward @f$Hx/D@f$ steady state |
-
-
-\subsection testreport_issues Tests with Issues
-
-| Test | Issue |
-|------|-------|
-| **Test 17** | PNG output shows numerical (red) and analytic (blue) solutions diverge significantly. The test passes only because the validation assertion is commented out. The analytic solution uses IC = @f$\cos(\pi x / 2L)@f$ but there may be a boundary condition mismatch. |
+| 17 | Neumann-Dirichlet eigenfn | Cosine eigenfunction @f$\cos(\pi x / 2L)@f$ decays at correct rate @f$({\pi}/{2L})^2@f$ |
 
 
 \subsection testreport_disabled Disabled Tests
@@ -97,14 +91,14 @@ After running `make test`, the following outputs are generated:
 
 \section testreport_conclusions Conclusions
 
-1. **All 16 active tests pass** - the Harvey 1D heat equation solver produces correct results across multiple numerical schemes (explicit, implicit, Crank-Nicolson) and boundary conditions (Dirichlet, Neumann).
+1. **All 16 active tests pass with proper validation** - the Harvey 1D heat equation solver produces correct results across multiple numerical schemes (explicit, implicit, Crank-Nicolson) and boundary conditions (Dirichlet, Neumann).
 
 2. **Scientific validation is thorough** - tests cover:
-   - Multiple initial conditions (sinusoidal, constant, chevron, delta function)
-   - Multiple boundary conditions (Dirichlet, Neumann/flux)
+   - Multiple initial conditions (sinusoidal, cosinusoidal, constant, chevron, delta function)
+   - Multiple boundary conditions (Dirichlet, Neumann/flux, mixed Neumann-Dirichlet)
    - Multiple numerical schemes (@f$\theta = 0, 0.5, 1@f$)
    - Comparison with both analytic solutions and external reference implementations
 
-3. **Test 17 requires attention** - the visual output shows significant discrepancy between numerical and analytic solutions, but the test passes because the validation code is commented out.
+3. **Test 17 validates Neumann-Dirichlet boundary conditions** - uses the cosine eigenfunction @f$\cos(\pi x / 2L)@f$ which satisfies zero-flux at x=0 and zero value at x=L, with eigenvalue @f$(\pi/2L)^2@f$.
 
 4. **Tests 9, 11, 12 are disabled** - these appear to be variants of existing tests and may have been disabled due to redundancy or known issues.
