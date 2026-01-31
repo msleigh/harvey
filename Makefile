@@ -26,7 +26,7 @@ python := $(wildcard src/*.py qa/hvy_qa_test/*.py)
 
 help:
 	@echo "help:   Prints this help screen"
-	@echo "doc:    Builds Doxygen documentation"
+	@echo "doc:    Builds Doxygen documentation using Docker"
 	@echo "harvey: Builds Fortran"
 	@echo "test:   Runs full QA test suite"
 
@@ -35,7 +35,9 @@ doxygen.log: Doxyfile customdoxygen.css README.md $(markdown)
 	mkdir -p ./build/Doc
 	cd ./build/Doc && doxygen $(DOC_SOURCE)/Doxyfile > doxygen.log
 
-doc: doxygen.log
+doc:
+	docker build -f Dockerfile.docs -t harvey-docs .
+	docker run --rm --user "$(shell id -u):$(shell id -g)" -v "$(CURDIR)":/work -w /work harvey-docs make doxygen.log
 
 github:
 	ghp-import --no-jekyll --no-history --push ./build/Doc/html
