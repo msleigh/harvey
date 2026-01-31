@@ -41,7 +41,7 @@ function Gsselm(a,row)
 !    greatest magnitude in its column. This prevents unnecessary division by
 !    a small number.                           */
    	do i = k+1, row
-      	if ( (dabs(a(i,k))-dabs(a(k,k))).gt.eps  ) then
+      	if ( (dabs(a(i,k))-dabs(a(k,k))).gt.EPS  ) then
          	do j = k, row+1                     !/* If pivotal element is not */
             	swap_ik(j) = a(k,j)              !/* the highest then  */
           	   a(k,j) = a(i,j)                  !/* swap i'th and k'th rows */
