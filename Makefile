@@ -34,7 +34,7 @@ help:
 
 doxygen.log: Doxyfile customdoxygen.css README.md $(markdown)
 	mkdir -p $(DOXYGEN_OUTPUT_DIR)
-	doxygen $(DOC_SOURCE)/Doxyfile > $(DOXYGEN_OUTPUT_DIR)/doxygen.log
+	cd $(DOXYGEN_OUTPUT_DIR) && doxygen $(DOC_SOURCE)/Doxyfile > doxygen.log
 
 doc:
 	docker build -f Dockerfile.docs -t harvey-docs .

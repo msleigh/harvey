@@ -115,10 +115,12 @@ Build the docs locally (from the repository root):
 
     make doxygen.log
 
-If you run Doxygen directly instead of `make`, invoke it from the repository
-root so the paths in `doc/Doxyfile` resolve correctly:
+If you run Doxygen directly instead of `make`, run it from the documentation
+output directory so the `doc/Doxyfile` paths resolve correctly:
 
-    doxygen doc/Doxyfile
+    mkdir -p build/Doc
+    cd build/Doc
+    doxygen ../../doc/Doxyfile
 
 #### Opening the output
 
