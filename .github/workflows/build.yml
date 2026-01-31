@@ -19,13 +19,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version-file: .python-version
-      - name: Install gfortran 15.2
+      - name: Install gfortran 14.2
         run: |
           sudo apt-get update
-          sudo apt-get install -y gfortran-15=15.2*
-          echo "FC=gfortran-15" >> "$GITHUB_ENV"
-          echo "F77=gfortran-15" >> "$GITHUB_ENV"
-          echo "F90=gfortran-15" >> "$GITHUB_ENV"
+          sudo apt-get install -y gfortran-14=14.2*
+          echo "FC=gfortran-14" >> "$GITHUB_ENV"
+          echo "F77=gfortran-14" >> "$GITHUB_ENV"
+          echo "F90=gfortran-14" >> "$GITHUB_ENV"
       - run: uv sync
       - run: |
           set -eu
