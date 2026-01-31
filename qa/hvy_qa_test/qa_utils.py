@@ -1,3 +1,7 @@
+import contextlib
+import os
+import sys
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -45,25 +49,47 @@ def run_test(testname, analytic_solution, plot_times, tol):
     return
 
 
+@contextlib.contextmanager
+def redirect_output(log_path):
+    """Redirect stdout/stderr (including Fortran) to a log file."""
+    sys.stdout.flush()
+    sys.stderr.flush()
+    with open(log_path, "w", encoding="utf-8") as log_file:
+        stdout_fd = os.dup(1)
+        stderr_fd = os.dup(2)
+        try:
+            os.dup2(log_file.fileno(), 1)
+            os.dup2(log_file.fileno(), 2)
+            yield
+        finally:
+            sys.stdout.flush()
+            sys.stderr.flush()
+            os.dup2(stdout_fd, 1)
+            os.dup2(stderr_fd, 2)
+            os.close(stdout_fd)
+            os.close(stderr_fd)
+
+
 def run_harvey(testname):
     """Get numerical solution."""
-    print("\nRunning code...")
-    harvey.main(testname + "_in", testname + ".out", False)
+    log_path = testname + ".log"
+    with redirect_output(log_path):
+        print("\nGetting numerical solution...")
+        print("\nRunning code...")
+        harvey.main(testname + "_in", testname + ".out", False)
 
-    # Open output file
-    fff = open(testname + ".out", "r")
+        # Open output file
+        fff = open(testname + ".out", "r")
 
-    # Get nodes in the numerical solution from the output data file
-    print("\nReading number of nodes...")
-    (nnodes, xvals) = read_nodes(fff)
+        # Get nodes in the numerical solution from the output data file
+        print("\nReading number of nodes...")
+        (nnodes, xvals) = read_nodes(fff)
 
     return (fff, nnodes, xvals)
 
 
 def get_harvey(testname):
     """Get numerical solution."""
-    print("\nGetting numerical solution...")
-
     _, _, x = run_harvey(testname)
 
     # Open the output file
