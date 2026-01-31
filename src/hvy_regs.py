@@ -26,7 +26,7 @@ def setup():
         reg.dcoeff[ireg] = mat.materials[reg.regions[regname]["mat"]]["d"]
 
     for ireg, regname in enumerate(reg.regions.keys()):
-        print(("    Region name      = ", regname, "|"))
-        print(("    Material number  = ", reg.matnum[ireg], "|"))
-        print(("    Material name    = ", reg.regions[regname]["mat"], "|"))
-        print(("    Diffusion coeff. = ", mat.materials[reg.regions[regname]["mat"]]["d"], "|"))
+        print(f"    Region name      = {regname} |")
+        print(f"    Material number  = {reg.matnum[ireg]} |")
+        print(f"    Material name    = {reg.regions[regname]['mat']} |")
+        print(f"    Diffusion coeff. = {mat.materials[reg.regions[regname]['mat']]['d']} |")

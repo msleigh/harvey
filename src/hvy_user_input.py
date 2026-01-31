@@ -125,26 +125,26 @@ def echo():
     print()
     print("Echoing user input...")
 
-    print(("    mesh.geom      ", mesh.geom))
-    print(("    mesh.theta     ", mesh.theta))
-    print(("    mesh.ncells    ", mesh.ncells))
-    print(("    mesh.xmin      ", mesh.xmin))
-    print(("    mesh.xsize     ", mesh.xsize))
-    print(("    mesh.dx        ", mesh.dx))
+    print(f"    mesh.geom      {mesh.geom}")
+    print(f"    mesh.theta     {mesh.theta}")
+    print(f"    mesh.ncells    {mesh.ncells}")
+    print(f"    mesh.xmin      {mesh.xmin}")
+    print(f"    mesh.xsize     {mesh.xsize}")
+    print(f"    mesh.dx        {mesh.dx}")
 
-    print(("    time.dt        ", time.dt))
-    print(("    time.end       ", time.end))
+    print(f"    time.dt        {time.dt}")
+    print(f"    time.end       {time.end}")
 
-    print(("    mat.nmats      ", mat.nmats))
+    print(f"    mat.nmats      {mat.nmats}")
     for matname in mat.materials.keys():
-        print(("    mat.name    ", matname))
-        print(("    mat.dcoeff  ", mat.materials[matname]["d"]))
+        print(f"    mat.name    {matname}")
+        print(f"    mat.dcoeff  {mat.materials[matname]['d']}")
 
-    print(("    reg.nregs      ", reg.nregs))
+    print(f"    reg.nregs      {reg.nregs}")
     for regname in reg.regions.keys():
-        print(("    reg.name   ", regname))
-        print(("    reg.mat    ", reg.regions[regname]["mat"]))
-        print(("    reg.xbound ", reg.regions[regname]["xbound"]))
+        print(f"    reg.name   {regname}")
+        print(f"    reg.mat    {reg.regions[regname]['mat']}")
+        print(f"    reg.xbound {reg.regions[regname]['xbound']}")
 
 
 def initialize_counts():

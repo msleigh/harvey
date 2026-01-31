@@ -61,7 +61,7 @@ def setup():
 
     # mesh.dx = mesh.xsize / float(mesh.ncells)
 
-    print(("num cells/nodes ", mesh.ncells))
+    print(f"num cells/nodes {mesh.ncells}")
 
     mesh.cellpos = np.arange(0.5 * mesh.dx, mesh.xsize, mesh.dx)
     mesh.nodepos = np.linspace(0.0, mesh.xsize, mesh.ncells + 1)
