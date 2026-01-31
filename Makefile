@@ -37,7 +37,7 @@ doxygen.log: Doxyfile customdoxygen.css README.md $(markdown)
 
 doc:
 	docker build -f Dockerfile.docs -t harvey-docs .
-	docker run --rm -v "$(CURDIR)":/work -w /work harvey-docs make doxygen.log
+	docker run --rm --user "$(shell id -u):$(shell id -g)" -v "$(CURDIR)":/work -w /work harvey-docs make doxygen.log
 
 github:
 	ghp-import --no-jekyll --no-history --push ./build/Doc/html
