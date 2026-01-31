@@ -110,7 +110,7 @@ def read(input_file):
     reg.reset()
     time.reset()
 
-    print(("    Specified input file name = ", input_file))
+    print(f"    Specified input file name = {input_file}")
     print("    Importing...")
     harvin = _load_user_input(input_file)
     print("    Running...")
