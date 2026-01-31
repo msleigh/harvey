@@ -32,10 +32,11 @@ controlled by [Robot Framework](http://robotframework.org).
 
 ### Documentation
 
-- Doxygen
-- Graphviz
-- Doxypypy
-- LaTeX
+There are two options for the documentation dependencies:
+
+- Docker (recommended): Docker Engine only.
+- Local install: Doxygen, Graphviz, Doxypypy (Python package), and LaTeX (for PDF
+  output).
 
 ## Installation
 
@@ -90,9 +91,31 @@ and to clean executables to force a fresh full new build:
 
 ### Building the documentation
 
-Run:
+You can build the docs either by installing the dependencies locally or by using the
+provided Docker container. The default `make doc` target uses Docker.
+
+#### Option 1: Docker (recommended)
 
     make doc
+
+#### Option 2: Local install
+
+Install the documentation dependencies on your machine (Doxygen, Graphviz, LaTeX,
+and the `doxypypy` Python package). For example:
+
+    # macOS (Homebrew)
+    brew install doxygen graphviz mactex
+    python3 -m pip install doxypypy
+
+    # Linux (Debian/Ubuntu)
+    sudo apt-get install doxygen graphviz texlive-latex-base texlive-latex-extra texlive-fonts-recommended
+    python3 -m pip install doxypypy
+
+Build the docs locally:
+
+    make doxygen.log
+
+#### Opening the output
 
 The output is created in `build/Doc`. Open locally with:
 
