@@ -1,13 +1,13 @@
-## @brief Comparison with analytic solution, sinusoidal initial condition
+## @brief Comparison with analytic solution, cosinusoidal initial condition
 ##
-## Comparison with analytic solution for sinusoidal initial condition,
-## u(x,0) = sin(pi.x/L), and boundary conditions u(0,t) = u(L,t) = 0. Planar geometry,
-## explicit solution, dx = 1cm, dt = dx^2/6D, D = 1, t_max = 0.25. Compare
+## Comparison with analytic solution for cosinusoidal initial condition,
+## u(x,0) = cos(pi.x/(2L)), and boundary conditions du/dx(0,t) = 0 (Neumann),
+## u(L,t) = 0 (Dirichlet). Planar geometry, Crank-Nicolson scheme (theta=0.5),
+## L = 0.5, dx = 0.01, dt = dx^2/6D, D = 1, t_max = 1000*dt. Compare
 ## at every time-step, plot at t = t_max.
 ##
-##
-##
-## Compare implicit solution, theta = 0.5
+## The eigenfunction for Neumann-Dirichlet BCs is cos((2n-1)*pi*x/(2L)),
+## with eigenvalue ((2n-1)*pi/(2L))^2. For n=1: cos(pi*x/(2L)), eigenvalue (pi/(2L))^2.
 
 
 import matplotlib.pyplot as plt
@@ -40,16 +40,12 @@ def test17():
     tol = 0.25e-01
 
     a = 1.0
-    const = -np.pi * np.pi * dcon * invlength * invlength
+    # For Neumann-Dirichlet BCs, eigenvalue is (pi/(2L))^2
+    const = -0.25 * np.pi * np.pi * dcon * invlength * invlength
 
-    # Initial condition
-    ic = a * np.sin(0.5 * np.pi * x * invlength + 0.5 * np.pi)
-    ic[-1] = 0.0
-    print(x * invlength)
-    print(0.5 * np.pi * x * invlength)
-    # print 'Is this 0',np.sin(np.pi*x[-1]*invlength)
-    # print 'Is this 1',x[-1]*invlength
-    # plt.plot(x,ic,'k-', lw=2.)
+    # Initial condition: cos(pi*x/(2L))
+    ic = a * np.cos(0.5 * np.pi * x * invlength)
+    ic[-1] = 0.0  # Enforce Dirichlet BC at x=L
 
     # Read the first line for t = 0
     tmpstr = f.readline()
@@ -68,15 +64,15 @@ def test17():
 
         un = np.array(tmpfld[1:], dtype=np.float64)
 
-        # diff = 100.*abs(un - uc)
-        #
-        # if np.all(np.less_equal(diff, uc*tol)):
-        #    pass
-        # else:
-        #    failed = True
-        #    for j in range(nnodes):
-        #        print j,x[j],uc[j],un[j],diff[j],uc[j]*tol,np.less_equal(diff[j], uc[j]*tol)
-        #    break
+        diff = 100.0 * abs(un - uc)
+
+        if np.all(np.less_equal(diff, uc * tol)):
+            pass
+        else:
+            failed = True
+            for j in range(nnodes):
+                print(j, x[j], uc[j], un[j], diff[j], uc[j] * tol, np.less_equal(diff[j], uc[j] * tol))
+            break
 
         tmpstr = f.readline()
 
