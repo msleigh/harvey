@@ -2,16 +2,16 @@
 
 # Execution statements - only executed the first time this module is imported
 
-geom = -1
-ncells = -1
-xsize = -1.0
-dx = -1.0
-theta = -1.0
+geom = None
+ncells = None
+xsize = None
+dx = None
+theta = None
 xmin = 0.0
 
 # Cell arrays
 
-cellpos = -1.0
+cellpos = None
 # sigma_p = -1.0
 # temp = -1.0
 # temp0 = -1.0
@@ -20,18 +20,18 @@ cellpos = -1.0
 
 # Nodal arrays
 
-nodepos = -1.0
+nodepos = None
 
 
 # Reset state for re-entrant runs.
 def reset():
     """Reset global mesh data to defaults."""
     global geom, ncells, xsize, dx, theta, xmin, cellpos, nodepos
-    geom = -1
-    ncells = -1
-    xsize = -1.0
-    dx = -1.0
-    theta = -1.0
+    geom = None
+    ncells = None
+    xsize = None
+    dx = None
+    theta = None
     xmin = 0.0
-    cellpos = -1.0
-    nodepos = -1.0
+    cellpos = None
+    nodepos = None
