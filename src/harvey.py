@@ -99,7 +99,7 @@ def main(input_file, output_file, debug_mode):
 
     @param   input_file   Name of input file
     @param   output_file  Name of output file
-    @param   debug_mode   Logical flag to turn on verbose loggin
+    @param   debug_mode   Logical flag to turn on verbose logging
     """
     tm0 = pytime.perf_counter()
 
