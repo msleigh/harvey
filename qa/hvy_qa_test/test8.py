@@ -133,6 +133,8 @@ def test8():
     plt.legend(bbox_to_anchor=(1,1), loc="upper left")
     plt.savefig(testname + ".png", format="png", bbox_inches="tight")
 
-    #assert failed == False
+    assert (
+        failed is False
+    ), "Analytic comparison exceeded tolerance; consider reducing strictness (e.g., lower the 100x scaling or increase tol) if near-zero uc or late-time rounding triggers failures."
 
     return True
