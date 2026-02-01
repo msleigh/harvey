@@ -107,7 +107,7 @@ def get_harvey(testname):
         raw = data_file.read()
     # Some outputs contain exponent values missing the "E" (e.g. 1.23-106).
     # Normalize these before parsing.
-    normalized = re.sub(r"(?<![Ee])([+-]\d{2,3})(?=\s|$)", r"e\\1", raw)
+    normalized = re.sub(r"(?<![Ee])([+-]\d{2,3})(?=\s|$)", r"e\1", raw)
     harveydat = np.genfromtxt(StringIO(normalized))
     if harveydat.size == 0:
         return (x, np.array([]), np.array([[]]))
