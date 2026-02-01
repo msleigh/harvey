@@ -114,7 +114,8 @@ provided Docker container. The default `make doc` target uses Docker.
     make doc
 
 Make sure Docker is running before executing this target. If Docker is not
-available, use the local build below.
+available (or the daemon is unreachable due to your Docker context or
+`DOCKER_HOST`), use the local build below.
 
 #### Option 2: Local install
 
