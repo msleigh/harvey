@@ -13,7 +13,6 @@ import harvey
 
 
 def run_test(testname, analytic_solution, plot_times, tol):
-
     # Get numerical solution
     (x, ntim, nval) = get_harvey(testname)
 
@@ -23,31 +22,33 @@ def run_test(testname, analytic_solution, plot_times, tol):
     plt.plot(x, ic, "k--", label="Initial condition")
 
     for tp, t in enumerate(ntim):
-
         uc = analytic_solution(x, t)
 
-        un = nval[tp,:]
+        un = nval[tp, :]
 
         if tp in plot_times:
-            lab = 't\'={:.6f} (step {:d})'.format(t, tp)
-            plt.plot(x, uc, "b-", lw=2, label=lab+' (ref)')
+            lab = "t'={:.6f} (step {:d})".format(t, tp)
+            plt.plot(x, uc, "b-", lw=2, label=lab + " (ref)")
             plt.plot(x, un, "r--", lw=2, label=lab)
-            #plt.plot(x, 100.0*diff, "g-", lw=2, label="% error")
+            # plt.plot(x, 100.0*diff, "g-", lw=2, label="% error")
 
         df = diff(un, uc)
 
         try:
             assert passed(un, uc, df, tol)
-        except AssertionError as error:
+        except AssertionError:
             dump(len(x), x, uc, un, df, tol)
             raise
 
-    plt.xlabel('$x$ (cm)')
-    plt.ylabel('$\phi(x,t\')$')
-    plt.legend(bbox_to_anchor=(1,1), loc="upper left")
-    plt.annotate('tolerance\n= {:.1e}'.format(tol), xy=(0.8, np.max(nval)),
-            horizontalalignment='left', verticalalignment='bottom',
-            )
+    plt.xlabel("$x$ (cm)")
+    plt.ylabel("$\phi(x,t')$")
+    plt.legend(bbox_to_anchor=(1, 1), loc="upper left")
+    plt.annotate(
+        "tolerance\n= {:.1e}".format(tol),
+        xy=(0.8, np.max(nval)),
+        horizontalalignment="left",
+        verticalalignment="bottom",
+    )
     plt.savefig(testname + ".png", format="png", bbox_inches="tight")
 
     return
@@ -141,6 +142,7 @@ def diff(un, uc, minval=0):
     d = np.zeros_like(uc)
     np.divide(un - uc, uc, out=d, where=uc > minval)
     return d
+
 
 def has_failed(reference, difference, tolerance):
     """Abstract the definition of failure."""

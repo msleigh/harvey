@@ -14,7 +14,6 @@ import qa_utils
 
 
 def test15():
-
     testname = "test15"
 
     # Clear the figure
@@ -32,10 +31,6 @@ def test15():
     # the numerical solution
     print("\nSetting up analytic solution...")
     dcon = 1.0
-    dx = x[1] - x[0]
-    length = x[-1] - x[0]
-    dx = 0.01  # Temporary while no numerical solution
-    length = 1.0  # Temporary while no numerical solution
     invlength = 1.0
     tol = 0.25e-01
 
@@ -94,6 +89,6 @@ def test15():
     # plt.show()
     plt.savefig(testname + ".png", format="png", bbox_inches="tight")
 
-    assert failed == False
+    assert not failed
 
     return True

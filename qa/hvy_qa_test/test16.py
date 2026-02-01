@@ -16,7 +16,6 @@ import qa_utils
 
 
 def test16():
-
     testname = "test16"
 
     # Clear the figure
@@ -42,7 +41,6 @@ def test16():
 
     # Cycle throught the times at which to plot the solution
     for tfac in ttimes:
-
         t = tfac * dt
 
         # Read through the output file (from where we left off last time)
@@ -85,7 +83,7 @@ def test16():
         failed = qa_utils.has_failed(uc, diff, tol)
         if failed:
             qa_utils.dump(nnodes, x, uc, un, diff, tol)
-        assert failed == False
+        assert not failed
 
     plt.savefig(testname + ".png", format="png", bbox_inches="tight")
 

@@ -15,7 +15,6 @@ import qa_utils as qu
 def analytic_solution(x, t):
     dcon = 1.0  # Diffusion coefficient
     T0 = 1.0  # The initial temperature (constant in x)
-    length = x[-1] - x[0]
     const = 4.0 * T0 / np.pi
     uc = np.zeros(len(x))
     for iterm in range(1, 500):
@@ -24,6 +23,7 @@ def analytic_solution(x, t):
         uc = uc + (np.sin(n * x) / n) * np.exp(-n * n * dcon * t)
     uc = const * uc
     return uc
+
 
 def test3():
     testname = "test3"

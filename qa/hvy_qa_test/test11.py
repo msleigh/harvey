@@ -10,7 +10,6 @@ import qa_utils
 
 
 def test11():
-
     testname = "test11"
 
     # Clear the figure
@@ -71,7 +70,6 @@ def test11():
     tol = 1.0e-02
 
     for tfac in ttimes:
-
         t = tfac * dx * dx / D
         tp = np.searchsorted(ntim, t, side="left")
         if tp >= len(ntim):
@@ -91,8 +89,8 @@ def test11():
         uc = phiFS0 + uc
         uc = uc[::-1]
 
-        plt.plot(x, uc, "b-", lw=2, label='$\\phi(x,{:.6f})$'.format(tn) + " (ref)")
-        plt.plot(x, un, "r--", lw=2, label='$\\phi(x,{:.6f})$'.format(tn))
+        plt.plot(x, uc, "b-", lw=2, label="$\\phi(x,{:.6f})$".format(tn) + " (ref)")
+        plt.plot(x, un, "r--", lw=2, label="$\\phi(x,{:.6f})$".format(tn))
 
         diff = np.abs(un - uc)
 
@@ -104,6 +102,6 @@ def test11():
     plt.xlim(0.0, np.pi)
     plt.savefig(testname + ".png", format="png", bbox_inches="tight")
 
-    assert failed == False
+    assert not failed
 
     return True

@@ -35,4 +35,6 @@ def setup():
         print(f"    Region name      = {regname} |")
         print(f"    Material number  = {reg.matnum[ireg]} |")
         print(f"    Material name    = {reg.regions[regname]['mat']} |")
-        print(f"    Diffusion coeff. = {mat.materials[reg.regions[regname]['mat']]['d']} |")
+        print(
+            f"    Diffusion coeff. = {mat.materials[reg.regions[regname]['mat']]['d']} |"
+        )

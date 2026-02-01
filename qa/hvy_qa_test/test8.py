@@ -16,7 +16,6 @@ import qa_utils
 
 
 def test8():
-
     testname = "test8"
 
     # Clear the figure
@@ -33,8 +32,6 @@ def test8():
     D = 1.0  # Diffusion coefficient
 
     dx = x[1] - x[0]
-    ncells = int(L / dx)
-    #assert ncells == 40
 
     phi = np.zeros(nnodes)
     phiFS = np.zeros(nnodes)
@@ -69,7 +66,6 @@ def test8():
     tol = 1.0e-00
 
     for tfac in ttimes:
-
         t = tfac * dx * dx / D
 
         while tn < t:
@@ -88,8 +84,8 @@ def test8():
         uc[-1] = 0.0
         uc = phiFS0 + uc
 
-        plt.plot(x, uc, "b-", lw=2, label='$\phi(x,{:.6f})$'.format(t)+' (ref)')
-        plt.plot(x, un, "r--", lw=2, label='$\phi(x,{:.6f})$'.format(t))
+        plt.plot(x, uc, "b-", lw=2, label="$\phi(x,{:.6f})$".format(t) + " (ref)")
+        plt.plot(x, un, "r--", lw=2, label="$\phi(x,{:.6f})$".format(t))
 
         diff = np.zeros(nnodes)
         for i, uni in enumerate(un):
@@ -128,13 +124,13 @@ def test8():
     # plt.plot(x,phi,'b-',lw=2)
     # plt.plot(x,phiFS0+cnst*phiFS,'r--',lw=2)
     plt.xlim(0.0, np.pi)
-    plt.xlabel('$x$ (cm)')
-    plt.ylabel('$\phi(x,t\')$')
-    plt.legend(bbox_to_anchor=(1,1), loc="upper left")
+    plt.xlabel("$x$ (cm)")
+    plt.ylabel("$\phi(x,t')$")
+    plt.legend(bbox_to_anchor=(1, 1), loc="upper left")
     plt.savefig(testname + ".png", format="png", bbox_inches="tight")
 
-    assert (
-        failed is False
-    ), "Analytic comparison exceeded tolerance; consider reducing strictness (e.g., lower the 100x scaling or increase tol) if near-zero uc or late-time rounding triggers failures."
+    assert failed is False, (
+        "Analytic comparison exceeded tolerance; consider reducing strictness (e.g., lower the 100x scaling or increase tol) if near-zero uc or late-time rounding triggers failures."
+    )
 
     return True

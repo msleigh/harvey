@@ -16,7 +16,6 @@ import qa_utils
 
 
 def test17():
-
     testname = "test17"
 
     # Clear the figure
@@ -34,7 +33,6 @@ def test17():
     # the numerical solution
     print("\nSetting up analytic solution...")
     dcon = 1.0
-    dx = x[1] - x[0]
     length = x[-1] - x[0]
     invlength = 1.0 / length
     tol = 0.25e-01
@@ -71,7 +69,15 @@ def test17():
         else:
             failed = True
             for j in range(nnodes):
-                print(j, x[j], uc[j], un[j], diff[j], uc[j] * tol, np.less_equal(diff[j], uc[j] * tol))
+                print(
+                    j,
+                    x[j],
+                    uc[j],
+                    un[j],
+                    diff[j],
+                    uc[j] * tol,
+                    np.less_equal(diff[j], uc[j] * tol),
+                )
             break
 
         tmpstr = f.readline()
@@ -83,6 +89,6 @@ def test17():
     # plt.show()
     plt.savefig(testname + ".png", format="png", bbox_inches="tight")
 
-    assert failed == False
+    assert not failed
 
     return True

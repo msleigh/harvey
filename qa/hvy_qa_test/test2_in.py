@@ -8,7 +8,6 @@ import hvy_global_time_data as time
 
 
 def define():
-
     # Specify the geometry (1D)
     # -------------------------
 

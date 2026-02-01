@@ -9,7 +9,6 @@ import qa_utils
 
 
 def test14():
-
     testname = "test14"
 
     # Clear the figure
@@ -35,8 +34,6 @@ def test14():
 
     print("Number of nodes = ", nnodes)
 
-    phiFS = np.zeros(nnodes)
-
     # Plot the solution at later times
     # --------------------------------
 
@@ -56,7 +53,6 @@ def test14():
 
     # Cycle throught the times at which to plot the solution
     for tfac in ttimes:
-
         # Convert to an actual time by multiplying by time-step length
         t = tfac * dx * dx / (6.0 * D)
 
@@ -135,6 +131,6 @@ def test14():
     plt.ylim(-0.1, H * L / D)
     plt.savefig(testname + ".png", format="png", bbox_inches="tight")
 
-    assert failed == False
+    assert not failed
 
     return True

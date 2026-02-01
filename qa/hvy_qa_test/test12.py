@@ -10,7 +10,6 @@ import qa_utils
 
 
 def test12():
-
     testname = "test12"
 
     # Clear the figure
@@ -71,7 +70,6 @@ def test12():
     tol = 1.0e-00
 
     for tfac in ttimes:
-
         t = tfac * dx * dx / D
 
         tp = np.searchsorted(ntim, t, side="left")
@@ -105,6 +103,6 @@ def test12():
     plt.xlim(0.0, np.pi)
     plt.savefig(testname + ".png", format="png", bbox_inches="tight")
 
-    assert failed == False
+    assert not failed
 
     return True

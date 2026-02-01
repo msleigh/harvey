@@ -10,7 +10,10 @@ regions = {}
 # Function to populate list of regions given user input.
 def region(name, mat, xbound=None):
     """Initialise new region."""
-    regions[name] = {"mat": mat, "xbound": xbound,}
+    regions[name] = {
+        "mat": mat,
+        "xbound": xbound,
+    }
 
 
 def reset():

@@ -17,8 +17,6 @@ import qa_utils as qu
 def analytic_solution(x, t):
     dcon = 1.0  # Diffusion coefficient
     C = 1.0  # Define the gradient of the slope
-    length = x[-1] - x[0]  # The length of the bar
-    A = C * length/2  # The amplitude/maximum temperature
     const = 4.0 * C / np.pi
     uc = np.zeros(len(x))
     for iterm in range(1, 50):
@@ -28,6 +26,7 @@ def analytic_solution(x, t):
         )
     uc = const * uc
     return uc
+
 
 def test4():
     testname = "test4"

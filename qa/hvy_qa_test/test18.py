@@ -16,7 +16,6 @@ import qa_utils
 
 
 def test18():
-
     testname = "test18"
 
     # Clear the figure
@@ -30,7 +29,6 @@ def test18():
 
     C = 1.0  # Define the gradient of the slope
     L = x[-1] - x[0]  # The length of the bar
-    A = 0.5 * C * L  # The amplitude/maximum temperature
     D = 1.0  # Diffusion coefficient
 
     ncells = 20
@@ -73,7 +71,6 @@ def test18():
     tol = 0.5e-00
 
     for tfac in ttimes:
-
         t = tfac * dx * dx / D
 
         uc = np.zeros(nnodes)
@@ -118,6 +115,6 @@ def test18():
     plt.ylim(0.0, 0.5 * np.pi)
     plt.savefig(testname + ".png", format="png", bbox_inches="tight")
 
-    assert failed == False
+    assert not failed
 
     return True

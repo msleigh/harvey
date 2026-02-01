@@ -32,7 +32,10 @@ def _load_user_input(input_file):
         sys.exit(1)
 
     existing_module = sys.modules.get(input_name)
-    if existing_module is not None and getattr(existing_module, "__file__", None) is None:
+    if (
+        existing_module is not None
+        and getattr(existing_module, "__file__", None) is None
+    ):
         return existing_module
 
     repo_root = Path(__file__).resolve().parents[1]
@@ -73,9 +76,7 @@ def _load_user_input(input_file):
                 module_path = candidate_path
                 break
         if module_path is None:
-            print(
-                "    Error: input file not found in project search paths"
-            )
+            print("    Error: input file not found in project search paths")
             sys.exit(1)
     spec = importlib.util.spec_from_file_location(input_name, module_path)
     if spec is None or spec.loader is None:
