@@ -115,13 +115,13 @@ Main QA test suite for Harvey.
        File Should Exist     test8.out
        File Should Exist     test8.png
 
-   #Test 9
-   #    Import Library        test9.py
-   #    [Documentation]       Test 9
-   #    ${RESULT} =           test9
-   #    Should Be Equal       ${RESULT}     ${true}
-   #    File Should Exist     test9.out
-   #    File Should Exist     test9.png
+   Test 9
+       Import Library        test9.py
+       [Documentation]       Test 9
+       ${RESULT} =           test9
+       Should Be Equal       ${RESULT}     ${true}
+       File Should Exist     test9.out
+       File Should Exist     test9.png
 
    Test 10
        Import Library        test10.py
