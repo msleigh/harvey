@@ -33,8 +33,6 @@ def test8():
     D = 1.0  # Diffusion coefficient
 
     dx = x[1] - x[0]
-    ncells = int(L / dx)
-    #assert ncells == 40
 
     phi = np.zeros(nnodes)
     phiFS = np.zeros(nnodes)

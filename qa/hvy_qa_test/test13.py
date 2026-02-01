@@ -35,8 +35,6 @@ def test13():
 
     print("Number of nodes = ", nnodes)
 
-    phiFS = np.zeros(nnodes)
-
     # Plot the solution at later times
     # --------------------------------
 

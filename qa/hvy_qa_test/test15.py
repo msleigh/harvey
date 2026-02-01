@@ -32,10 +32,6 @@ def test15():
     # the numerical solution
     print("\nSetting up analytic solution...")
     dcon = 1.0
-    dx = x[1] - x[0]
-    length = x[-1] - x[0]
-    dx = 0.01  # Temporary while no numerical solution
-    length = 1.0  # Temporary while no numerical solution
     invlength = 1.0
     tol = 0.25e-01
 

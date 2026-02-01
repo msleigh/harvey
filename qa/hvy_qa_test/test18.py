@@ -30,7 +30,6 @@ def test18():
 
     C = 1.0  # Define the gradient of the slope
     L = x[-1] - x[0]  # The length of the bar
-    A = 0.5 * C * L  # The amplitude/maximum temperature
     D = 1.0  # Diffusion coefficient
 
     ncells = 20

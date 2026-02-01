@@ -56,7 +56,7 @@ def test10():
 
         try:
             assert(qu.passed(un, uc, diff1, tol1))
-        except AssertionError as error:
+        except AssertionError:
             qu.dump(nnodes, x, uc, un, diff1, tol1)
             raise
 

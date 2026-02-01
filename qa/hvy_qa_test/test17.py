@@ -34,7 +34,6 @@ def test17():
     # the numerical solution
     print("\nSetting up analytic solution...")
     dcon = 1.0
-    dx = x[1] - x[0]
     length = x[-1] - x[0]
     invlength = 1.0 / length
     tol = 0.25e-01

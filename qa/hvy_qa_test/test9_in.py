@@ -68,8 +68,6 @@ def define():
 
     # Then give the numerical value
 
-    C = 1.0
-
     bcon.inner = {"type": "dirichlet", "value": 1.0}
     bcon.outer = {"type": "dirichlet", "value": 0.0}
     bcon.icon = {"type": "constant", "value": 0.0}

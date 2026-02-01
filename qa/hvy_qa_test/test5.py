@@ -26,7 +26,6 @@ def test5():
 
     # Get reference solution
     refdat = np.genfromtxt("./1DHeatEquation/solution.txt")
-    rtim = refdat[:, 0]
     rval = refdat[:, 1:]
 
     plt.clf()
@@ -50,7 +49,7 @@ def test5():
 
         try:
             assert(qu.passed(un, uc, diff, tol) == True)
-        except AssertionError as error:
+        except AssertionError:
             qu.dump(len(x), x, uc, un, diff, tol)
             raise
 

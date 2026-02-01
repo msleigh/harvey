@@ -28,8 +28,6 @@ def test6():
     plot_times = [-1]
 
     dcon = 1.0
-    dx = x[1] - x[0]
-    length = x[-1] - x[0]
 
     for tp in plot_times:
 

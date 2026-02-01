@@ -38,7 +38,7 @@ def run_test(testname, analytic_solution, plot_times, tol):
 
         try:
             assert passed(un, uc, df, tol)
-        except AssertionError as error:
+        except AssertionError:
             dump(len(x), x, uc, un, df, tol)
             raise
 
