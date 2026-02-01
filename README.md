@@ -51,6 +51,18 @@ Use `uv` to install the necessary dependencies:
 
 (This excludes the documentation dependencies.)
 
+### Pre-commit hooks
+
+This repository uses `pre-commit` for basic hygiene checks (line endings, merge
+conflict markers, large files) and to strip Jupyter Notebook outputs. After setting
+up the virtual environment, install the hooks with:
+
+    pre-commit install
+
+To run the checks manually across the whole repository:
+
+    pre-commit run --all-files
+
 Install `gfortran` for the Fortran build:
 
     # macOS (Homebrew)
