@@ -131,6 +131,6 @@ def test13():
     plt.ylim(-0.1, H * L / D)
     plt.savefig(testname + ".png", format="png", bbox_inches="tight")
 
-    assert failed == False
+    assert not failed
 
     return True

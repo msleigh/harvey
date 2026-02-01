@@ -48,7 +48,7 @@ def test5():
         diff = qu.diff(un, uc)
 
         try:
-            assert(qu.passed(un, uc, diff, tol) == True)
+            assert qu.passed(un, uc, diff, tol)
         except AssertionError:
             qu.dump(len(x), x, uc, un, diff, tol)
             raise

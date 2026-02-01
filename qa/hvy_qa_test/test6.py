@@ -52,12 +52,12 @@ def test6():
         failed = qu.has_failed(uc, diff, tol1)
         if failed:
             qu.dump(nnodes, x, uc, un, diff, tol1)
-        assert failed == False
+        assert not failed
 
         failed = qu.has_failed(uc[0:99], diff1, tol2)
         if failed:
             qu.dump(nnodes, x, uc, un, diff1, tol2)
-        assert failed == False
+        assert not failed
 
     plt.xlim((0.0, 0.4))
     # plt.yscale('log')

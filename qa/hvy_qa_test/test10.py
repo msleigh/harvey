@@ -63,7 +63,7 @@ def test10():
         failed = qu.has_failed(uc[0:48], diff2, tol2)
         if failed:
             qu.dump(nnodes, x, uc, un, diff2, tol2)
-        assert failed == False
+        assert not failed
 
     #plt.plot(x, diff, "g-", lw=2.0)
     #plt.plot(x,diff1,'y--',lw=2.)

@@ -85,7 +85,7 @@ def test16():
         failed = qa_utils.has_failed(uc, diff, tol)
         if failed:
             qa_utils.dump(nnodes, x, uc, un, diff, tol)
-        assert failed == False
+        assert not failed
 
     plt.savefig(testname + ".png", format="png", bbox_inches="tight")
 

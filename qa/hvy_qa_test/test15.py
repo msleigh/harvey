@@ -90,6 +90,6 @@ def test15():
     # plt.show()
     plt.savefig(testname + ".png", format="png", bbox_inches="tight")
 
-    assert failed == False
+    assert not failed
 
     return True
