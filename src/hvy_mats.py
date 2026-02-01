@@ -9,7 +9,7 @@ def setup():
     """
     Set up materials.
 
-    More detailed information
+    Build the material property arrays from the user-defined materials.
     """
     # Assign unique integer index to each material and create numpy array of material
     # properties (so far only diffusion coefficient)

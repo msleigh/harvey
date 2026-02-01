@@ -102,7 +102,7 @@ def read(input_file):
     print("Processing user input file...")
     if input_file is None:
         print("    Error: no input file specified")
-        sys.exit()
+        sys.exit(1)
 
     bcon.reset()
     mesh.reset()
