@@ -6,6 +6,8 @@ import sys
 
 import matplotlib.pyplot as plt
 import numpy as np
+import re
+from io import StringIO
 
 import harvey
 
@@ -101,7 +103,16 @@ def get_harvey(testname):
     _, _, x = run_harvey(testname)
 
     # Open the output file
-    harveydat = np.genfromtxt(testname + ".out")
+    with open(testname + ".out", "r", encoding="utf-8") as data_file:
+        raw = data_file.read()
+    # Some outputs contain exponent values missing the "E" (e.g. 1.23-106).
+    # Normalize these before parsing.
+    normalized = re.sub(r"(?<![Ee])([+-]\d{2,3})(?=\s|$)", r"e\1", raw)
+    harveydat = np.genfromtxt(StringIO(normalized))
+    if harveydat.size == 0:
+        return (x, np.array([]), np.array([[]]))
+    if harveydat.ndim == 1:
+        harveydat = harveydat[np.newaxis, :]
     time = harveydat[:, 0]
     soln = harveydat[:, 1:]
 
