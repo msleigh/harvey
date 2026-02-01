@@ -37,6 +37,10 @@ doxygen.log: Doxyfile customdoxygen.css README.md $(markdown)
 	cd $(DOXYGEN_OUTPUT_DIR) && PROJECT_ROOT=$(CURDIR) doxygen $(DOC_SOURCE)/Doxyfile > doxygen.log
 
 doc:
+	@if [ -f /.dockerenv ]; then \
+		$(MAKE) doxygen.log; \
+		exit 0; \
+	fi
 	@if ! docker version > /dev/null 2>&1; then \
 		echo "Docker daemon is not reachable. Check Docker Desktop, your Docker context, or DOCKER_HOST; or use 'make doxygen.log' for a local build." >&2; \
 		exit 1; \
