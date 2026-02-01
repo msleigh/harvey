@@ -5,6 +5,9 @@ Harvey is a simple 1D diffusion solver with a range of built-in test cases based
 analytic solutions. It's a mixed Python/Fortran code, with a top-level control layer
 written in Python calling a Fortran kernel.
 
+> **Note:** Only planar (slab) geometry is supported at present. Cylindrical and
+> spherical geometries are planned but not implemented yet.
+
 <img src="https://img.shields.io/github/v/release/msleigh/harvey?include_prereleases"> <img src="https://img.shields.io/github/license/msleigh/harvey"> <img src="https://img.shields.io/tokei/lines/github/msleigh/harvey"> <img src="https://img.shields.io/github/last-commit/msleigh/harvey">
 
 <img src="https://img.shields.io/badge/code%20style-black-lightgrey">

@@ -32,7 +32,12 @@ def parse_args():
     parser.add_argument(
         "-o", "--output", default="harvey.out", help="Name of output file"
     )
-    parser.add_argument("-d", "--debug", default=False, help="Debug mode")
+    parser.add_argument(
+        "-d",
+        "--debug",
+        action="store_true",
+        help="Enable debug mode",
+    )
 
     return parser.parse_args()
 

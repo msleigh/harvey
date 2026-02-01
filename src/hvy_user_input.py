@@ -102,7 +102,7 @@ def read(input_file):
     print("Processing user input file...")
     if input_file is None:
         print("    Error: no input file specified")
-        sys.exit()
+        sys.exit(1)
 
     bcon.reset()
     mesh.reset()
@@ -110,7 +110,7 @@ def read(input_file):
     reg.reset()
     time.reset()
 
-    print(("    Specified input file name = ", input_file))
+    print(f"    Specified input file name = {input_file}")
     print("    Importing...")
     harvin = _load_user_input(input_file)
     print("    Running...")

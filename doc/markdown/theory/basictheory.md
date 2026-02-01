@@ -83,6 +83,10 @@ and further to Laplace's equation if the source term is zero:
 
 \subsection geometry Geometry
 
+> **Implementation note:** The current solver implementation supports only planar
+> (slab) geometry. Cylindrical and spherical geometries are documented here for
+> theory completeness but are not yet implemented in the code.
+
 
 Returning now to the full equation, we recall that:
 

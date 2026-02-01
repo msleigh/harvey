@@ -19,10 +19,42 @@ def _validate_mesh_parameters():
     """Validate mesh parameters before building coordinate arrays."""
     errors = []
 
-    if mesh.dx <= 0.0:
-        errors.append("mesh.dx must be greater than zero")
-    if mesh.xsize <= 0.0:
-        errors.append("mesh.xsize must be greater than zero")
+    if mesh.geom is None:
+        errors.append("mesh.geom must be set to 0 (planar)")
+    elif mesh.geom != 0:
+        errors.append(
+            "mesh.geom must be 0 (planar). Cylindrical and spherical geometries are not supported yet."
+        )
+
+    try:
+        dx_value = float(mesh.dx)
+    except (TypeError, ValueError):
+        errors.append("mesh.dx must be a positive number")
+    else:
+        if dx_value <= 0.0:
+            errors.append("mesh.dx must be greater than zero")
+        else:
+            mesh.dx = dx_value
+
+    try:
+        xsize_value = float(mesh.xsize)
+    except (TypeError, ValueError):
+        errors.append("mesh.xsize must be a positive number")
+    else:
+        if xsize_value <= 0.0:
+            errors.append("mesh.xsize must be greater than zero")
+        else:
+            mesh.xsize = xsize_value
+
+    try:
+        theta_value = float(mesh.theta)
+    except (TypeError, ValueError):
+        errors.append("mesh.theta must be a number between 0 and 1")
+    else:
+        if not 0.0 <= theta_value <= 1.0:
+            errors.append("mesh.theta must be between 0 and 1")
+        else:
+            mesh.theta = theta_value
 
     try:
         ncells_value = int(mesh.ncells)

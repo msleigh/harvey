@@ -1,5 +1,7 @@
 """Region processing."""
 
+import sys
+
 import numpy as np
 
 import hvy_global_mat_data as mat
@@ -16,14 +18,18 @@ def setup():
     reg.matnum = np.zeros(reg.nregs, dtype=np.uint64)
     reg.dcoeff = np.zeros(reg.nregs)
     for ireg, regname in enumerate(reg.regions.keys()):
-        # If no outer boundary is specified then make it some large number (why
-        # not just = xsize?)
+        # If no outer boundary is specified then use a large value relative to
+        # the mesh size.
         if reg.regions[regname]["xbound"] is None:
             reg.bound[ireg] = 10.0 * mesh.xsize
         else:
             reg.bound[ireg] = reg.regions[regname]["xbound"]
-        reg.matnum[ireg] = mat.materials[reg.regions[regname]["mat"]]["id"]
-        reg.dcoeff[ireg] = mat.materials[reg.regions[regname]["mat"]]["d"]
+        mat_name = reg.regions[regname]["mat"]
+        if mat_name not in mat.materials:
+            print(f"    Error: material '{mat_name}' is not defined")
+            sys.exit(1)
+        reg.matnum[ireg] = mat.materials[mat_name]["id"]
+        reg.dcoeff[ireg] = mat.materials[mat_name]["d"]
 
     for ireg, regname in enumerate(reg.regions.keys()):
         print(f"    Region name      = {regname} |")
