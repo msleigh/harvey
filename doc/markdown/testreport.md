@@ -10,13 +10,13 @@ This report documents the analysis of the Harvey test suite, which validates the
 
 | Metric | Value |
 |--------|-------|
-| Total tests defined | 19 (including 3 commented out) |
-| Tests executed | 16 |
-| Tests passed | 16 |
+| Total tests defined | 19 |
+| Tests executed | 19 |
+| Tests passed | 19 |
 | Tests failed | 0 |
-| Tests disabled | 3 (Test 9, 11, 12) |
-| PNG images generated | 15 |
-| Data output files | 17 (15 test*.out + 2 reset*.out) |
+| Tests disabled | 0 |
+| PNG images generated | 18 |
+| Data output files | 20 (18 test*.out + 2 reset*.out) |
 
 
 \section testreport_detailed Detailed Test Analysis
@@ -32,12 +32,12 @@ The following table summarizes all tests in the suite:
 | Test 4 | Yes | Yes | test4.out (48KB) | Yes | Explicit (@f$\theta=0@f$) | Analytic (tol=5e-1) | Chevron IC, Dirichlet BC; excellent match with damped triangular profile |
 | Test 5 | Yes | Yes | test5.out (530KB) | Yes | Explicit (@f$\theta=0@f$) | Reference impl (tol=0.085%) | Comparison with external 1DHeatEquation solution; perfect match |
 | Test 6 | Yes | Yes | test6.out (92MB) | Yes | Crank-Nicolson (@f$\theta=0.5@f$) | Analytic erf() | Semi-infinite bar with error function solution; excellent match |
-| Test 7 | Yes | Yes | test7.out (54MB) | Yes | Explicit (@f$\theta=0@f$) | Analytic Gaussian | Delta function IC, Gaussian diffusion; good match at all times |
+| Test 7 | Yes | Yes | test7.out (54MB) | Yes | Explicit (@f$\theta=0@f$) | Analytic Gaussian (asserted) | Delta function IC, Gaussian diffusion; good match at all times with explicit assertions |
 | Test 8 | Yes | Yes | test8.out (14MB) | Yes | Explicit (@f$\theta=0@f$) | Analytic Fourier | Zero IC, non-zero BC; excellent match showing approach to steady state |
-| Test 9 | **No** | N/A | N/A | N/A | Crank-Nicolson (@f$\theta=0.5@f$) | Analytic | *Disabled* - similar to Test 8 with different scheme |
+| Test 9 | Yes | Yes | test9.out (14MB) | Yes | Crank-Nicolson (@f$\theta=0.5@f$) | Analytic Fourier | Variant of Test 8 with CN scheme; excellent match |
 | Test 10 | Yes | Yes | test10.out (92MB) | Yes | Explicit (@f$\theta=0@f$) | Analytic erf() | Same as Test 6 but explicit scheme; excellent match |
-| Test 11 | **No** | N/A | N/A | N/A | Implicit (@f$\theta=1@f$) | Reference | *Disabled* - similar to Test 8 with different scheme |
-| Test 12 | **No** | N/A | N/A | N/A | Explicit (@f$\theta=0@f$) | Reference | *Disabled* - similar to Test 8 |
+| Test 11 | Yes | Yes | test11.out (14MB) | Yes | Implicit (@f$\theta=1@f$) | Analytic Fourier | Variant of Test 8 with implicit scheme; excellent match |
+| Test 12 | Yes | Yes | test12.out (14MB) | Yes | Explicit (@f$\theta=0@f$) | Analytic Fourier | Variant of Test 8 with explicit scheme; excellent match |
 | Test 13 | Yes | Yes | test13.out (31MB) | Yes | Explicit (@f$\theta=0@f$) | Analytic | Flux BC (Neumann), zero IC; approaches linear steady-state; excellent match |
 | Test 14 | Yes | Yes | test14.out (31MB) | Yes | Crank-Nicolson (@f$\theta=0.5@f$) | Analytic | Same as Test 13 with CN scheme; excellent match |
 | Test 15 | Yes | Yes | test15.out (19MB) | Yes | Crank-Nicolson (@f$\theta=0.5@f$) | Analytic | Sinusoidal IC, Dirichlet BC; excellent match |
@@ -61,18 +61,9 @@ The following tests show excellent agreement between numerical and analytic solu
 | 5, 16 | Reference comparison | Machine-precision match with external implementation |
 | 6, 10 | Semi-infinite bar | Error function profile matches boundary diffusion |
 | 7 | Delta function | Gaussian spreading at correct rate @f$\sqrt{4Dt}@f$ |
-| 8 | Step to steady state | Correct approach to linear steady-state profile |
+| 8, 9, 11, 12 | Step to steady state | Correct approach to linear steady-state profile across explicit, implicit, and CN schemes |
 | 13, 14 | Flux boundary | Correct evolution toward @f$Hx/D@f$ steady state |
 | 17 | Neumann-Dirichlet eigenfn | Cosine eigenfunction @f$\cos(\pi x / 2L)@f$ decays at correct rate @f$({\pi}/{2L})^2@f$ |
-
-
-\subsection testreport_disabled Disabled Tests
-
-| Test | Reason (inferred) |
-|------|-------------------|
-| 9 | Crank-Nicolson variant of Test 8 (possibly redundant or unstable) |
-| 11 | Fully implicit variant of Test 8 (possibly redundant) |
-| 12 | Explicit variant similar to Test 8 (possibly redundant) |
 
 
 \section testreport_outputs Output Files
@@ -81,8 +72,8 @@ After running `make test`, the following outputs are generated:
 
 | Directory | Contents |
 |-----------|----------|
-| `build/QA/*.png` | 15 visualization images comparing numerical vs reference solutions |
-| `build/QA/*.out` | 17 solution data files (time series of spatial profiles) |
+| `build/QA/*.png` | 18 visualization images comparing numerical vs reference solutions |
+| `build/QA/*.out` | 20 solution data files (time series of spatial profiles) |
 | `build/QA/log.html` | Robot Framework detailed execution log |
 | `build/QA/output.xml` | Robot Framework machine-readable results |
 | `build/QA/report.html` | Robot Framework summary report |
@@ -91,7 +82,7 @@ After running `make test`, the following outputs are generated:
 
 \section testreport_conclusions Conclusions
 
-1. **All 16 active tests pass with proper validation** - the Harvey 1D heat equation solver produces correct results across multiple numerical schemes (explicit, implicit, Crank-Nicolson) and boundary conditions (Dirichlet, Neumann).
+1. **All 19 active tests pass with proper validation** - the Harvey 1D heat equation solver produces correct results across multiple numerical schemes (explicit, implicit, Crank-Nicolson) and boundary conditions (Dirichlet, Neumann).
 
 2. **Scientific validation is thorough** - tests cover:
    - Multiple initial conditions (sinusoidal, cosinusoidal, constant, chevron, delta function)
@@ -101,4 +92,4 @@ After running `make test`, the following outputs are generated:
 
 3. **Test 17 validates Neumann-Dirichlet boundary conditions** - uses the cosine eigenfunction @f$\cos(\pi x / 2L)@f$ which satisfies zero-flux at x=0 and zero value at x=L, with eigenvalue @f$(\pi/2L)^2@f$.
 
-4. **Tests 9, 11, 12 are disabled** - these appear to be variants of existing tests and may have been disabled due to redundancy or known issues.
+4. **Test 7 now includes explicit assertions/validation** - the Gaussian diffusion check is enforced programmatically rather than via visual inspection alone.
