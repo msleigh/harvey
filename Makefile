@@ -37,6 +37,10 @@ doxygen.log: Doxyfile customdoxygen.css README.md $(markdown)
 	cd $(DOXYGEN_OUTPUT_DIR) && PROJECT_ROOT=$(CURDIR) doxygen $(DOC_SOURCE)/Doxyfile > doxygen.log
 
 doc:
+	@if ! docker info > /dev/null 2>&1; then \
+		echo "Docker does not appear to be running. Start Docker or use 'make doxygen.log' for a local build." >&2; \
+		exit 1; \
+	fi
 	docker build -f Dockerfile.docs -t harvey-docs .
 	docker run --rm --user "$(shell id -u):$(shell id -g)" -v "$(CURDIR)":/work -w /work harvey-docs make doxygen.log
 

@@ -113,6 +113,9 @@ provided Docker container. The default `make doc` target uses Docker.
 
     make doc
 
+Make sure Docker is running before executing this target. If Docker is not
+available, use the local build below.
+
 #### Option 2: Local install
 
 Install the documentation dependencies on your machine (Doxygen, Graphviz, LaTeX,
@@ -130,12 +133,12 @@ Build the docs locally (from the repository root):
 
     make doxygen.log
 
-If you run Doxygen directly instead of `make`, run it from the documentation
-output directory so the `doc/Doxyfile` paths resolve correctly:
+If you run Doxygen directly instead of `make`, set `PROJECT_ROOT` so the
+`doc/Doxyfile` paths resolve correctly:
 
     mkdir -p build/Doc
     cd build/Doc
-    doxygen ../../doc/Doxyfile
+    PROJECT_ROOT=$(pwd)/../.. doxygen ../../doc/Doxyfile
 
 #### Opening the output
 
