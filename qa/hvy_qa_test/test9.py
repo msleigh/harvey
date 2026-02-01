@@ -10,7 +10,6 @@ import qa_utils
 
 
 def test9():
-
     testname = "test9"
 
     # Clear the figure
@@ -65,7 +64,6 @@ def test9():
     tol = 1.0e-02
 
     for tfac in ttimes:
-
         t = tfac * dx * dx / D
         tp = np.searchsorted(ntim, t, side="left")
         if tp >= len(ntim):
@@ -84,8 +82,8 @@ def test9():
         uc[-1] = 0.0
         uc = phiFS0 + uc
 
-        plt.plot(x, uc, "b-", lw=2, label='$\phi(x,{:.6f})$'.format(tn)+' (ref)')
-        plt.plot(x, un, "r--", lw=2, label='$\phi(x,{:.6f})$'.format(tn))
+        plt.plot(x, uc, "b-", lw=2, label="$\phi(x,{:.6f})$".format(tn) + " (ref)")
+        plt.plot(x, un, "r--", lw=2, label="$\phi(x,{:.6f})$".format(tn))
 
         diff = np.abs(un - uc)
 
@@ -96,9 +94,9 @@ def test9():
 
     # plt.plot(x,phi,'b-',lw=2)
     # plt.plot(x,phiFS0+cnst*phiFS,'r--',lw=2)
-    plt.xlabel('$x$ (cm)')
-    plt.ylabel('$\phi(x,t\')$')
-    plt.legend(bbox_to_anchor=(1,1), loc="upper left")
+    plt.xlabel("$x$ (cm)")
+    plt.ylabel("$\phi(x,t')$")
+    plt.legend(bbox_to_anchor=(1, 1), loc="upper left")
     plt.xlim(0.0, np.pi)
     plt.savefig(testname + ".png", format="png", bbox_inches="tight")
 

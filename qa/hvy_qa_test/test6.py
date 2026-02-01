@@ -15,8 +15,8 @@ import numpy as np
 import qa_utils as qu
 from scipy import special  # For error function, erf
 
-def test6():
 
+def test6():
     testname = "test6"
 
     # Get numerical solution
@@ -30,20 +30,19 @@ def test6():
     dcon = 1.0
 
     for tp in plot_times:
-
         t = ntim[tp]
 
         c1 = 1.0 / np.sqrt(4.0 * dcon * t)
         uc = 100.0 * (1.0 - special.erf(x * c1))
 
-        un = nval[tp,:]
+        un = nval[tp, :]
 
         diff = 100.0 * abs(un - uc)
         diff1 = 100.0 * abs(un[0:99] - uc[0:99])
 
-        plt.plot(x, uc, "b-", lw=2.0, label='$\phi(x,{:.6f})$'.format(t)+' (ref)')
-        plt.plot(x, un, "r--", lw=2.0, label='$\phi(x,{:.6f})$'.format(t))
-        plt.plot(x, 100.0*qu.diff(un, uc), "g-", lw=2.0, label='% error')
+        plt.plot(x, uc, "b-", lw=2.0, label="$\phi(x,{:.6f})$".format(t) + " (ref)")
+        plt.plot(x, un, "r--", lw=2.0, label="$\phi(x,{:.6f})$".format(t))
+        plt.plot(x, 100.0 * qu.diff(un, uc), "g-", lw=2.0, label="% error")
 
         # Define the two tolerances for x < 10 and x < 5
         tol1 = 1.5
@@ -62,8 +61,8 @@ def test6():
     plt.xlim((0.0, 0.4))
     # plt.yscale('log')
     plt.ylim((1.0e-04, 1.0e02))
-    plt.xlabel('$x$ (cm)')
-    plt.ylabel('Value')
+    plt.xlabel("$x$ (cm)")
+    plt.ylabel("Value")
     plt.legend()
 
     plt.savefig(testname + ".png", format="png", bbox_inches="tight")

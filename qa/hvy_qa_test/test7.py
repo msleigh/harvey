@@ -13,7 +13,6 @@ import qa_utils
 
 
 def test7():
-
     testname = "test7"
 
     # Get numerical solution
@@ -47,15 +46,14 @@ def test7():
     dcon = 1.0
 
     for tp in plot_times:
-
         t = ntim[tp]
-        lab = 't\'={:.6f}'.format(t)
+        lab = "t'={:.6f}".format(t)
 
         # Analytic solution
         c1 = 1.0 / np.sqrt(4.0 * np.pi * dcon * t)
         uc = c1 * np.exp(-0.25 * x * x / t)
 
-        un = nval[tp,:]
+        un = nval[tp, :]
 
         if not np.all(np.isfinite(un)):
             raise AssertionError(
@@ -72,12 +70,12 @@ def test7():
             f"at step {tp} (t={t:.6f})."
         )
 
-        plt.plot(x, uc, "b-", lw=2.0, label=lab+' (ref)')
+        plt.plot(x, uc, "b-", lw=2.0, label=lab + " (ref)")
         plt.plot(x, un, "r--", lw=2.0, label=lab)
 
     plt.xlim((-5, 5))
-    plt.xlabel('$x$ (cm)')
-    plt.ylabel('$\phi(x,t\')$')
+    plt.xlabel("$x$ (cm)")
+    plt.ylabel("$\phi(x,t')$")
     plt.legend()
     plt.savefig(testname + ".png", format="png", bbox_inches="tight")
 

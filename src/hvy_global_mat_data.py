@@ -10,7 +10,9 @@ materials = {}
 # Function to populate list of materials given user input.
 def material(name, d):
     """Initialise new material."""
-    materials[name] = {"d": d,}
+    materials[name] = {
+        "d": d,
+    }
     materials[name]["id"] = len(materials)  # Start material numbering at 1
 
 

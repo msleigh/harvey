@@ -16,7 +16,6 @@ import qa_utils
 
 
 def test16():
-
     testname = "test16"
 
     # Clear the figure
@@ -42,7 +41,6 @@ def test16():
 
     # Cycle throught the times at which to plot the solution
     for tfac in ttimes:
-
         t = tfac * dt
 
         # Read through the output file (from where we left off last time)

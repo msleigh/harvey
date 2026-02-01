@@ -71,9 +71,7 @@ def _validate_mesh_parameters():
     if not errors and mesh.dx > 0.0:
         expected_cells = mesh.xsize / mesh.dx
         if not np.isclose(expected_cells, mesh.ncells, rtol=1.0e-6, atol=1.0e-12):
-            errors.append(
-                "mesh.ncells must be consistent with mesh.xsize / mesh.dx"
-            )
+            errors.append("mesh.ncells must be consistent with mesh.xsize / mesh.dx")
 
     if errors:
         print("    Error: invalid mesh parameters")

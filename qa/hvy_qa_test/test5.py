@@ -16,7 +16,6 @@ import qa_utils as qu
 
 
 def test5():
-
     testname = "test5"
 
     # Get numerical solution
@@ -33,16 +32,15 @@ def test5():
 
     # Cycle through times at which to plot solution
     for tp in plot_times:
-
         t = ntim[tp]
-        lab = 't\'={:.6f} (step {:d})'.format(t, tp)
+        lab = "t'={:.6f} (step {:d})".format(t, tp)
 
-        uc = rval[tp,:]
+        uc = rval[tp, :]
 
-        un = nval[tp,:]
+        un = nval[tp, :]
 
         if tp in plot_times:
-            plt.plot(x, uc, "b-", lw=2, label=lab+' (ref)')
+            plt.plot(x, uc, "b-", lw=2, label=lab + " (ref)")
             plt.plot(x, un, "r--", lw=2, label=lab)
 
         diff = qu.diff(un, uc)
@@ -53,9 +51,9 @@ def test5():
             qu.dump(len(x), x, uc, un, diff, tol)
             raise
 
-    plt.xlabel('$x$ (cm)')
-    plt.ylabel('$\phi(x,t\')$')
-    plt.legend(bbox_to_anchor=(1,1), loc="upper left")
+    plt.xlabel("$x$ (cm)")
+    plt.ylabel("$\phi(x,t')$")
+    plt.legend(bbox_to_anchor=(1, 1), loc="upper left")
     plt.savefig(testname + ".png", format="png", bbox_inches="tight")
 
     return True

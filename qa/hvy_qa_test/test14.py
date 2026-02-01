@@ -9,7 +9,6 @@ import qa_utils
 
 
 def test14():
-
     testname = "test14"
 
     # Clear the figure
@@ -54,7 +53,6 @@ def test14():
 
     # Cycle throught the times at which to plot the solution
     for tfac in ttimes:
-
         # Convert to an actual time by multiplying by time-step length
         t = tfac * dx * dx / (6.0 * D)
 

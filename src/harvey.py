@@ -144,7 +144,6 @@ def main(input_file, output_file, debug_mode):
 
 
 if __name__ == "__main__":
-
     # Process command line
     args = parse_args()
 

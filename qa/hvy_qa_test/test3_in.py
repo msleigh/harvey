@@ -6,8 +6,8 @@ import hvy_global_mat_data as mat
 import hvy_global_reg_data as reg
 import hvy_global_time_data as time
 
-def define():
 
+def define():
     # Specify the geometry (1D)
     # -------------------------
 

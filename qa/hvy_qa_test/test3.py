@@ -24,6 +24,7 @@ def analytic_solution(x, t):
     uc = const * uc
     return uc
 
+
 def test3():
     testname = "test3"
     tol = 1.0e-01

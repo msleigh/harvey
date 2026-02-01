@@ -16,7 +16,6 @@ import qa_utils
 
 
 def test17():
-
     testname = "test17"
 
     # Clear the figure
@@ -70,7 +69,15 @@ def test17():
         else:
             failed = True
             for j in range(nnodes):
-                print(j, x[j], uc[j], un[j], diff[j], uc[j] * tol, np.less_equal(diff[j], uc[j] * tol))
+                print(
+                    j,
+                    x[j],
+                    uc[j],
+                    un[j],
+                    diff[j],
+                    uc[j] * tol,
+                    np.less_equal(diff[j], uc[j] * tol),
+                )
             break
 
         tmpstr = f.readline()

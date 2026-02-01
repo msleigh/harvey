@@ -14,7 +14,6 @@ import qa_utils
 
 
 def test15():
-
     testname = "test15"
 
     # Clear the figure

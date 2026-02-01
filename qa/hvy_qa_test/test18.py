@@ -16,7 +16,6 @@ import qa_utils
 
 
 def test18():
-
     testname = "test18"
 
     # Clear the figure
@@ -72,7 +71,6 @@ def test18():
     tol = 0.5e-00
 
     for tfac in ttimes:
-
         t = tfac * dx * dx / D
 
         uc = np.zeros(nnodes)

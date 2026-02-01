@@ -12,7 +12,7 @@ def setup():
             bcon.inner["itype"] = 1
         else:
             message = (
-                f'Incorrect inner boundary type: {bcon.inner["type"]}. '
+                f"Incorrect inner boundary type: {bcon.inner['type']}. "
                 'Specify "dirichlet" or "neumann".'
             )
             raise ValueError(message)
@@ -24,7 +24,7 @@ def setup():
             bcon.outer["itype"] = 1
         else:
             message = (
-                f'Incorrect outer boundary type: {bcon.outer["type"]}. '
+                f"Incorrect outer boundary type: {bcon.outer['type']}. "
                 'Specify "dirichlet" or "neumann".'
             )
             raise ValueError(message)
@@ -49,7 +49,7 @@ def setup():
         icontype = 4
         iconval = bcon.icon["value"]
     else:
-        message = f'Boundary condition type not coded: {bcon.icon["type"]}.'
+        message = f"Boundary condition type not coded: {bcon.icon['type']}."
         raise ValueError(message)
     bcon.icon["itype"] = icontype
     bcon.icon["ival"] = iconval
