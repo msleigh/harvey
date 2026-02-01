@@ -5,6 +5,8 @@
 
 module print_mesh_mod
 
+   use kindtypes_mod, only: dp
+
    implicit none
 
    contains
@@ -13,10 +15,10 @@ module print_mesh_mod
 
 
       integer,      intent(in) :: ncells
-      real(kind=8), intent(in) :: cellpos(ncells)
-      real(kind=8), intent(in) :: nodepos(ncells+1)
-      real(kind=8), intent(in) :: dcoeff(ncells)
-      real(kind=8), intent(in) :: alpha(ncells)
+      real(dp), intent(in) :: cellpos(ncells)
+      real(dp), intent(in) :: nodepos(ncells+1)
+      real(dp), intent(in) :: dcoeff(ncells)
+      real(dp), intent(in) :: alpha(ncells)
 
       integer :: icell
 

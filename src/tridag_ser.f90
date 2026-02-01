@@ -5,6 +5,8 @@
 
 module tridag_ser_mod
 
+use kindtypes_mod, only: dp
+
 interface assert_eq
     module procedure assert_eq
 end interface
@@ -41,13 +43,14 @@ subroutine tridag_ser(a, b, c, r, u)
 
     implicit none
 
-    real(kind=8), dimension(:), intent(in)  :: a, b, c, r
-    real(kind=8), dimension(:), intent(out) :: u
+    real(dp), dimension(:), intent(in)  :: a, b, c, r
+    real(dp), dimension(:), intent(out) :: u
 
-    real(kind=8), dimension(size(b)) :: gam
+    real(dp), dimension(size(b)) :: gam
 
     integer :: n, j
-    real(kind=8) :: bet
+    real(dp) :: bet
+    real(dp), parameter :: tol = 1.0e-12_dp
 
     write(*,*) 'a', size(a)
     write(*,*) 'b', size(b)
@@ -58,7 +61,7 @@ subroutine tridag_ser(a, b, c, r, u)
 
     bet = b(1)
 
-    if (bet == 0.0) call myerror('Re-write your equations as a set of order N-1, with u2 trivially eliminated')
+    if (abs(bet) <= tol) call myerror('Re-write your equations as a set of order N-1, with u2 trivially eliminated')
 
     u(1) = r(1)/bet
 
@@ -70,7 +73,7 @@ subroutine tridag_ser(a, b, c, r, u)
 
         bet = b(j) - a(j-1)*gam(j)
 
-        if (bet == 0.0) call myerror('Stage 2 failure')
+        if (abs(bet) <= tol) call myerror('Stage 2 failure')
 
         u(j) = (r(j) - a(j-1)*u(j-1))/bet
 
