@@ -100,7 +100,9 @@ def diff(un, uc, minval=0):
 def has_failed(reference, difference, tolerance):
     """Abstract the definition of failure."""
     # Return True if failed
-    return np.any(np.greater(difference, reference * tolerance))
+    reference = np.abs(reference)
+    threshold = np.maximum(reference * tolerance, tolerance)
+    return np.any(np.greater(difference, threshold))
 
 
 def passed(un, uc, diff, tolerance):
