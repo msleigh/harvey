@@ -9,7 +9,7 @@ implicit none
    PARAMETER (EPS=3.0d-15)       	!EPS is the relative precision
    PARAMETER (M_PI=3.141592654d0)      ! Pi value
 
-  contains   
+  contains
 
 function Gsselm(a,row)
 	INTEGER, INTENT(IN) :: row
@@ -60,7 +60,7 @@ function Gsselm(a,row)
 	      print *,'check that the input dimensions are correct.'
 !   	   call break()
 	   END if
-   
+
 
 
 !/*      Perform row-reduction with pivotal element a[k][k]     */
