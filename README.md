@@ -114,9 +114,16 @@ and the `doxypypy` Python package). For example:
     sudo apt-get install doxygen graphviz texlive-latex-base texlive-latex-extra texlive-fonts-recommended
     python3 -m pip install doxypypy
 
-Build the docs locally:
+Build the docs locally (from the repository root):
 
     make doxygen.log
+
+If you run Doxygen directly instead of `make`, run it from the documentation
+output directory so the `doc/Doxyfile` paths resolve correctly:
+
+    mkdir -p build/Doc
+    cd build/Doc
+    doxygen ../../doc/Doxyfile
 
 #### Opening the output
 
