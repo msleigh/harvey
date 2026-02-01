@@ -95,7 +95,7 @@ def read(input_file):
 
     @details Reads input deck with user-specified problem-specific
              information.
-    @param   None
+    @param   input_file  Name of user input file (string).
     @return  None
     """
     # There is no default input file name (initialised to None in import)

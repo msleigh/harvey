@@ -98,7 +98,7 @@ def _validate_time_parameters():
 
 def main(input_file, output_file, debug_mode):
     """
-    @brief   Top-level function for harvey..
+    @brief   Top-level function for harvey.
 
     @details Can be called within Python after importing, so has simple/flat signature.
 
