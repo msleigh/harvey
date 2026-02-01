@@ -139,13 +139,13 @@ Main QA test suite for Harvey.
    #    File Should Exist     test11.out
    #    File Should Exist     test11.png
 
-   #Test 12
-   #    Import Library        test12.py
-   #    [Documentation]       Test 12
-   #    ${RESULT} =           test12
-   #    Should Be Equal       ${RESULT}     ${true}
-   #    File Should Exist     test12.out
-   #    File Should Exist     test12.png
+   Test 12
+       Import Library        test12.py
+       [Documentation]       Test 12
+       ${RESULT} =           test12
+       Should Be Equal       ${RESULT}     ${true}
+       File Should Exist     test12.out
+       File Should Exist     test12.png
 
    Test 13
        Import Library        test13.py
