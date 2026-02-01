@@ -17,7 +17,12 @@ def test9():
     plt.clf()
 
     # Get the numerical solution
-    (f, nnodes, x) = qa_utils.run_harvey(testname)
+    (x, ntim, nval) = qa_utils.get_harvey(testname)
+    nnodes = len(x)
+    if nval.size == 0:
+        raise AssertionError(
+            f"{testname} numerical solution output is empty. Check {testname}.log for solver output."
+        )
 
     # Plot the initial condition
     # --------------------------
@@ -56,23 +61,20 @@ def test9():
     # ttimes = [40.]
     ttimes = [0.0, 100.0, 160.0, 240.0, 320.0, 640.0]
 
-    tmpstr = f.readline()
-
-    tn = -1.0
     failed = False
-    tol = 1.0e-00
+    tol = 1.0e-02
 
     for tfac in ttimes:
 
         t = tfac * dx * dx / D
-
-        while tn < t:
-            if tmpstr == "":
-                break
-            tmpfld = tmpstr.split(None)
-            tn = float(tmpfld[0])
-            tmpstr = f.readline()
-        un = np.array(tmpfld[1:], dtype=np.float64)
+        tp = np.searchsorted(ntim, t, side="left")
+        if tp >= len(ntim):
+            raise AssertionError(
+                f"{testname} expected time {t:.6f} exceeds available solution times "
+                f"(last time {ntim[-1]:.6f})."
+            )
+        tn = ntim[tp]
+        un = nval[tp, :]
 
         uc = np.zeros(nnodes)
         for iterm in range(1, 5000):
@@ -82,41 +84,14 @@ def test9():
         uc[-1] = 0.0
         uc = phiFS0 + uc
 
-        plt.plot(x, uc, "b-", lw=2, label='$\phi(x,{:.6f})$'.format(t)+' (ref)')
-        plt.plot(x, un, "r--", lw=2, label='$\phi(x,{:.6f})$'.format(t))
+        plt.plot(x, uc, "b-", lw=2, label='$\phi(x,{:.6f})$'.format(tn)+' (ref)')
+        plt.plot(x, un, "r--", lw=2, label='$\phi(x,{:.6f})$'.format(tn))
 
-        diff = np.zeros(nnodes)
-        for i, uni in enumerate(un):
-            if uni != 0.0:
-                diff[i] = 100.0 * (uni - uc[i])
+        diff = np.abs(un - uc)
 
-        if np.all(np.less_equal(abs(diff), abs(uc * tol))):
-            pass
-        else:
-            failed = True
-            print(
-                "{0:2s} {1:23s} {2:23s} {3:23s} {4:23s} {5:23s} {6:23s}".format(
-                    "j",
-                    "x[j]",
-                    "uc[j]",
-                    "un[j]",
-                    "diff[j]",
-                    "uc[j]*tol",
-                    "np.less_equal(diff[j], uc[j]*tol)",
-                )
-            )
-            for j in range(nnodes):
-                print(
-                    "{0:2d} {1:23.16e} {2:23.16e} {3:23.16e} {4:23.16e} {5:23.16e} {6}".format(
-                        j,
-                        x[j],
-                        uc[j],
-                        un[j],
-                        abs(diff[j]),
-                        abs(uc[j] * tol),
-                        np.less_equal(abs(diff[j]), abs(uc[j] * tol)),
-                    )
-                )
+        failed = qa_utils.has_failed(uc, diff, tol)
+        if failed:
+            qa_utils.dump(nnodes, x, uc, un, diff, tol)
             break
 
     # plt.plot(x,phi,'b-',lw=2)
