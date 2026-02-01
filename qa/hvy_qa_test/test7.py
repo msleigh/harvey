@@ -34,7 +34,13 @@ def test7():
 
         un = nval[tp,:]
 
-        rel_l2_error = np.linalg.norm(un - uc) / np.linalg.norm(uc)
+        finite_mask = np.isfinite(un) & np.isfinite(uc)
+        assert finite_mask.any(), f"{testname} has no finite values at t={t:.6f}"
+        assert finite_mask.all(), f"{testname} contains non-finite values at t={t:.6f}"
+
+        rel_l2_error = np.linalg.norm(un[finite_mask] - uc[finite_mask]) / np.linalg.norm(
+            uc[finite_mask]
+        )
         assert rel_l2_error < 0.15, (
             f"{testname} relative L2 error {rel_l2_error:.3e} exceeds tolerance"
         )
