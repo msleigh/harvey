@@ -67,7 +67,7 @@ def test12():
     ttimes = [0.0, 100.0, 160.0, 240.0, 320.0, 640.0]
 
     failed = False
-    tol = 1.0e-00
+    tol = 1.0e-02
 
     for tfac in ttimes:
         t = tfac * dx * dx / D
