@@ -5,14 +5,16 @@
 
 module calc_source_terms_mod
 
+   use kindtypes_mod, only: dp
+
    implicit none
 
    contains
 
    subroutine calc_source_terms(ncells, src)
 
-      integer,      intent(in)                     :: ncells
-      real(kind=8), intent(out), dimension(ncells) :: src
+      integer, intent(in)                     :: ncells
+      real(dp), intent(out), dimension(ncells) :: src
 
       integer :: icell
 
@@ -21,8 +23,9 @@ module calc_source_terms_mod
       write(*,*) "=========================="
 
 
-      ! Should not be needed yet
-      src(:) = -32767.
+      ! Placeholder source term: fill with a sentinel until a physical source is defined.
+      ! Keeping a distinct large negative value makes it obvious if this stub is used.
+      src(:) = -32767._dp
 
 !      write(*,*)
 !      do icell = 1,ncells

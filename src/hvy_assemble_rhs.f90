@@ -45,7 +45,9 @@ module assemble_rhs_mod
         ! alpha(x) = x^p D(x) dt / dx^2
 
         ! We should never need b_0, as E_0 and F_0 are calculated directly from the left-hand
-        ! boundary condition
+        ! boundary condition.
+        ! Left boundary (j=1) with Neumann BC du/dx = uvalue0:
+        !   use ghost value u_0 = u_2 - 2*dx*uvalue0 so that (u_1 - u_0) matches the gradient.
         j = 1
 !       d(j) = (1._dp-theta)*(alpha(j)*(u(j+1) - u(j)) - alpha(j-1)*(u(j) - u(j-1)                   )) + (nodepos(j)**geom)*u(j)
         d(j) = (1._dp-theta)*(alpha(j)*(u(j+1) - u(j)) - alpha(j)  *(u(j) - (u(j+1)-2._dp*dx*uvalue0))) + (nodepos(j)**geom)*u(j)
@@ -55,7 +57,9 @@ module assemble_rhs_mod
             d(j) = (1._dp - theta)*(alpha(j)*(u(j+1) - u(j)) - alpha(j-1)*(u(j) - u(j-1))) + (nodepos(j)**geom)*u(j)
         enddo
 
-        ! We should never need b_J, as we do not need E_J or F_J either - NOT TRUE FOR NEUMAN BOUNDARY IN IMPLICIT SCHEME
+        ! We should never need b_J, as we do not need E_J or F_J either - NOT TRUE FOR NEUMAN BOUNDARY IN IMPLICIT SCHEME.
+        ! Right boundary (j=ncells+1) with Neumann BC du/dx = uvalue1:
+        !   use ghost value u_{J+1} = u_{J-1} + 2*dx*uvalue1 for the outer gradient.
         j = ncells + 1
         d(j) = (1._dp-theta)*(alpha(j-1)*(2._dp*dx*uvalue1 + u(j-1) - u(j)) - alpha(j-1)*(u(j) - u(j-1))) + (nodepos(j)**geom)*u(j)
 
