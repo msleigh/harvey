@@ -1,0 +1,38 @@
+name: Deploy Documentation
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Build and deploy documentation
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Build documentation with Doxygen
+        uses: mattnotmitt/doxygen-action@v1.12.0
+        with:
+          working-directory: 'doc'
+          doxyfile-path: 'Doxyfile'
+          enable-latex: true
+
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DOCS_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "${{ secrets.DOCS_SSH_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Deploy to server
+        run: |
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/deploy_key" \
+            doc/html/ \
+            "${{ secrets.DOCS_SSH_USER }}@${{ secrets.DOCS_SSH_HOST }}:${{ secrets.DOCS_SSH_PATH }}"
