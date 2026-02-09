@@ -14,7 +14,7 @@ written in Python calling a Fortran kernel.
 
 ![Build status (`main`)](https://github.com/msleigh/harvey/actions/workflows/build.yml/badge.svg?branch=main)
 
-It can be executed by running the the top-level `harvey.py` directly, but in most cases
+It can be executed by running the top-level `harvey.py` directly, but in most cases
 a problem-specific top-level Python script should be written that calls the code as a
 solver. The included test cases demonstrate how to do this. The test suite is
 controlled by [Robot Framework](http://robotframework.org).
