@@ -8,10 +8,10 @@ written in Python calling a Fortran kernel.
 > **Note:** Only planar (slab) geometry is supported at present. Cylindrical and
 > spherical geometries are planned but not implemented yet.
 
-<img src="https://img.shields.io/github/v/release/msleigh/harvey?include_prereleases"> <img src="https://img.shields.io/github/license/msleigh/harvey"> <img src="https://img.shields.io/tokei/lines/github/msleigh/harvey"> <img src="https://img.shields.io/github/last-commit/msleigh/harvey">
-
-<img src="https://img.shields.io/badge/code%20style-black-lightgrey">
-
+![License](https://img.shields.io/github/license/msleigh/harvey)
+![Last commit](https://img.shields.io/github/last-commit/msleigh/harvey)
+![Repo size](https://img.shields.io/github/repo-size/msleigh/harvey)
+![Code style: black](https://img.shields.io/badge/code%20style-black-lightgrey)
 ![Build status (`main`)](https://github.com/msleigh/harvey/actions/workflows/build.yml/badge.svg?branch=main)
 
 It can be executed by running the top-level `harvey.py` directly, but in most cases
