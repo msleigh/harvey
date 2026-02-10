@@ -3,6 +3,8 @@ name: Build
 on:
   push:
   workflow_dispatch:
+  schedule:
+    - cron: "26 1 * * 5"
 
 jobs:
   build:
