@@ -41,3 +41,4 @@
 - [ ] Add `[project.optional-dependencies]` for dev/docs/test groups
 - [ ] Pin doxypypy version in Dockerfile.docs
 - [ ] Document required working directory for Doxygen builds
+- [ ] Create new GitHub Actions workflow to deploy docs to harvey.msleigh.io on push to main
