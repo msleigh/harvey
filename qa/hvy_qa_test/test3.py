@@ -16,11 +16,14 @@ def analytic_solution(x, t):
     dcon = 1.0  # Diffusion coefficient
     T0 = 1.0  # The initial temperature (constant in x)
     const = 4.0 * T0 / np.pi
+    problem_size = x[0] + x[-1]
     uc = np.zeros(len(x))
     for iterm in range(1, 500):
         n = 2.0 * iterm - 1.0
-        # TODO: Problem size L = pi is hard-wired
-        uc = uc + (np.sin(n * x) / n) * np.exp(-n * n * dcon * t)
+        wavenumber = n * np.pi / problem_size
+        uc = uc + (np.sin(wavenumber * x) / n) * np.exp(
+            -wavenumber * wavenumber * dcon * t
+        )
     uc = const * uc
     return uc
 
