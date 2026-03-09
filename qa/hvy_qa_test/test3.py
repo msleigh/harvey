@@ -16,7 +16,7 @@ def analytic_solution(x, t):
     dcon = 1.0  # Diffusion coefficient
     T0 = 1.0  # The initial temperature (constant in x)
     const = 4.0 * T0 / np.pi
-    problem_size = x[0] + x[-1]
+    problem_size = x[-1] - x[0]
     uc = np.zeros(len(x))
     for iterm in range(1, 500):
         n = 2.0 * iterm - 1.0
