@@ -11,7 +11,6 @@ written in Python calling a Fortran kernel.
 ![License](https://img.shields.io/github/license/msleigh/harvey)
 ![Last commit](https://img.shields.io/github/last-commit/msleigh/harvey)
 ![Repo size](https://img.shields.io/github/repo-size/msleigh/harvey)
-![Code style: black](https://img.shields.io/badge/code%20style-black-lightgrey)
 ![Build status (`main`)](https://github.com/msleigh/harvey/actions/workflows/build.yml/badge.svg?branch=main)
 
 It can be executed by running the top-level `harvey.py` directly, but in most cases
@@ -193,10 +192,10 @@ more detailed information. Fortran stdout/stderr from each run is captured in
 
 To create a new run, create an input definition file (a Python script, with a
 `.py` extension), containing a `define()` function that sets up the problem
-specification. The example input file `src/harvey.in` provides a template, and the
-built-in test problem suite (described below) provides other examples. Run with a
-user-defined input file:
+specification. The built-in input file `src/harvin.py` and the test input files
+under `qa/hvy_qa_test/` provide examples. Run with a user-defined input file:
 
     src/harvey.py -i <test_file>
 
-where the string `<test_file>` should _omit_ the `.py` extension.
+where the string `<test_file>` may include the `.py` extension, omit it, or be a
+path to an input file.

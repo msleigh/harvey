@@ -1,44 +1,28 @@
--------|---------------|----------------||-------------|-------------||---------|------------||----------|--------
-TEST   | COMPARISON    | DIFFERENCING   ||       LEFT BOUNDARY       ||    RIGHT BOUNDARY    || INITIAL  | SOURCE
-       |               |                ||   u(0,t)    | du/dx(0,t)  || u(L,t)  | du/dx(L,t) ||  u(x,0)  |
--------|---------------|----------------||-------------|-------------||---------|------------||----------|--------
-                                        ||             |             ||
-EXPLICIT DIR/DIR                        ||             |             ||
-                                        ||             |             ||
-test3  | Analytic sol. | Explicit       || 0 (Inf)     |      -      || 0 (Inf) |     -      || Gaussian | RHB p.579
-test5  | Analytic sol. | Explicit       || 0           |      -      || 0       |     -      || Sinusoid |
-test6  | Analytic sol. | Explicit       || 0           |      -      || 0       |     -      || Chevron  |
-test7  | Analytic sol. | Explicit       || 0           |      -      || 0       |     -      || Constant |
-test2  | Analytic sol. | Explicit       || 100         |      -      || 0 (Inf) |     -      || 0        | RHB p.577
-test8  | Analytic sol. | Explicit       || 1           |      -      || 0       |     -      || 0        |
-test12 | Analytic sol. | Explicit       || 0           |      -      || 1       |     -      || 0        |
-                                        ||             |             ||
-IMPLICIT DIR/DIR                        ||             |             ||
-                                        ||             |             ||
-test10 | Analytic sol. | Implicit (1.0) || 0           |      -      || 0       |     -      || Sinusoid |
-test4  | Analytic sol. | Implicit (0.5) || 100         |      -      || 0 (Inf) |     -      || 0        |
-test9  | Analytic sol. | Implicit (0.5) || 1           |      -      || 0       |     -      || 0        |
-test11 | Analytic sol. | Implicit (0.5) || 0           |      -      || 1       |     -      || 0        |
+QA test problem summary
+=======================
 
-EXPLICIT DIR/NEU
+This table is transcribed from the current `qa/hvy_qa_test/test*_in.py` input
+files. The `Order` column follows `qa/test_problems.csv`.
 
-test1  | Alt. scheme   | Explicit       || 100         |      -      ||    -    | 0          || 0        | http://excelcalculations.blogspot.co.uk/2011/04/solving-1d-heat-equation-using-finite.html
-test13 | Analytic sol. | Explicit       || 0           |      -      ||    -    | 1          || 0        | RHB p.550
-
-IMPLICIT DIR/NEU
-
-test14 | Analytic sol. | Implicit (0.5) || 0           |      -      ||    -    | 1          || 0        | RHB p.550
-test15 | Analytic sol. | Implicit (0.5) || 0           |      -      ||    -    | 0          || Sinusoid |
-
-EXPLICIT NEU/DIR
-
-test16 | Alt. scheme   | Explicit       ||      -      | 0           || 100     |     -      || 0        | http://excelcalculations.blogspot.co.uk/2011/04/solving-1d-heat-equation-using-finite.html
-NEEDS SETTING UP:                                        1
-
-IMPLICIT NEU/DIR
-
-test17 | Analytic sol. | Implicit (0.5) ||      -      | 0           || 0       |     -      || Sinusoid |
-NEEDS SETTING UP:                                        1
-
+| Test | Scheme | Left boundary | Right boundary | Initial condition | Order |
+| ---- | ------ | ------------- | -------------- | ----------------- | ----- |
+| test1 | Explicit | dirichlet 0.0 | dirichlet 0.0 | sin pi / mesh.xsize | 1 |
+| test2 | Laasonen | dirichlet 0.0 | dirichlet 0.0 | sin pi / mesh.xsize | 2 |
+| test3 | Crank-Nicolson | dirichlet 0.0 | dirichlet 0.0 | constant 1.0 | 5 |
+| test4 | Explicit | dirichlet 0.0 | dirichlet 0.0 | chevron C | 7 |
+| test5 | Explicit | dirichlet 100.0 | neumann 0.0 | zero | 15 |
+| test6 | Crank-Nicolson | dirichlet 100.0 | dirichlet 0.0 | zero | 17 |
+| test7 | Explicit | dirichlet 0.0 | dirichlet 0.0 | gaussian | 19 |
+| test8 | Explicit | dirichlet 1.0 | dirichlet 0.0 | zero | 9 |
+| test9 | Crank-Nicolson | dirichlet 1.0 | dirichlet 0.0 | zero | 8 |
+| test10 | Explicit | dirichlet 100.0 | dirichlet 0.0 | zero | 18 |
+| test11 | Crank-Nicolson | dirichlet 0.0 | dirichlet 1.0 | zero | 10 |
+| test12 | Explicit | dirichlet 0.0 | dirichlet 1.0 | zero | 11 |
+| test13 | Explicit | dirichlet 0.0 | neumann 1.0 | zero | 12 |
+| test14 | Crank-Nicolson | dirichlet 0.0 | neumann 1.0 | zero | 13 |
+| test15 | Crank-Nicolson | dirichlet 0.0 | neumann 0.0 | sin pi / (2.0 * mesh.xsize) | 3 |
+| test16 | Explicit | neumann 0.0 | dirichlet 100.0 | zero | 16 |
+| test17 | Crank-Nicolson | neumann 0.0 | dirichlet 0.0 | cos pi / (2.0 * mesh.xsize) | 4 |
+| test18 | Crank-Nicolson | dirichlet 0.0 | dirichlet 0.0 | chevron C | 6 |
 
 RHB = Riley, Hobson and Bence
