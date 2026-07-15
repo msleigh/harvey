@@ -198,4 +198,4 @@ under `qa/hvy_qa_test/` provide examples. Run with a user-defined input file:
     src/harvey.py -i <test_file>
 
 where the string `<test_file>` may include the `.py` extension, omit it, or be a
-path to an input file.
+path to a `.py` input file.
