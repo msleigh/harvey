@@ -197,5 +197,7 @@ under `qa/hvy_qa_test/` provide examples. Run with a user-defined input file:
 
     src/harvey.py -i <test_file>
 
-where the string `<test_file>` may include the `.py` extension, omit it, or be a
-path to a `.py` input file.
+where `<test_file>` is either a module name without the `.py` extension, which
+is searched for in the current directory, `src/`, and any Python path entries
+inside the project, or a path to a `.py` file, resolved relative to the current
+directory. A name with the `.py` extension is treated as a path.
